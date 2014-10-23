@@ -15,6 +15,7 @@
 		5B285A5619F468D100ECE1A5 /* PocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A5519F468D100ECE1A5 /* PocViewController.swift */; };
 		5B285A5C19F46F5300ECE1A5 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B285A5B19F46F5300ECE1A5 /* HealthKit.framework */; };
 		5B285A5E19F5BA4D00ECE1A5 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A5D19F5BA4D00ECE1A5 /* HealthStore.swift */; };
+		5B285A6019F6825F00ECE1A5 /* TimeKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A5F19F6825F00ECE1A5 /* TimeKeeper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		5B285A5A19F46F5300ECE1A5 /* TapB4UNap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TapB4UNap.entitlements; sourceTree = "<group>"; };
 		5B285A5B19F46F5300ECE1A5 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		5B285A5D19F5BA4D00ECE1A5 /* HealthStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthStore.swift; path = Classes/HealthStore.swift; sourceTree = "<group>"; };
+		5B285A5F19F6825F00ECE1A5 /* TimeKeeper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeKeeper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				5B285A3319F4673800ECE1A5 /* Supporting Files */,
 				5B285A5519F468D100ECE1A5 /* PocViewController.swift */,
 				5B285A5D19F5BA4D00ECE1A5 /* HealthStore.swift */,
+				5B285A5F19F6825F00ECE1A5 /* TimeKeeper.swift */,
 			);
 			path = TapB4UNap;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			files = (
 				5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */,
 				5B285A5E19F5BA4D00ECE1A5 /* HealthStore.swift in Sources */,
+				5B285A6019F6825F00ECE1A5 /* TimeKeeper.swift in Sources */,
 				5B285A5619F468D100ECE1A5 /* PocViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
