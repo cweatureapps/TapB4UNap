@@ -12,10 +12,14 @@
 		5B285A3D19F4673800ECE1A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A3C19F4673800ECE1A5 /* Images.xcassets */; };
 		5B285A4019F4673800ECE1A5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A3E19F4673800ECE1A5 /* LaunchScreen.xib */; };
 		5B285A4C19F4673800ECE1A5 /* TapB4UNapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A4B19F4673800ECE1A5 /* TapB4UNapTests.swift */; };
-		5B285A5619F468D100ECE1A5 /* PocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A5519F468D100ECE1A5 /* PocViewController.swift */; };
-		5B285A5C19F46F5300ECE1A5 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B285A5B19F46F5300ECE1A5 /* HealthKit.framework */; };
 		5B285A5E19F5BA4D00ECE1A5 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A5D19F5BA4D00ECE1A5 /* HealthStore.swift */; };
 		5B285A6019F6825F00ECE1A5 /* TimeKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A5F19F6825F00ECE1A5 /* TimeKeeper.swift */; };
+		5B285A6819F9A69A00ECE1A5 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B285A6719F9A69A00ECE1A5 /* NotificationCenter.framework */; };
+		5B285A6D19F9A69A00ECE1A5 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A6C19F9A69A00ECE1A5 /* TodayViewController.swift */; };
+		5B285A6F19F9A69A00ECE1A5 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A6E19F9A69A00ECE1A5 /* MainInterface.storyboard */; };
+		5B285A7219F9A69A00ECE1A5 /* TapB4UNapWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5B285A6519F9A69A00ECE1A5 /* TapB4UNapWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5B285A7719FA2FF800ECE1A5 /* TimeKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A5F19F6825F00ECE1A5 /* TimeKeeper.swift */; };
+		5BDB91B319FF6F37009CBA13 /* SaveDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB91B219FF6F37009CBA13 /* SaveDataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,7 +30,28 @@
 			remoteGlobalIDString = 5B285A2F19F4673800ECE1A5;
 			remoteInfo = TapB4UNap;
 		};
+		5B285A7019F9A69A00ECE1A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B285A2819F4673800ECE1A5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B285A6419F9A69A00ECE1A5;
+			remoteInfo = TapB4UNapWidget;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5B285A7619F9A69A00ECE1A5 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5B285A7219F9A69A00ECE1A5 /* TapB4UNapWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5B285A3019F4673800ECE1A5 /* TapB4UNap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapB4UNap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,11 +63,16 @@
 		5B285A4519F4673800ECE1A5 /* TapB4UNapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TapB4UNapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B285A4A19F4673800ECE1A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B285A4B19F4673800ECE1A5 /* TapB4UNapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapB4UNapTests.swift; sourceTree = "<group>"; };
-		5B285A5519F468D100ECE1A5 /* PocViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PocViewController.swift; path = Classes/PocViewController.swift; sourceTree = "<group>"; };
 		5B285A5A19F46F5300ECE1A5 /* TapB4UNap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TapB4UNap.entitlements; sourceTree = "<group>"; };
-		5B285A5B19F46F5300ECE1A5 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		5B285A5D19F5BA4D00ECE1A5 /* HealthStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthStore.swift; path = Classes/HealthStore.swift; sourceTree = "<group>"; };
 		5B285A5F19F6825F00ECE1A5 /* TimeKeeper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeKeeper.swift; sourceTree = "<group>"; };
+		5B285A6519F9A69A00ECE1A5 /* TapB4UNapWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TapB4UNapWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B285A6719F9A69A00ECE1A5 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		5B285A6B19F9A69A00ECE1A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B285A6C19F9A69A00ECE1A5 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		5B285A6E19F9A69A00ECE1A5 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		5B285A7919FA6EF600ECE1A5 /* TapB4UNapWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TapB4UNapWidget.entitlements; sourceTree = "<group>"; };
+		5BDB91B219FF6F37009CBA13 /* SaveDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SaveDataController.swift; path = Classes/SaveDataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B285A5C19F46F5300ECE1A5 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,15 +90,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B285A6219F9A69A00ECE1A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B285A6819F9A69A00ECE1A5 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		5B285A2719F4673800ECE1A5 = {
 			isa = PBXGroup;
 			children = (
-				5B285A5B19F46F5300ECE1A5 /* HealthKit.framework */,
 				5B285A3219F4673800ECE1A5 /* TapB4UNap */,
 				5B285A4819F4673800ECE1A5 /* TapB4UNapTests */,
+				5B285A6919F9A69A00ECE1A5 /* TapB4UNapWidget */,
+				5B285A6619F9A69A00ECE1A5 /* Frameworks */,
 				5B285A3119F4673800ECE1A5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +117,7 @@
 			children = (
 				5B285A3019F4673800ECE1A5 /* TapB4UNap.app */,
 				5B285A4519F4673800ECE1A5 /* TapB4UNapTests.xctest */,
+				5B285A6519F9A69A00ECE1A5 /* TapB4UNapWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,9 +131,9 @@
 				5B285A3C19F4673800ECE1A5 /* Images.xcassets */,
 				5B285A3E19F4673800ECE1A5 /* LaunchScreen.xib */,
 				5B285A3319F4673800ECE1A5 /* Supporting Files */,
-				5B285A5519F468D100ECE1A5 /* PocViewController.swift */,
 				5B285A5D19F5BA4D00ECE1A5 /* HealthStore.swift */,
 				5B285A5F19F6825F00ECE1A5 /* TimeKeeper.swift */,
+				5BDB91B219FF6F37009CBA13 /* SaveDataController.swift */,
 			);
 			path = TapB4UNap;
 			sourceTree = "<group>";
@@ -124,6 +163,33 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5B285A6619F9A69A00ECE1A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B285A6719F9A69A00ECE1A5 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B285A6919F9A69A00ECE1A5 /* TapB4UNapWidget */ = {
+			isa = PBXGroup;
+			children = (
+				5B285A7919FA6EF600ECE1A5 /* TapB4UNapWidget.entitlements */,
+				5B285A6C19F9A69A00ECE1A5 /* TodayViewController.swift */,
+				5B285A6E19F9A69A00ECE1A5 /* MainInterface.storyboard */,
+				5B285A6A19F9A69A00ECE1A5 /* Supporting Files */,
+			);
+			path = TapB4UNapWidget;
+			sourceTree = "<group>";
+		};
+		5B285A6A19F9A69A00ECE1A5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5B285A6B19F9A69A00ECE1A5 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,10 +200,12 @@
 				5B285A2C19F4673800ECE1A5 /* Sources */,
 				5B285A2D19F4673800ECE1A5 /* Frameworks */,
 				5B285A2E19F4673800ECE1A5 /* Resources */,
+				5B285A7619F9A69A00ECE1A5 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5B285A7119F9A69A00ECE1A5 /* PBXTargetDependency */,
 			);
 			name = TapB4UNap;
 			productName = TapB4UNap;
@@ -162,6 +230,23 @@
 			productReference = 5B285A4519F4673800ECE1A5 /* TapB4UNapTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		5B285A6419F9A69A00ECE1A5 /* TapB4UNapWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B285A7319F9A69A00ECE1A5 /* Build configuration list for PBXNativeTarget "TapB4UNapWidget" */;
+			buildPhases = (
+				5B285A6119F9A69A00ECE1A5 /* Sources */,
+				5B285A6219F9A69A00ECE1A5 /* Frameworks */,
+				5B285A6319F9A69A00ECE1A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TapB4UNapWidget;
+			productName = TapB4UNapWidget;
+			productReference = 5B285A6519F9A69A00ECE1A5 /* TapB4UNapWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -175,6 +260,9 @@
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = J653NKMPDP;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
@@ -183,6 +271,18 @@
 					5B285A4419F4673800ECE1A5 = {
 						CreatedOnToolsVersion = 6.1;
 						TestTargetID = 5B285A2F19F4673800ECE1A5;
+					};
+					5B285A6419F9A69A00ECE1A5 = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = J653NKMPDP;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -201,6 +301,7 @@
 			targets = (
 				5B285A2F19F4673800ECE1A5 /* TapB4UNap */,
 				5B285A4419F4673800ECE1A5 /* TapB4UNapTests */,
+				5B285A6419F9A69A00ECE1A5 /* TapB4UNapWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -223,6 +324,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B285A6319F9A69A00ECE1A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B285A6F19F9A69A00ECE1A5 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -230,10 +339,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BDB91B319FF6F37009CBA13 /* SaveDataController.swift in Sources */,
 				5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */,
 				5B285A5E19F5BA4D00ECE1A5 /* HealthStore.swift in Sources */,
 				5B285A6019F6825F00ECE1A5 /* TimeKeeper.swift in Sources */,
-				5B285A5619F468D100ECE1A5 /* PocViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +354,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B285A6119F9A69A00ECE1A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B285A7719FA2FF800ECE1A5 /* TimeKeeper.swift in Sources */,
+				5B285A6D19F9A69A00ECE1A5 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -252,6 +370,11 @@
 			isa = PBXTargetDependency;
 			target = 5B285A2F19F4673800ECE1A5 /* TapB4UNap */;
 			targetProxy = 5B285A4619F4673800ECE1A5 /* PBXContainerItemProxy */;
+		};
+		5B285A7119F9A69A00ECE1A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B285A6419F9A69A00ECE1A5 /* TapB4UNapWidget */;
+			targetProxy = 5B285A7019F9A69A00ECE1A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -359,6 +482,7 @@
 				CODE_SIGN_ENTITLEMENTS = TapB4UNap/TapB4UNap.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TapB4UNap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -373,6 +497,7 @@
 				CODE_SIGN_ENTITLEMENTS = TapB4UNap/TapB4UNap.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TapB4UNap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -414,6 +539,38 @@
 			};
 			name = Release;
 		};
+		5B285A7419F9A69A00ECE1A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TapB4UNapWidget/TapB4UNapWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TapB4UNapWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		5B285A7519F9A69A00ECE1A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TapB4UNapWidget/TapB4UNapWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TapB4UNapWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -433,6 +590,7 @@
 				5B285A5119F4673800ECE1A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5B285A5219F4673800ECE1A5 /* Build configuration list for PBXNativeTarget "TapB4UNapTests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +599,16 @@
 				5B285A5419F4673800ECE1A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B285A7319F9A69A00ECE1A5 /* Build configuration list for PBXNativeTarget "TapB4UNapWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B285A7419F9A69A00ECE1A5 /* Debug */,
+				5B285A7519F9A69A00ECE1A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
