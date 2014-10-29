@@ -17,56 +17,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kth-vJ-WrW">
-                                <rect key="frame" x="151" y="50" width="37" height="30"/>
-                                <state key="normal" title="sleep">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sleepButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="hEE-a7-5rr"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odH-dT-2QS">
-                                <rect key="frame" x="86" y="50" width="45" height="30"/>
-                                <state key="normal" title="cancel">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="rdt-X3-rWC"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o32-JF-of9">
-                                <rect key="frame" x="208" y="50" width="36" height="30"/>
-                                <state key="normal" title="wake">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="wakeButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="Qv6-fk-ENH"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap sleep to start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLU-3K-hMP">
-                                <rect key="frame" x="26" y="20" width="288" height="21"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3I-Ll-vSg" userLabel="contents">
+                                <rect key="frame" x="16" y="0.0" width="288" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap sleep to start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLU-3K-hMP">
+                                        <rect key="frame" x="0.0" y="25" width="288" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="BK3-MU-W9s"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMa-7j-58l" userLabel="buttonContainer">
+                                        <rect key="frame" x="0.0" y="50" width="288" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kth-vJ-WrW">
+                                                <rect key="frame" x="125" y="10" width="37" height="30"/>
+                                                <state key="normal" title="sleep">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sleepButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="hEE-a7-5rr"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o32-JF-of9">
+                                                <rect key="frame" x="166" y="10" width="36" height="30"/>
+                                                <state key="normal" title="wake">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="wakeButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="Qv6-fk-ENH"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odH-dT-2QS">
+                                                <rect key="frame" x="81.5" y="10" width="45" height="30"/>
+                                                <state key="normal" title="cancel">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="rdt-X3-rWC"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="centerY" secondItem="odH-dT-2QS" secondAttribute="centerY" id="1XU-aH-k0j"/>
+                                            <constraint firstAttribute="centerY" secondItem="kth-vJ-WrW" secondAttribute="centerY" id="L1F-D1-6jj"/>
+                                            <constraint firstAttribute="centerX" secondItem="kth-vJ-WrW" secondAttribute="centerX" id="S9J-lF-0AT"/>
+                                            <constraint firstAttribute="centerX" secondItem="odH-dT-2QS" secondAttribute="centerX" constant="40" id="ago-yj-KQ8"/>
+                                            <constraint firstAttribute="centerX" secondItem="o32-JF-of9" secondAttribute="centerX" constant="-40" id="bII-1y-HMh"/>
+                                            <constraint firstAttribute="height" constant="50" id="iPM-pL-sH4"/>
+                                            <constraint firstAttribute="centerY" secondItem="o32-JF-of9" secondAttribute="centerY" id="qi9-dZ-Xgf"/>
+                                            <constraint firstItem="kth-vJ-WrW" firstAttribute="baseline" secondItem="odH-dT-2QS" secondAttribute="baseline" id="rOq-eQ-BkM"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="BK3-MU-W9s"/>
+                                    <constraint firstItem="gMa-7j-58l" firstAttribute="top" secondItem="O3I-Ll-vSg" secondAttribute="top" constant="50" id="6wg-yL-7Ln"/>
+                                    <constraint firstItem="JLU-3K-hMP" firstAttribute="top" secondItem="O3I-Ll-vSg" secondAttribute="top" constant="25" id="CfE-kB-JAD"/>
+                                    <constraint firstAttribute="height" constant="100" id="FWg-zB-ilD"/>
+                                    <constraint firstItem="JLU-3K-hMP" firstAttribute="leading" secondItem="O3I-Ll-vSg" secondAttribute="leading" id="QZt-Ew-Hf8"/>
+                                    <constraint firstAttribute="trailing" secondItem="JLU-3K-hMP" secondAttribute="trailing" id="skX-5w-gxe"/>
+                                    <constraint firstAttribute="trailing" secondItem="gMa-7j-58l" secondAttribute="trailing" id="wtp-sR-B5q"/>
+                                    <constraint firstItem="gMa-7j-58l" firstAttribute="leading" secondItem="O3I-Ll-vSg" secondAttribute="leading" id="xk1-Gn-OzH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="JLU-3K-hMP" firstAttribute="trailing" secondItem="S3S-Oj-5AN" secondAttribute="trailingMargin" constant="10" id="6za-Px-N8t"/>
-                            <constraint firstItem="odH-dT-2QS" firstAttribute="baseline" secondItem="kth-vJ-WrW" secondAttribute="baseline" id="7RG-wj-qy3"/>
-                            <constraint firstItem="JLU-3K-hMP" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" constant="20" symbolic="YES" id="BUL-MP-8I7"/>
-                            <constraint firstItem="JLU-3K-hMP" firstAttribute="centerX" secondItem="kth-vJ-WrW" secondAttribute="centerX" id="D6t-Oo-w6c"/>
-                            <constraint firstItem="o32-JF-of9" firstAttribute="leading" secondItem="kth-vJ-WrW" secondAttribute="trailing" constant="20" id="Flt-9q-gig"/>
-                            <constraint firstItem="JLU-3K-hMP" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="10" id="ST1-ql-7EB"/>
-                            <constraint firstItem="kth-vJ-WrW" firstAttribute="baseline" secondItem="o32-JF-of9" secondAttribute="baseline" id="TRq-7x-ViI"/>
-                            <constraint firstItem="kth-vJ-WrW" firstAttribute="top" secondItem="JLU-3K-hMP" secondAttribute="bottom" constant="9" id="eL3-VY-kWw"/>
-                            <constraint firstItem="kth-vJ-WrW" firstAttribute="leading" secondItem="odH-dT-2QS" secondAttribute="trailing" constant="20" id="vAf-7h-Vcj"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="O3I-Ll-vSg" secondAttribute="bottom" priority="100" id="I1R-2y-ob9"/>
+                            <constraint firstItem="O3I-Ll-vSg" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="qCR-kQ-IpG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O3I-Ll-vSg" secondAttribute="trailing" id="s9X-9e-ALp"/>
+                            <constraint firstItem="O3I-Ll-vSg" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="vEY-Ql-iLO"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>

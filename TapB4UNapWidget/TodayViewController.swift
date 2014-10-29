@@ -71,6 +71,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         completionHandler(NCUpdateResult.NewData)
     }
     
+    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+      let newInsets = UIEdgeInsets(top: defaultMarginInsets.top, left: 0,
+                                   bottom: 0, right: 0)
+      return newInsets
+    }
+    
     // ------- handlers ------
     
     @IBAction func sleepButtonHandler(sender: AnyObject) {
