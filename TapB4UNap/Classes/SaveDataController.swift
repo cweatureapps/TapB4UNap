@@ -13,23 +13,36 @@ class SaveDataController : UIViewController {
 
     let timeKeeper = TimeKeeper()
 
-    @IBOutlet weak var statusMessageLabel: UILabel!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak private var statusMessageLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak private var saveButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveToHealthStore()
     }
 
-    func saveToHealthStore() {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+
+    private func saveToHealthStore() {
         if (timeKeeper.canSave()) {
             HealthStore.sharedInstance.saveSleepData(timeKeeper.getSleepStartDate()!, endDate:timeKeeper.getSleepEndDate()!, withCompletion: {
               (success, error) in
                     if (success) {
                         println("sleep data saved successfully!")
-                        // TODO: interestingly, changing UI here wont reflect in UI immediately. UI thread vs other thread?
-                        self.statusMessageLabel.text = "Saved!"
                         
-                        self.timeKeeper.reset()
+                        
+                        // update ui on main thread
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.statusMessageLabel.text = "Saved to HealthKit. You slept for:"
+                            self.timeLabel.text = (self.timeKeeper.formattedTimeElapsedSleeping())
+                            
+                            self.timeKeeper.reset()
+                        }
+                        
+                        
                     } else {
                         println("Error: \(error)")
                     }

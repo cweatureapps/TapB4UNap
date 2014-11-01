@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.75000000000000022" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hov6CQ-small.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3wo-RG-euE" userLabel="background">
+                                <rect key="frame" x="0.0" y="0.0" width="336" height="100"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3I-Ll-vSg" userLabel="contents">
                                 <rect key="frame" x="16" y="0.0" width="288" height="100"/>
                                 <subviews>
@@ -53,7 +56,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odH-dT-2QS">
-                                                <rect key="frame" x="81.5" y="10" width="45" height="30"/>
+                                                <rect key="frame" x="81" y="10" width="45" height="30"/>
                                                 <state key="normal" title="cancel">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -88,7 +91,10 @@
                             </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="3wo-RG-euE" firstAttribute="width" secondItem="S3S-Oj-5AN" secondAttribute="width" constant="16" id="Hp7-Cr-8Hh"/>
                             <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="O3I-Ll-vSg" secondAttribute="bottom" priority="100" id="I1R-2y-ob9"/>
+                            <constraint firstItem="3wo-RG-euE" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="-16" id="ckm-is-szJ"/>
+                            <constraint firstItem="3wo-RG-euE" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="nJo-rd-Jok"/>
                             <constraint firstItem="O3I-Ll-vSg" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="qCR-kQ-IpG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="O3I-Ll-vSg" secondAttribute="trailing" id="s9X-9e-ALp"/>
                             <constraint firstItem="O3I-Ll-vSg" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="vEY-Ql-iLO"/>
@@ -112,6 +118,9 @@
             <point key="canvasLocation" x="516" y="285"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="hov6CQ-small.jpg" width="320" height="100"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

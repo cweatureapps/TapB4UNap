@@ -16,10 +16,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     private let timeKeeper = TimeKeeper()
     private var timer:NSTimer?
     
-    @IBOutlet weak var sleepButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var wakeButton: UIButton!
-    @IBOutlet weak var statusMessageLabel: UILabel!
+    @IBOutlet weak private var sleepButton: UIButton!
+    @IBOutlet weak private var cancelButton: UIButton!
+    @IBOutlet weak private var wakeButton: UIButton!
+    @IBOutlet weak private var statusMessageLabel: UILabel!
     
     // ----- UIViewController -----
     

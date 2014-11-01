@@ -24,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // capture url scheme "cwtapb4unap://save" and save to the HealthStore
       if let ctrl = window?.rootViewController as? SaveDataController {
         if url.lastPathComponent == "save" {
-            ctrl.saveToHealthStore()
+            // use the save controller instead
+            // TODO: currently the save controller is the default
         }
       }
       return true
