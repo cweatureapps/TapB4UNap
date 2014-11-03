@@ -17,8 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.75000000000000022" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hov6CQ-small.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3wo-RG-euE" userLabel="background">
+                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000027" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hov6CQ-1280x400.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3wo-RG-euE" userLabel="background">
                                 <rect key="frame" x="0.0" y="0.0" width="336" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="DtG-CS-65F"/>
+                                </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3I-Ll-vSg" userLabel="contents">
                                 <rect key="frame" x="16" y="0.0" width="288" height="100"/>
@@ -119,7 +122,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="hov6CQ-small.jpg" width="320" height="100"/>
+        <image name="hov6CQ-1280x400.jpg" width="1280" height="400"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
