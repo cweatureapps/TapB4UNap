@@ -26,15 +26,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VK0-xR-pdl">
-                                <rect key="frame" x="184" y="266" width="46" height="30"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveHandler:" destination="fP5-Xe-oqV" eventType="touchUpInside" id="iHQ-du-h3s"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWv-0Y-VBo" userLabel="timeLabel">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="wEK-JW-fTc"/>
@@ -67,7 +58,6 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="saveButton" destination="VK0-xR-pdl" id="aae-xq-wr1"/>
                         <outlet property="statusMessageLabel" destination="5Ny-VW-SeE" id="ZhZ-kn-d9g"/>
                         <outlet property="timeLabel" destination="vWv-0Y-VBo" id="Qxq-mG-R7p"/>
                     </connections>

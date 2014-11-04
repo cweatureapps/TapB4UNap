@@ -1,0 +1,13 @@
+Manual test cases
+
+1. fresh install, no permissions, no data
+will prompt for permissions then save
+
+2. app is in the background
+will come into foreground and save
+
+3. background the app, and switch back to it
+the screen will be cleared
+
+3. kill the app, save from extension
+will launch the app and save

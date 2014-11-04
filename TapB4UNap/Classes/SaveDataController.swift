@@ -15,20 +15,26 @@ class SaveDataController : UIViewController {
 
     @IBOutlet weak private var statusMessageLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak private var saveButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        saveToHealthStore()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "resetUI", name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
-
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
 
-    private func saveToHealthStore() {
+
+    func resetUI() {
+        self.statusMessageLabel.text = "TapB4UNap"
+        self.timeLabel.text = ""
+    }
+
+    func saveToHealthStore() {
         if (timeKeeper.canSave()) {
-            HealthStore.sharedInstance.saveSleepData(timeKeeper.getSleepStartDate()!, endDate:timeKeeper.getSleepEndDate()!, withCompletion: {
+            HealthStore.sharedInstance.saveSleepData(timeKeeper.getSleepStartDate()!, endDate:timeKeeper.getSleepEndDate()!) {
               (success, error) in
                     if (success) {
                         println("sleep data saved successfully!")
@@ -46,14 +52,13 @@ class SaveDataController : UIViewController {
                     } else {
                         println("Error: \(error)")
                     }
-              })
+              }
 
         }
     }
     
-    @IBAction func saveHandler(sender: AnyObject) {
-        saveToHealthStore() 
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
     
 }

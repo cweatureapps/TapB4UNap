@@ -19,13 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-    func application(application: UIApplication!, openURL url: NSURL!, sourceApplication: String!, annotation: AnyObject!) -> Bool {
+  
+  func application(application: UIApplication!, openURL url: NSURL!, sourceApplication: String!, annotation: AnyObject!) -> Bool {
     
-      // capture url scheme "cwtapb4unap://save" and save to the HealthStore
+      // handle the url scheme "cwtapb4unap://save" and save to the HealthStore
       if let ctrl = window?.rootViewController as? SaveDataController {
         if url.lastPathComponent == "save" {
-            // use the save controller instead
-            // TODO: currently the save controller is the default
+            ctrl.saveToHealthStore()
         }
       }
       return true

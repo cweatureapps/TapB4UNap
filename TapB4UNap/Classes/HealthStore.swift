@@ -24,34 +24,38 @@ class HealthStore {
     
     init() {
         self.healthStore = HKHealthStore()
-        self.requestAuthorisationForHealthStore()
+        //self.requestAuthorisationForHealthStore()
     }
 
-    private func requestAuthorisationForHealthStore() {
+    private func requestAuthorisationForHealthStore(completion: ((Bool, NSError!) -> Void)!) {
       let dataTypesToReadAndWrite = [
         HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
       ]
       self.healthStore.requestAuthorizationToShareTypes(NSSet(array: dataTypesToReadAndWrite),
         readTypes: NSSet(array: dataTypesToReadAndWrite),
-        completion: {(success, error) in
-          if success {
-            println("User completed authorisation request.")
-          } else {
-            println("The user cancelled the authorisation request. \(error)")
-            // TODO: raise notification
-          }
-        })
+        completion: completion)
     }
     
     func saveSleepData(startDate:NSDate, endDate:NSDate, withCompletion completion: ((Bool, NSError!) -> Void)!) {
     
-        let categoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
-        let metadata = [ HKMetadataKeyWasUserEntered : true ]
-        let sample = HKCategorySample(type: categoryType, value: HKCategoryValueSleepAnalysis.Asleep.rawValue, startDate: startDate, endDate: endDate, metadata: metadata)
+        self.requestAuthorisationForHealthStore({
         
-        println("Saving...")
+            (success:Bool, error:NSError!) -> Void in
+            
+            if success {
+                println("Authorised to write to HealthKit")
+            
+                let categoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
+                let metadata = [ HKMetadataKeyWasUserEntered : true ]
+                let sample = HKCategorySample(type: categoryType, value: HKCategoryValueSleepAnalysis.Asleep.rawValue, startDate: startDate, endDate: endDate, metadata: metadata)
+                
+                println("Saving...")
+                
+                self.healthStore.saveObject(sample, withCompletion: completion)
+            }
+            
+        })
         
-        self.healthStore.saveObject(sample, withCompletion: completion)
     }
     
 }
