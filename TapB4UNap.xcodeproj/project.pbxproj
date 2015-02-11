@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B1B3C5A1A873E8F0027F6E5 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1B3C591A873E8F0027F6E5 /* HealthKit.framework */; };
 		5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A3519F4673800ECE1A5 /* AppDelegate.swift */; };
 		5B285A3B19F4673800ECE1A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A3919F4673800ECE1A5 /* Main.storyboard */; };
 		5B285A3D19F4673800ECE1A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A3C19F4673800ECE1A5 /* Images.xcassets */; };
@@ -18,6 +19,7 @@
 		5B285A6F19F9A69A00ECE1A5 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A6E19F9A69A00ECE1A5 /* MainInterface.storyboard */; };
 		5B285A7219F9A69A00ECE1A5 /* TapB4UNapWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5B285A6519F9A69A00ECE1A5 /* TapB4UNapWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5B285A7719FA2FF800ECE1A5 /* TimeKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A5F19F6825F00ECE1A5 /* TimeKeeper.swift */; };
+		5B4889A41A8EAFC000F967EB /* AdjustTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4889A31A8EAFC000F967EB /* AdjustTimeTableViewController.swift */; };
 		5BD07E2E1A052E64000A6E9E /* hov6CQ-large.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E2D1A052E64000A6E9E /* hov6CQ-large.jpg */; };
 		5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */; };
 		5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */; };
@@ -56,6 +58,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B1B3C591A873E8F0027F6E5 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		5B285A3019F4673800ECE1A5 /* TapB4UNap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapB4UNap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B285A3419F4673800ECE1A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B285A3519F4673800ECE1A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +76,7 @@
 		5B285A6C19F9A69A00ECE1A5 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		5B285A6E19F9A69A00ECE1A5 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		5B285A7919FA6EF600ECE1A5 /* TapB4UNapWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TapB4UNapWidget.entitlements; sourceTree = "<group>"; };
+		5B4889A31A8EAFC000F967EB /* AdjustTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdjustTimeTableViewController.swift; path = Classes/AdjustTimeTableViewController.swift; sourceTree = "<group>"; };
 		5BD07E2D1A052E64000A6E9E /* hov6CQ-large.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hov6CQ-large.jpg"; sourceTree = "<group>"; };
 		5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hov6CQ-1280x400.jpg"; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B1B3C5A1A873E8F0027F6E5 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +144,7 @@
 				5B285A5F19F6825F00ECE1A5 /* TimeKeeper.swift */,
 				5BDB91B219FF6F37009CBA13 /* SaveDataController.swift */,
 				5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */,
+				5B4889A31A8EAFC000F967EB /* AdjustTimeTableViewController.swift */,
 			);
 			path = TapB4UNap;
 			sourceTree = "<group>";
@@ -171,6 +177,7 @@
 		5B285A6619F9A69A00ECE1A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B1B3C591A873E8F0027F6E5 /* HealthKit.framework */,
 				5B285A6719F9A69A00ECE1A5 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
@@ -349,6 +356,7 @@
 			files = (
 				5BDB91B319FF6F37009CBA13 /* SaveDataController.swift in Sources */,
 				5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */,
+				5B4889A41A8EAFC000F967EB /* AdjustTimeTableViewController.swift in Sources */,
 				5B285A5E19F5BA4D00ECE1A5 /* HealthStore.swift in Sources */,
 				5B285A6019F6825F00ECE1A5 /* TimeKeeper.swift in Sources */,
 			);
@@ -433,7 +441,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -470,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -11,7 +11,7 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
-    // ------------------
+    // MARK: Privates
 
     private let timeKeeper = TimeKeeper()
     private var timer:NSTimer?
@@ -21,7 +21,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak private var wakeButton: UIButton!
     @IBOutlet weak private var statusMessageLabel: UILabel!
     
-    // ----- UIViewController -----
+    // MARK: UIViewController overrides
     
     override func viewDidLoad() {
         println("viewDidLoad was called")
@@ -55,7 +55,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Dispose of any resources that can be recreated.
     }
     
-    // ------ NCWidgetProviding -----
+    // MARK: NCWidgetProviding
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
     
@@ -77,7 +77,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       return newInsets
     }
     
-    // ------- handlers ------
+    // MARK: handlers
     
     @IBAction func sleepButtonHandler(sender: AnyObject) {
         timeKeeper.startSleep(NSDate())
@@ -100,7 +100,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         extensionContext?.openURL(url, completionHandler: nil)
     }
     
-    // -------- timer related --------
+    // MARK: timer related
     private func startTimer() {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector:Selector("timerHandler"), userInfo:nil, repeats:true)
         timer!.fire()
@@ -121,31 +121,31 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         refreshUI()
     }
 
-    // ------- UI updates -------
+    // MARK: UI updates
 
     func refreshUI() {
         if (timeKeeper.isSleeping()) {
-            let formattedTime = timeKeeper.formattedTimeElapsedSleeping()
+            let formattedTime = TimeKeeper.formattedTimeFromDate(timeKeeper.getSleepStartDate()!, toDate: NSDate())
             if (statusMessageLabel.text != formattedTime) {
                 statusMessageLabel.text = formattedTime
             }
             
-            self.sleepButton.hidden = true
-            self.cancelButton.hidden = false
-            self.wakeButton.hidden = false
+            sleepButton.hidden = true
+            cancelButton.hidden = false
+            wakeButton.hidden = false
             
         } else if (timeKeeper.canSave()) {
             statusMessageLabel.text = "saving..."
             
-            self.sleepButton.hidden = true
-            self.cancelButton.hidden = true
-            self.wakeButton.hidden = true
+            sleepButton.hidden = true
+            cancelButton.hidden = true
+            wakeButton.hidden = true
         } else {
             statusMessageLabel.text = "Tap sleep to start!"
             
-            self.sleepButton.hidden = false
-            self.cancelButton.hidden = true
-            self.wakeButton.hidden = true
+            sleepButton.hidden = false
+            cancelButton.hidden = true
+            wakeButton.hidden = true
         }
     }
     
