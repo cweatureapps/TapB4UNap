@@ -42,8 +42,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuN-jy-dW8">
-                                <rect key="frame" x="157" y="391" width="102" height="30"/>
-                                <state key="normal" title="Edit Sleep End">
+                                <rect key="frame" x="169" y="391" width="78" height="30"/>
+                                <state key="normal" title="Adjust time">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -91,7 +91,7 @@
                         <sections>
                             <tableViewSection id="VSs-M1-KpB">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Nyw-9V-wAZ" detailTextLabel="xxf-MV-ATQ" style="IBUITableViewCellStyleValue1" id="1Vp-Di-S31">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Nyw-9V-wAZ" detailTextLabel="xxf-MV-ATQ" style="IBUITableViewCellStyleValue1" id="1Vp-Di-S31">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Vp-Di-S31" id="PCU-KO-CCZ">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -111,7 +111,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="170" id="CEY-dx-83n">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="170" id="CEY-dx-83n">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CEY-dx-83n" id="ElU-g2-HjS">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -130,7 +130,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="2Qe-PM-Cgj" detailTextLabel="xMF-0Y-1Um" style="IBUITableViewCellStyleValue1" id="9VF-iJ-g5d">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="2Qe-PM-Cgj" detailTextLabel="xMF-0Y-1Um" style="IBUITableViewCellStyleValue1" id="9VF-iJ-g5d">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9VF-iJ-g5d" id="uvS-bi-fSe">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -150,7 +150,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="170" id="zMf-XX-d3p">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="170" id="zMf-XX-d3p">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zMf-XX-d3p" id="sPE-N6-ceF">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -169,7 +169,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="YXm-ZA-XZ4" detailTextLabel="CUY-jm-yTZ" style="IBUITableViewCellStyleValue1" id="NQc-NN-hmW">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="YXm-ZA-XZ4" detailTextLabel="CUY-jm-yTZ" style="IBUITableViewCellStyleValue1" id="NQc-NN-hmW">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NQc-NN-hmW" id="WUH-WZ-cus">
                                             <autoresizingMask key="autoresizingMask"/>

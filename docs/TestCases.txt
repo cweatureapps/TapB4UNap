@@ -1,13 +1,36 @@
 Manual test cases
 
-1. fresh install, no permissions, no data
-will prompt for permissions then save
+---Saving from extension---
 
-2. app is in the background
-will come into foreground and save
+1. fresh install, no permissions, no data, app is not running
+- launches app, prompt for permissions, then save
+- note the delay during user input, should not impact the saved time
+- open extension again after save, should be reset correctly
 
-3. background the app, and switch back to it
+2. app is in the background, save from extensions
+- will come into foreground and save
+
+3. app is in foreground, save from extensions
+will save
+
+4. background the app, and switch back to it
 the screen will be cleared
 
-3. kill the app, save from extension
-will launch the app and save
+---Editing the time---
+
+1. tap adjust. then cancel, main screen shouldn't change
+
+2. fields should be correct:
+- start and end times should correspond to the most recent sleep
+- sleep duration should be shown, including seconds
+
+3. move the date pickers
+- sleep duration should be updated
+- seconds should dropped to zero
+- for invalid sleep, should have red error message
+- for valid sleep, goes back to black color
+
+4. tap save
+- on saving, seconds remain dropped at zero
+- main screen cant edit anymore
+- check saved correctly

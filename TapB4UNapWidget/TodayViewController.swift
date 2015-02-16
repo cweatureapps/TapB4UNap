@@ -33,7 +33,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewWillAppear(animated)
         
         refreshUI()
-        if (timeKeeper.isSleeping()) {
+        
+        let sleepSample = timeKeeper.sleepSample()
+        if (sleepSample.isSleeping()) {
             startTimer()
         }
     }
@@ -72,9 +74,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-      let newInsets = UIEdgeInsets(top: defaultMarginInsets.top, left: 0,
-                                   bottom: 0, right: 0)
-      return newInsets
+        let newInsets = UIEdgeInsets(top:defaultMarginInsets.top, left:0, bottom:0, right:0)
+        return newInsets
     }
     
     // MARK: handlers
@@ -115,7 +116,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func timerHandler() {
-        if (!timeKeeper.isSleeping()) {
+        let sleepSample = timeKeeper.sleepSample()
+        if (!sleepSample.isSleeping()) {
             stopTimer()
         }
         refreshUI()
@@ -124,8 +126,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     // MARK: UI updates
 
     func refreshUI() {
-        if (timeKeeper.isSleeping()) {
-            let formattedTime = TimeKeeper.formattedTimeFromDate(timeKeeper.getSleepStartDate()!, toDate: NSDate())
+        var sleepSample = timeKeeper.sleepSample()
+        if (sleepSample.isSleeping()) {
+
+            sleepSample.endDate = NSDate()
+            let formattedTime = sleepSample.formattedString()
             if (statusMessageLabel.text != formattedTime) {
                 statusMessageLabel.text = formattedTime
             }
@@ -134,7 +139,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             cancelButton.hidden = false
             wakeButton.hidden = false
             
-        } else if (timeKeeper.canSave()) {
+        } else if (sleepSample.canSave()) {
             statusMessageLabel.text = "saving..."
             
             sleepButton.hidden = true

@@ -23,6 +23,8 @@
 		5BD07E2E1A052E64000A6E9E /* hov6CQ-large.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E2D1A052E64000A6E9E /* hov6CQ-large.jpg */; };
 		5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */; };
 		5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */; };
+		5BD5EAA21A918C830069E008 /* SleepSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD5EAA11A918C830069E008 /* SleepSample.swift */; };
+		5BD5EAA31A918C830069E008 /* SleepSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD5EAA11A918C830069E008 /* SleepSample.swift */; };
 		5BDB91B319FF6F37009CBA13 /* SaveDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB91B219FF6F37009CBA13 /* SaveDataController.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +82,7 @@
 		5BD07E2D1A052E64000A6E9E /* hov6CQ-large.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hov6CQ-large.jpg"; sourceTree = "<group>"; };
 		5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hov6CQ-1280x400.jpg"; sourceTree = "<group>"; };
+		5BD5EAA11A918C830069E008 /* SleepSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SleepSample.swift; path = Classes/SleepSample.swift; sourceTree = "<group>"; };
 		5BDB91B219FF6F37009CBA13 /* SaveDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SaveDataController.swift; path = Classes/SaveDataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,17 +137,18 @@
 		5B285A3219F4673800ECE1A5 /* TapB4UNap */ = {
 			isa = PBXGroup;
 			children = (
-				5BD07E2D1A052E64000A6E9E /* hov6CQ-large.jpg */,
-				5B285A5A19F46F5300ECE1A5 /* TapB4UNap.entitlements */,
-				5B285A3519F4673800ECE1A5 /* AppDelegate.swift */,
-				5B285A3919F4673800ECE1A5 /* Main.storyboard */,
-				5B285A3C19F4673800ECE1A5 /* Images.xcassets */,
-				5B285A3319F4673800ECE1A5 /* Supporting Files */,
-				5B285A5D19F5BA4D00ECE1A5 /* HealthStore.swift */,
-				5B285A5F19F6825F00ECE1A5 /* TimeKeeper.swift */,
-				5BDB91B219FF6F37009CBA13 /* SaveDataController.swift */,
-				5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */,
 				5B4889A31A8EAFC000F967EB /* AdjustTimeTableViewController.swift */,
+				5B285A3519F4673800ECE1A5 /* AppDelegate.swift */,
+				5B285A5D19F5BA4D00ECE1A5 /* HealthStore.swift */,
+				5BD07E2D1A052E64000A6E9E /* hov6CQ-large.jpg */,
+				5B285A3C19F4673800ECE1A5 /* Images.xcassets */,
+				5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */,
+				5B285A3919F4673800ECE1A5 /* Main.storyboard */,
+				5BDB91B219FF6F37009CBA13 /* SaveDataController.swift */,
+				5BD5EAA11A918C830069E008 /* SleepSample.swift */,
+				5B285A3319F4673800ECE1A5 /* Supporting Files */,
+				5B285A5A19F46F5300ECE1A5 /* TapB4UNap.entitlements */,
+				5B285A5F19F6825F00ECE1A5 /* TimeKeeper.swift */,
 			);
 			path = TapB4UNap;
 			sourceTree = "<group>";
@@ -357,6 +361,7 @@
 				5BDB91B319FF6F37009CBA13 /* SaveDataController.swift in Sources */,
 				5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */,
 				5B4889A41A8EAFC000F967EB /* AdjustTimeTableViewController.swift in Sources */,
+				5BD5EAA21A918C830069E008 /* SleepSample.swift in Sources */,
 				5B285A5E19F5BA4D00ECE1A5 /* HealthStore.swift in Sources */,
 				5B285A6019F6825F00ECE1A5 /* TimeKeeper.swift in Sources */,
 			);
@@ -374,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD5EAA31A918C830069E008 /* SleepSample.swift in Sources */,
 				5B285A7719FA2FF800ECE1A5 /* TimeKeeper.swift in Sources */,
 				5B285A6D19F9A69A00ECE1A5 /* TodayViewController.swift in Sources */,
 			);

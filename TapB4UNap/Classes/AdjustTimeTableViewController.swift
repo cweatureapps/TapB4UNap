@@ -13,11 +13,13 @@ class AdjustTimeTableViewController: UITableViewController {
 
     private let timeKeeper = TimeKeeper()
 
-    @IBOutlet weak var startTimeLabel: UILabel!
-    @IBOutlet weak var endTimeLabel: UILabel!
-    @IBOutlet weak var sleptForLabel: UILabel!
-    @IBOutlet weak var startTimeDatePicker: UIDatePicker!
-    @IBOutlet weak var endTimeDatePicker: UIDatePicker!
+    @IBOutlet private weak var startTimeLabel: UILabel!
+    @IBOutlet private weak var endTimeLabel: UILabel!
+    @IBOutlet private weak var sleptForLabel: UILabel!
+    @IBOutlet private weak var startTimeDatePicker: UIDatePicker!
+    @IBOutlet private weak var endTimeDatePicker: UIDatePicker!
+
+    var sleepSample = SleepSample(startDate: nil, endDate: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,52 +29,51 @@ class AdjustTimeTableViewController: UITableViewController {
         
         var mostRecentSleep = timeKeeper.mostRecentSleepData()
         
-        if let sleepStartDate = mostRecentSleep.startDate, sleepEndDate = mostRecentSleep.endDate {
-        
-            startTimeLabel.text = formatDate(sleepStartDate)
-            startTimeDatePicker.date = sleepStartDate
-
-            endTimeLabel.text = formatDate(sleepEndDate)
-            endTimeDatePicker.date = sleepEndDate
+        if let mostRecentSleep = mostRecentSleep, sleepStartDate = mostRecentSleep.startDate, sleepEndDate = mostRecentSleep.endDate {
             
-            sleptForLabel.text = TimeKeeper.formattedTimeFromDate(sleepStartDate, toDate: sleepEndDate)
+            sleepSample.startDate = sleepStartDate
+            sleepSample.endDate = sleepEndDate
+            refreshUI()
         }
-        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     
     func datePickerChanged(datePicker:UIDatePicker) {
-        let labelToChange = (datePicker===startTimeDatePicker ? startTimeLabel : endTimeLabel)
-        labelToChange.text = formatDate(datePicker.date)
-        
-        sleptForLabel.text = TimeKeeper.formattedTimeFromDate(startTimeDatePicker.date, toDate: endTimeDatePicker.date)
+        sleepSample.startDate = startTimeDatePicker.date
+        sleepSample.endDate = endTimeDatePicker.date
+        sleepSample.resetSeconds()
+
+        refreshUI()
     }
 
+    private func refreshUI() {
+        startTimeLabel.text = formatDate(sleepSample.startDate!)
+        startTimeDatePicker.date = sleepSample.startDate!
 
+        endTimeLabel.text = formatDate(sleepSample.endDate!)
+        endTimeDatePicker.date = sleepSample.endDate!
+        
+        let formattedSleepTime = sleepSample.formattedString()
+        sleptForLabel.text = formattedSleepTime ?? "Error: invalid sleep time"
+        sleptForLabel.textColor = formattedSleepTime != nil ? UIColor.blackColor() : UIColor.redColor()
+    }
+    
     private func formatDate(date:NSDate) -> String {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "dd-MMM-yyyy hh:mm a"
         return formatter.stringFromDate(date)
     }
-    
-    
-
 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
+        // Get the new view controller using [segue destinastionViewController].
         // Pass the selected object to the new view controller.
         
-//        if (segue.identifier == "saveAdjusted") {
-//            overwriteMostRecentSleepSample(startTimeDatePicker.date, toDate: endTimeDatePicker.date);
-//        }
+        if (segue.identifier == "saveAdjusted") {
+            sleepSample.startDate = startTimeDatePicker.date
+            sleepSample.endDate = endTimeDatePicker.date
+        }
         
     }
 
