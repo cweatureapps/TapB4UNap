@@ -70,7 +70,7 @@ class AdjustTimeTableViewController: UITableViewController {
         // Get the new view controller using [segue destinastionViewController].
         // Pass the selected object to the new view controller.
         
-        if (segue.identifier == "saveAdjusted") {
+        if segue.identifier == "saveAdjusted" {
             sleepSample.startDate = startTimeDatePicker.date
             sleepSample.endDate = endTimeDatePicker.date
         }

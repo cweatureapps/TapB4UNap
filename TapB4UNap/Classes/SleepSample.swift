@@ -20,7 +20,7 @@ struct SleepSample {
     }
     
     private func resetSeconds(date:NSDate?) -> NSDate? {
-        if (date != nil) {
+        if date != nil {
             let calendar = NSCalendar.currentCalendar()
             let dateComponents = calendar.components(.YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit, fromDate: date!)
             let timeComponents = calendar.components(.HourCalendarUnit | .MinuteCalendarUnit | .SecondCalendarUnit, fromDate: date!)
@@ -35,7 +35,7 @@ struct SleepSample {
     
     /* formatted string showing the time elapsed in this sleep sample */
     func formattedString() -> String? {
-        if (!isValid()) {
+        if !isValid() {
             return nil
         } else {        
             let calendar = NSCalendar.currentCalendar()

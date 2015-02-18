@@ -35,10 +35,10 @@ class SaveDataController : UIViewController {
     
     func saveToHealthStore() {
         let sleepSample = timeKeeper.sleepSample()
-        if (sleepSample.canSave()) {
+        if sleepSample.canSave() {
             HealthStore.sharedInstance.saveSleepSample(sleepSample) {
                 success, error in
-                if (success) {
+                if success {
                     println("sleep data saved successfully!")
                     
                     dispatch_async(dispatch_get_main_queue()) {
@@ -77,7 +77,7 @@ class SaveDataController : UIViewController {
                 success in
                 dispatch_async(dispatch_get_main_queue()) {
                 
-                    if (success) {
+                    if success {
                         self.statusMessageLabel.text = "Saved to HealthKit. You slept for:"
                         self.timeLabel.text = sleepSample.formattedString()
                         self.adjustSleepButton.hidden = true

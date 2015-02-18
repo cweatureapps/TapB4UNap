@@ -35,7 +35,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         refreshUI()
         
         let sleepSample = timeKeeper.sleepSample()
-        if (sleepSample.isSleeping()) {
+        if sleepSample.isSleeping() {
             startTimer()
         }
     }
@@ -108,7 +108,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     private func stopTimer() {
-        if (timer != nil) {
+        if timer != nil {
             timer!.invalidate()
             timer = nil;
             println("timer stopped")
@@ -117,7 +117,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func timerHandler() {
         let sleepSample = timeKeeper.sleepSample()
-        if (!sleepSample.isSleeping()) {
+        if !sleepSample.isSleeping() {
             stopTimer()
         }
         refreshUI()
@@ -127,11 +127,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     func refreshUI() {
         var sleepSample = timeKeeper.sleepSample()
-        if (sleepSample.isSleeping()) {
+        if sleepSample.isSleeping() {
 
             sleepSample.endDate = NSDate()
             let formattedTime = sleepSample.formattedString()
-            if (statusMessageLabel.text != formattedTime) {
+            if statusMessageLabel.text != formattedTime {
                 statusMessageLabel.text = formattedTime
             }
             
@@ -139,12 +139,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             cancelButton.hidden = false
             wakeButton.hidden = false
             
-        } else if (sleepSample.canSave()) {
+        } else if sleepSample.canSave() {
             statusMessageLabel.text = "saving..."
             
             sleepButton.hidden = true
             cancelButton.hidden = true
             wakeButton.hidden = true
+
         } else {
             statusMessageLabel.text = "Tap sleep to start!"
             

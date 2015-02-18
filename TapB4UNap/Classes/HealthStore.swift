@@ -91,7 +91,7 @@ class HealthStore {
         HealthStore.sharedInstance.querySleepSample(mostRecentSleepSample) {
             objArr, error in
             
-            if (objArr.count > 1) {
+            if objArr.count > 1 {
                 // NOTE: this is a rare edge case and shouldn't happen with realistic data
                 println("more than 1 record was found in the query")
                 completion(false)
@@ -100,7 +100,7 @@ class HealthStore {
         
             HealthStore.sharedInstance.deleteSleepData(objArr[0] as! HKObject) {
                 success, error in
-                if (success) {
+                if success {
                     HealthStore.sharedInstance.saveSleepSample(sleepSample) {
                         success, error in
                         println("saveSleepData completed")
