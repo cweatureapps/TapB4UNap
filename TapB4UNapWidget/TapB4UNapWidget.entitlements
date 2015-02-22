@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.au.com.cweature.TapB4UNap</string>
+		<string>group.com.cweatureapps.TapB4UNap</string>
 	</array>
 </dict>
 </plist>

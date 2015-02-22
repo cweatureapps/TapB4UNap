@@ -16,7 +16,7 @@ class TimeKeeper {
     private let sleepEndedKey = "sleepEnded"
     private let mostRecentSleepStartKey = "mostRecentSleepStart"
     private let mostRecentSleepEndKey = "mostRecentSleepEnd"
-    private let userDefaults:NSUserDefaults = NSUserDefaults(suiteName: "group.au.com.cweature.TapB4UNap")!
+    private let userDefaults:NSUserDefaults = NSUserDefaults(suiteName: "group.com.cweatureapps.TapB4UNap")!
 
     func startSleep(date:NSDate) {
         resetRecentSleepData()
