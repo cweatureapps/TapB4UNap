@@ -35,12 +35,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright (c) 2014 CweatureApps.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVQ-dc-vsF">
-                                <rect key="frame" x="99" y="701" width="216" height="15"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuN-jy-dW8">
                                 <rect key="frame" x="169" y="391" width="78" height="30"/>
                                 <state key="normal" title="Adjust time">
@@ -50,18 +44,46 @@
                                     <segue destination="EHM-9g-FwV" kind="presentation" id="6EI-d5-DNk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAF-ue-CEf">
+                                <rect key="frame" x="189" y="688" width="36" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="About">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showCopyrightLabel:" destination="fP5-Xe-oqV" eventType="touchUpInside" id="wZq-Ns-CXe"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright (c) 2015 CweatureApps.com Image from https://flic.kr/p/hov6CQ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVQ-dc-vsF">
+                                <rect key="frame" x="100" y="807" width="216" height="29"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="zhE-5D-WSp" appends="YES" id="JjE-8M-cpZ"/>
+                                </connections>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="vWv-0Y-VBo" secondAttribute="centerX" constant="-0.5" id="7y3-rk-Vq7"/>
                             <constraint firstAttribute="centerY" secondItem="SuN-jy-dW8" secondAttribute="centerY" constant="-38" id="ANF-FN-wh1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5Ny-VW-SeE" secondAttribute="trailing" id="GWl-vJ-8h9"/>
+                            <constraint firstItem="Wma-Zv-YIo" firstAttribute="top" secondItem="LAF-ue-CEf" secondAttribute="bottom" constant="20" id="dUa-Jy-Qtz"/>
                             <constraint firstItem="vWv-0Y-VBo" firstAttribute="top" secondItem="5Ny-VW-SeE" secondAttribute="bottom" constant="44" id="dlk-IX-ZYC"/>
                             <constraint firstAttribute="height" secondItem="fzn-kA-QhQ" secondAttribute="height" id="eZz-NS-tl5"/>
                             <constraint firstItem="5Ny-VW-SeE" firstAttribute="leading" secondItem="C3v-pW-FOh" secondAttribute="leadingMargin" id="iwJ-de-AzT"/>
-                            <constraint firstItem="Wma-Zv-YIo" firstAttribute="top" secondItem="lVQ-dc-vsF" secondAttribute="bottom" constant="20" id="jDZ-Oh-YPE"/>
+                            <constraint firstItem="Wma-Zv-YIo" firstAttribute="top" secondItem="lVQ-dc-vsF" secondAttribute="bottom" constant="-100" id="jDZ-Oh-YPE"/>
                             <constraint firstAttribute="width" secondItem="fzn-kA-QhQ" secondAttribute="width" id="lSF-NY-1gi"/>
                             <constraint firstItem="5Ny-VW-SeE" firstAttribute="top" secondItem="osP-ZG-vII" secondAttribute="bottom" constant="120" id="lbR-u0-j2C"/>
+                            <constraint firstAttribute="centerX" secondItem="LAF-ue-CEf" secondAttribute="centerX" id="n5j-7a-KiI"/>
                             <constraint firstItem="fzn-kA-QhQ" firstAttribute="top" secondItem="osP-ZG-vII" secondAttribute="bottom" constant="-16" id="nF1-LU-zx8"/>
                             <constraint firstAttribute="centerX" secondItem="lVQ-dc-vsF" secondAttribute="centerX" constant="-0.5" id="ng4-1Q-3eP"/>
                             <constraint firstAttribute="centerX" secondItem="SuN-jy-dW8" secondAttribute="centerX" constant="-0.5" id="w1Y-GF-yXd"/>
@@ -71,12 +93,21 @@
                     <navigationItem key="navigationItem" id="L5F-XG-KSv"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="aboutBottomConstraint" destination="dUa-Jy-Qtz" id="eJ7-g0-xYt"/>
+                        <outlet property="aboutButton" destination="LAF-ue-CEf" id="vbo-JN-Hbm"/>
                         <outlet property="adjustSleepButton" destination="SuN-jy-dW8" id="cUY-J4-79y"/>
+                        <outlet property="copyrightBottomConstraint" destination="jDZ-Oh-YPE" id="qJa-5x-g9t"/>
+                        <outlet property="copyrightButton" destination="lVQ-dc-vsF" id="ZcX-qm-MBS"/>
                         <outlet property="statusMessageLabel" destination="5Ny-VW-SeE" id="ZhZ-kn-d9g"/>
                         <outlet property="timeLabel" destination="vWv-0Y-VBo" id="Qxq-mG-R7p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j39-1b-8Nu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="zhE-5D-WSp">
+                    <connections>
+                        <action selector="showAboutButton:" destination="fP5-Xe-oqV" id="4yu-eJ-rti"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="512" y="-128"/>
         </scene>
