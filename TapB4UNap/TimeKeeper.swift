@@ -16,58 +16,87 @@ class TimeKeeper {
     private let sleepEndedKey = "sleepEnded"
     private let mostRecentSleepStartKey = "mostRecentSleepStart"
     private let mostRecentSleepEndKey = "mostRecentSleepEnd"
-    private let userDefaults:NSUserDefaults = NSUserDefaults(suiteName: "group.com.cweatureapps.TapB4UNap")!
+    private let userDefaults:NSUserDefaults = SettingsManager.sharedUserDefaults
 
+    /**
+     Saves the sleep start with the given value.
+     :param: date The date value of when sleep started
+     */
     func startSleep(date:NSDate) {
         resetRecentSleepData()
         userDefaults.setObject(date, forKey: sleepStartedKey)
         userDefaults.synchronize()
     }
     
-    func cancelSleep() {
-        userDefaults.removeObjectForKey(sleepStartedKey)
-        userDefaults.synchronize()
-    }
-    
+    /**
+     Saves the sleep end with the given value.
+     :param: date The date value of when sleep ended
+     */
     func endSleep(date:NSDate) {
         userDefaults.setObject(date, forKey: sleepEndedKey)
         userDefaults.synchronize()
     }
     
-    private func getSleepStartDate() -> NSDate? {
-        return userDefaults.objectForKey(sleepStartedKey) as! NSDate?
-    }
-
-    private func getSleepEndDate() -> NSDate? {
-        return userDefaults.objectForKey(sleepEndedKey) as! NSDate?
+    /**
+     Saves the sleep end to the given value, but only if there is currently no sleep end value (i.e. will not overwrite the existing value).
+     :param: date The date value of when sleep ended
+     */
+    func endSleepIfNeeded(date:NSDate) {
+        if let sleepSample = sleepSample() {
+            if (sleepSample.endDate == nil) {
+                endSleep(date)
+            }
+        }
     }
     
-    func sleepSample() -> SleepSample {
-        return SleepSample(startDate:  getSleepStartDate() , endDate:  getSleepEndDate())
+    /**
+     The current sleep sample.
+     :returns: The current sleep sample. Returns nil if both start and end dates are nil.
+     */
+    func sleepSample() -> SleepSample? {
+        return sleepSampleForKeys(startKey:sleepStartedKey, endKey:sleepEndedKey)
     }
     
-    /* backup the most recent start and end dates, then remove original stored data */
-    func reset() {
-        userDefaults.setObject(getSleepStartDate(), forKey: mostRecentSleepStartKey)
-        userDefaults.setObject(getSleepEndDate(), forKey: mostRecentSleepEndKey)
+    /**
+     Backup the sleep data. The last backed up value can be retrieved again `mostRecentSleepSample()`.
+     :param: sleepSample The SleepSample to backup.
+     */
+    func backupSleepData(sleepSample: SleepSample) {
+        userDefaults.setObject(sleepSample.startDate, forKey: mostRecentSleepStartKey)
+        userDefaults.setObject(sleepSample.endDate, forKey: mostRecentSleepEndKey)
+    }
+    
+    /**
+     Removes the saved values for sleep start and sleep end.
+     */
+    func resetSleepData() {
         userDefaults.removeObjectForKey(sleepStartedKey)
         userDefaults.removeObjectForKey(sleepEndedKey)
         userDefaults.synchronize()
     }
     
-    func resetRecentSleepData() {
+    private func resetRecentSleepData() {
         userDefaults.removeObjectForKey(mostRecentSleepStartKey)
         userDefaults.removeObjectForKey(mostRecentSleepEndKey)
         userDefaults.synchronize()
     }
     
-    func mostRecentSleepData() -> SleepSample? {
-        let mostRecentStartDate = userDefaults.objectForKey(mostRecentSleepStartKey) as! NSDate?
-        let mostRecentEndDate = userDefaults.objectForKey(mostRecentSleepEndKey) as! NSDate?
-        if let mostRecentStartDate = mostRecentStartDate, mostRecentEndDate = mostRecentEndDate {
-            return SleepSample(startDate: mostRecentStartDate, endDate: mostRecentEndDate)
+    /**
+     The last saved recent sleep sample, as saved by `backupSleepData(sleepSample)`
+     :returns: The most recently backed up sleep sample. Returns nil if both start and end dates are nil.
+     */
+    func mostRecentSleepSample() -> SleepSample? {
+        return sleepSampleForKeys(startKey:mostRecentSleepStartKey, endKey:mostRecentSleepEndKey)
+    }
+    
+    
+    private func sleepSampleForKeys(#startKey:String, endKey:String) -> SleepSample? {
+        let startDate = userDefaults.objectForKey(startKey) as! NSDate?
+        let endDate = userDefaults.objectForKey(endKey) as! NSDate?
+        if startDate == nil && endDate == nil {
+            return nil;
         } else {
-            return nil
+            return SleepSample(startDate: startDate, endDate: endDate)
         }
     }
 
