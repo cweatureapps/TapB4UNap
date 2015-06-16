@@ -8,12 +8,18 @@
 
 import Foundation
 
+/**
+ *  Model representing the start and end date-time for a sleep sample.
+ */
 struct SleepSample {
 
+    /** When sleep started */
     var startDate: NSDate?
+    
+    /** When sleep ended */
     var endDate: NSDate?
     
-    /* discard the seconds for both startDate and endDate */
+    /** Discard the seconds for both startDate and endDate */
     mutating func resetSeconds() {
         startDate = resetSeconds(startDate)
         endDate = resetSeconds(endDate)
@@ -22,8 +28,8 @@ struct SleepSample {
     private func resetSeconds(date:NSDate?) -> NSDate? {
         if date != nil {
             let calendar = NSCalendar.currentCalendar()
-            let dateComponents = calendar.components(.YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit, fromDate: date!)
-            let timeComponents = calendar.components(.HourCalendarUnit | .MinuteCalendarUnit | .SecondCalendarUnit, fromDate: date!)
+            let dateComponents = calendar.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date!)
+            let timeComponents = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: date!)
             dateComponents.hour = timeComponents.hour
             dateComponents.minute = timeComponents.minute
             dateComponents.second = 0
@@ -33,7 +39,7 @@ struct SleepSample {
         }
     }
     
-    /* formatted string showing the time elapsed in this sleep sample */
+    /** Formatted string showing the time elapsed in this sleep sample */
     func formattedString() -> String? {
         if !isValid() {
             return nil
@@ -44,18 +50,19 @@ struct SleepSample {
         }
     }
     
-    /* returns true if it can be saved, and startDate is before endDate */
+    /** returns true if it can be saved, and startDate is before endDate */
     func isValid() -> Bool {
         return canSave() && startDate!.compare(endDate!).rawValue <= 0
     }
     
-    /* returns true when both start date and end date are recorded */
+    /** returns true when both start date and end date are recorded */
     func canSave() -> Bool {
         return startDate != nil && endDate != nil
     }
     
-    /* returns true when a start date is recorded, but no end date is recorded */
+    /** returns true when a start date is recorded, but no end date is recorded */
     func isSleeping() -> Bool {
         return startDate != nil && endDate == nil
     }
+    
 }

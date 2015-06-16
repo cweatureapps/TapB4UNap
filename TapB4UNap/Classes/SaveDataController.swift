@@ -13,7 +13,7 @@ class SaveDataController : UIViewController {
 
     // MARK: privates
     
-    private let timeKeeper = TimeKeeper()
+    private let sleepManager = SleepManager()
 
     @IBOutlet weak private var statusMessageLabel: UILabel!
     @IBOutlet weak private var timeLabel: UILabel!
@@ -42,25 +42,18 @@ class SaveDataController : UIViewController {
     }
     
     func saveToHealthStore() {
-        let sleepSample = timeKeeper.sleepSample()
-        if sleepSample.canSave() {
-            HealthStore.sharedInstance.saveSleepSample(sleepSample) {
-                success, error in
-                if success {
-                    println("sleep data saved successfully!")
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.statusMessageLabel.text = "Saved to HealthKit. You slept for:"
-                        let timeElapsedString = sleepSample.formattedString()
-                        self.timeLabel.text = timeElapsedString
-                        
-                        self.timeKeeper.reset()
-                        
-                        self.adjustSleepButton.hidden = false
-                    }
-                } else {
-                    println("Error: \(error)")
+        sleepManager.saveToHealthStore {
+            sleepSample, success, error in
+            if success {
+                println("sleep data saved successfully!")
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.statusMessageLabel.text = "Saved to HealthKit. You slept for:"
+                    let timeElapsedString = sleepSample.formattedString()
+                    self.timeLabel.text = timeElapsedString
+                    self.adjustSleepButton.hidden = false
                 }
+            } else {
+                println("Error: \(error.localizedDescription)")
             }
         }
     }
@@ -76,23 +69,18 @@ class SaveDataController : UIViewController {
     }
     
     @IBAction func saveAdjustedSleeptime(segue: UIStoryboardSegue) {
-        
-        println("saveAdjustedSleeptime was called")
-        
         if let vc = segue.sourceViewController as? AdjustTimeTableViewController {
-            
             let sleepSample = vc.sleepSample
-            HealthStore.sharedInstance.overwriteMostRecentSleepSample(timeKeeper.mostRecentSleepData()! , withSample: sleepSample) {
-                success in
-                dispatch_async(dispatch_get_main_queue()) {
-                
-                    if success {
+            sleepManager.saveAdjustedSleepTimeToHealthStore(sleepSample) {
+                success, error in
+                if success {
+                    dispatch_async(dispatch_get_main_queue()) {
                         self.statusMessageLabel.text = "Saved to HealthKit. You slept for:"
                         self.timeLabel.text = sleepSample.formattedString()
-                        self.adjustSleepButton.hidden = true
                     }
+                } else {
+                    println("Error: \(error.localizedDescription)")
                 }
-                
             }
         }
     }

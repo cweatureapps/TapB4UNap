@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
@@ -18,28 +17,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.80000000000000027" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hov6CQ-1280x400.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3wo-RG-euE" userLabel="background">
-                                <rect key="frame" x="0.0" y="0.0" width="336" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="DtG-CS-65F"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3I-Ll-vSg" userLabel="contents">
-                                <rect key="frame" x="16" y="0.0" width="288" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap sleep to start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLU-3K-hMP">
-                                        <rect key="frame" x="0.0" y="25" width="288" height="22"/>
+                                        <rect key="frame" x="0.0" y="25" width="320" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="BK3-MU-W9s"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMa-7j-58l" userLabel="buttonContainer">
-                                        <rect key="frame" x="0.0" y="50" width="288" height="50"/>
+                                        <rect key="frame" x="0.0" y="50" width="320" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kth-vJ-WrW">
-                                                <rect key="frame" x="125" y="10" width="37" height="30"/>
+                                                <rect key="frame" x="141" y="10" width="37" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="sleep">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,17 +49,21 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o32-JF-of9">
-                                                <rect key="frame" x="166" y="10" width="36" height="30"/>
+                                                <rect key="frame" x="182" y="10" width="36" height="30"/>
+                                                <gestureRecognizers/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="wake">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="wakeButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="Qv6-fk-ENH"/>
+                                                    <action selector="wakeButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="ptr-wr-iRs"/>
+                                                    <outletCollection property="gestureRecognizers" destination="ggO-Ma-dbY" appends="YES" id="iGO-h3-kru"/>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odH-dT-2QS">
-                                                <rect key="frame" x="81" y="10" width="45" height="30"/>
+                                                <rect key="frame" x="97" y="10" width="45" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="cancel">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -94,12 +98,12 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="3wo-RG-euE" firstAttribute="width" secondItem="S3S-Oj-5AN" secondAttribute="width" constant="16" id="Hp7-Cr-8Hh"/>
+                            <constraint firstAttribute="trailing" secondItem="3wo-RG-euE" secondAttribute="trailing" id="AVV-co-dFZ"/>
                             <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="O3I-Ll-vSg" secondAttribute="bottom" priority="100" id="I1R-2y-ob9"/>
-                            <constraint firstItem="3wo-RG-euE" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="-16" id="ckm-is-szJ"/>
+                            <constraint firstItem="3wo-RG-euE" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="ckm-is-szJ"/>
                             <constraint firstItem="3wo-RG-euE" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="nJo-rd-Jok"/>
-                            <constraint firstItem="O3I-Ll-vSg" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="qCR-kQ-IpG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="O3I-Ll-vSg" secondAttribute="trailing" id="s9X-9e-ALp"/>
+                            <constraint firstItem="O3I-Ll-vSg" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="qCR-kQ-IpG"/>
+                            <constraint firstAttribute="trailing" secondItem="O3I-Ll-vSg" secondAttribute="trailing" id="s9X-9e-ALp"/>
                             <constraint firstItem="O3I-Ll-vSg" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="vEY-Ql-iLO"/>
                         </constraints>
                     </view>
@@ -117,6 +121,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.99999999999999989" id="ggO-Ma-dbY">
+                    <connections>
+                        <action selector="wakeLongPressHandler:" destination="M4Y-Lb-cyx" id="XeT-lP-hCd"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="516" y="285"/>
         </scene>
