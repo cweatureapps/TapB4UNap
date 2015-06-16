@@ -35,8 +35,8 @@ class SettingsManager {
     /**
      Returns string setting from Defaults.plist
 
-     :param: key The key in the plist
-     :returns: The string associated with the key, nil if it cannot be found.
+     - parameter key: The key in the plist
+     - returns: The string associated with the key, nil if it cannot be found.
      */
     class func stringForKey(key:Defaults) -> String? {
         return SettingsManager.sharedUserDefaults.stringForKey(key.rawValue)

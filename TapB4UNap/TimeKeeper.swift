@@ -20,7 +20,7 @@ class TimeKeeper {
 
     /**
      Saves the sleep start with the given value.
-     :param: date The date value of when sleep started
+     - parameter date: The date value of when sleep started
      */
     func startSleep(date:NSDate) {
         resetRecentSleepData()
@@ -30,7 +30,7 @@ class TimeKeeper {
     
     /**
      Saves the sleep end with the given value.
-     :param: date The date value of when sleep ended
+     - parameter date: The date value of when sleep ended
      */
     func endSleep(date:NSDate) {
         userDefaults.setObject(date, forKey: sleepEndedKey)
@@ -39,7 +39,7 @@ class TimeKeeper {
     
     /**
      Saves the sleep end to the given value, but only if there is currently no sleep end value (i.e. will not overwrite the existing value).
-     :param: date The date value of when sleep ended
+     - parameter date: The date value of when sleep ended
      */
     func endSleepIfNeeded(date:NSDate) {
         if let sleepSample = sleepSample() {
@@ -51,7 +51,7 @@ class TimeKeeper {
     
     /**
      The current sleep sample.
-     :returns: The current sleep sample. Returns nil if both start and end dates are nil.
+     - returns: The current sleep sample. Returns nil if both start and end dates are nil.
      */
     func sleepSample() -> SleepSample? {
         return sleepSampleForKeys(startKey:sleepStartedKey, endKey:sleepEndedKey)
@@ -59,7 +59,7 @@ class TimeKeeper {
     
     /**
      Backup the sleep data. The last backed up value can be retrieved again `mostRecentSleepSample()`.
-     :param: sleepSample The SleepSample to backup.
+     - parameter sleepSample: The SleepSample to backup.
      */
     func backupSleepData(sleepSample: SleepSample) {
         userDefaults.setObject(sleepSample.startDate, forKey: mostRecentSleepStartKey)
@@ -83,14 +83,14 @@ class TimeKeeper {
     
     /**
      The last saved recent sleep sample, as saved by `backupSleepData(sleepSample)`
-     :returns: The most recently backed up sleep sample. Returns nil if both start and end dates are nil.
+     - returns: The most recently backed up sleep sample. Returns nil if both start and end dates are nil.
      */
     func mostRecentSleepSample() -> SleepSample? {
         return sleepSampleForKeys(startKey:mostRecentSleepStartKey, endKey:mostRecentSleepEndKey)
     }
     
     
-    private func sleepSampleForKeys(#startKey:String, endKey:String) -> SleepSample? {
+    private func sleepSampleForKeys(startKey startKey:String, endKey:String) -> SleepSample? {
         let startDate = userDefaults.objectForKey(startKey) as! NSDate?
         let endDate = userDefaults.objectForKey(endKey) as! NSDate?
         if startDate == nil && endDate == nil {

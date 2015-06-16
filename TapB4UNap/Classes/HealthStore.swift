@@ -21,30 +21,30 @@ class HealthStore {
         self.hkHealthStore = HKHealthStore()
     }
 
-    private func requestAuthorisationForHealthStore(completion: ((Bool, NSError!) -> Void)!) {
-        let dataTypesToReadAndWrite = Set([HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)])
+    private func requestAuthorisationForHealthStore(completion: ((Bool, NSError?) -> Void)!) {
+        let dataTypesToReadAndWrite: Set = [HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!]
         self.hkHealthStore.requestAuthorizationToShareTypes(dataTypesToReadAndWrite,
             readTypes: dataTypesToReadAndWrite,
             completion: completion)
     }
     
     /* saves a sleep sample to health kit */
-    func saveSleepSample(sleepSample:SleepSample, completion: ((Bool, NSError!) -> Void)!) {
+    func saveSleepSample(sleepSample:SleepSample, completion: ((Bool, NSError?) -> Void)!) {
     
         self.requestAuthorisationForHealthStore {
             success, error in
             if success {
-                println("Authorised to write to HealthKit")
+                print("Authorised to write to HealthKit")
             
-                let categoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
+                let categoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!
                 let metadata = [ HKMetadataKeyWasUserEntered : true ]
                 let sample = HKCategorySample(type: categoryType, value: HKCategoryValueSleepAnalysis.Asleep.rawValue, startDate: sleepSample.startDate!, endDate: sleepSample.endDate!, metadata: metadata)
                 
-                println("Saving...")
+                print("Saving...")
                 
                 self.hkHealthStore.saveObject(sample, withCompletion: completion)
             } else if (error != nil) {
-                println(error)
+                print(error)
             }
             
         }
@@ -57,7 +57,7 @@ class HealthStore {
             if success {
                 let predicate = HKQuery.predicateForSamplesWithStartDate(sleepSample.startDate!, endDate: sleepSample.endDate!, options: .StrictStartDate)
                 let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
-                let categoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
+                let categoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!
                 let sampleQuery = HKSampleQuery(sampleType: categoryType, predicate: predicate, limit: 0, sortDescriptors: [sortDescriptor]) {
                     sampleQuery, results, error in
                     completion(results, error)
@@ -68,7 +68,7 @@ class HealthStore {
     }
     
     /* delete an HKObject from health kit */
-    func deleteSleepData(hkObject:HKObject!, completion: ((Bool, NSError!) -> Void)!) {
+    func deleteSleepData(hkObject:HKObject!, completion: ((Bool, NSError?) -> Void)!) {
         self.requestAuthorisationForHealthStore {
             success, error in
             if success {
@@ -80,26 +80,26 @@ class HealthStore {
     /* queries and then deletes the recent sleep sample from HealthKit, and then saves the new sample */
     func overwriteMostRecentSleepSample(mostRecentSleepSample:SleepSample, withSample sleepSample: SleepSample, completion: (Bool, NSError!) -> Void) {
     
-        println("overwriting most recent sleep")
+        print("overwriting most recent sleep")
     
         HealthStore.sharedInstance.querySleepSample(mostRecentSleepSample) {
             objArr, error in
             
             if let error = error {
-                var error = NSError(domain: "com.cweatureapps.TapB4UNap.HealthStore", code: 11, userInfo: ["message": "error during query: \(error.localizedDescription)"])
+                let error = NSError(domain: "com.cweatureapps.TapB4UNap.HealthStore", code: 11, userInfo: ["message": "error during query: \(error.localizedDescription)"])
                 completion(false, error)
                 return
             }
             
             if objArr.count == 0 {
-                var error = NSError(domain: "com.cweatureapps.TapB4UNap.HealthStore", code: 12, userInfo: ["message": "no records found in sleep sample query"])
+                let error = NSError(domain: "com.cweatureapps.TapB4UNap.HealthStore", code: 12, userInfo: ["message": "no records found in sleep sample query"])
                 completion(false, error)
                 return
             }
             
             if objArr.count > 1 {
                 // NOTE: this is a rare edge case and shouldn't happen with realistic data
-                var error = NSError(domain: "com.cweatureapps.TapB4UNap.HealthStore", code: 13, userInfo: ["message": "more than 1 record was found in sleep sample query"])
+                let error = NSError(domain: "com.cweatureapps.TapB4UNap.HealthStore", code: 13, userInfo: ["message": "more than 1 record was found in sleep sample query"])
                 completion(false, error)
                 return
             }
@@ -109,7 +109,7 @@ class HealthStore {
                 if success {
                     HealthStore.sharedInstance.saveSleepSample(sleepSample) {
                         success, error in
-                        println("saveSleepData completed")
+                        print("saveSleepData completed")
                         completion(success, nil)
                     }
                 } else {

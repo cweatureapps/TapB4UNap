@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             Parse.setApplicationId(appId, clientKey: clientKey)
             
-            let settings = UIUserNotificationSettings(forTypes:(UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound), categories: nil)
+            let settings = UIUserNotificationSettings(forTypes:([UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]), categories: nil)
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
         }
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         
         // handle the url scheme "cwtapb4unap://save" and save to the HealthStore
         if let ctrl = window?.rootViewController as? SaveDataController {
@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken:  NSData) {
-        println("didRegisterForRemoteNotificationsWithDeviceToken was called, deviceToken: \(deviceToken)")
+        print("didRegisterForRemoteNotificationsWithDeviceToken was called, deviceToken: \(deviceToken)")
         let currentInstallation = PFInstallation.currentInstallation()
         currentInstallation.setDeviceTokenFromData(deviceToken)
         currentInstallation.channels = ["global"]
@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             where contentAvailable == 1
         {
             // silent notification
-            println("silent notification received")
+            print("silent notification received")
             sleepManager.handleSilentNotification()
             completionHandler(UIBackgroundFetchResult.NewData);
         } else {

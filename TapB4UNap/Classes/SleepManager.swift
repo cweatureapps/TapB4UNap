@@ -17,7 +17,7 @@ class SleepManager {
     /**
      Saves the sleep sample which was recorded by TimeKeeper.
     
-     :param: completion The completion called after saving to HealthKit, passing the sleepSample that was saved, whether save was successful, and an error if it failed.
+     - parameter completion: The completion called after saving to HealthKit, passing the sleepSample that was saved, whether save was successful, and an error if it failed.
      */
     func saveToHealthStore(completion: ((SleepSample!, Bool, NSError!) -> Void)!) {
         if let sleepSample = timeKeeper.sleepSample() {
@@ -25,11 +25,11 @@ class SleepManager {
                 HealthStore.sharedInstance.saveSleepSample(sleepSample) {
                     success, error in
                     if success {
-                        println("sleep data saved successfully")
+                        print("sleep data saved successfully")
                         self.timeKeeper.backupSleepData(sleepSample)
                         self.timeKeeper.resetSleepData()
                     } else {
-                        println("Error saving to health store: \(error)")
+                        print("Error saving to health store: \(error)")
                         // TODO: should call completion with error
                     }
                     if completion != nil {
@@ -37,7 +37,7 @@ class SleepManager {
                     }
                 }
             } else {
-                println("warning: saveToHealthStore() was called when sleepSample was not in a state that could be saved")
+                print("warning: saveToHealthStore() was called when sleepSample was not in a state that could be saved")
                 // TODO: should call completion with error
             }
         }
@@ -46,17 +46,17 @@ class SleepManager {
     /**
      Overwrite the most recent sleep sample with another sleep sample. Used to adjust/edit an entry.
 
-     :param: sleepSample The new sleep sample you wish to use to overwrite the most recent one.
-     :param: completion  The completion called after saving to HealthKit, passing whether save was successful, and an error if it failed.
+     - parameter sleepSample: The new sleep sample you wish to use to overwrite the most recent one.
+     - parameter completion:  The completion called after saving to HealthKit, passing whether save was successful, and an error if it failed.
      */
     func saveAdjustedSleepTimeToHealthStore(sleepSample:SleepSample, completion: (Bool, NSError!) -> Void) {
         HealthStore.sharedInstance.overwriteMostRecentSleepSample(timeKeeper.mostRecentSleepSample()! , withSample: sleepSample) {
             success, error in
             if success {
-                println("sleep data adjusted successfully")
+                print("sleep data adjusted successfully")
                 self.timeKeeper.backupSleepData(sleepSample)
             } else {
-                println("Error saving to health store: \(error)")
+                print("Error saving to health store: \(error)")
                 // TODO: should call completion with error
             }
             completion(success, error)

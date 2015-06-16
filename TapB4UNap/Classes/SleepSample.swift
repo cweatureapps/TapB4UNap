@@ -28,8 +28,8 @@ struct SleepSample {
     private func resetSeconds(date:NSDate?) -> NSDate? {
         if date != nil {
             let calendar = NSCalendar.currentCalendar()
-            let dateComponents = calendar.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date!)
-            let timeComponents = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: date!)
+            let dateComponents = calendar.components([.Year, .Month, .Day], fromDate: date!)
+            let timeComponents = calendar.components([.Hour, .Minute, .Second], fromDate: date!)
             dateComponents.hour = timeComponents.hour
             dateComponents.minute = timeComponents.minute
             dateComponents.second = 0
@@ -45,7 +45,7 @@ struct SleepSample {
             return nil
         } else {        
             let calendar = NSCalendar.currentCalendar()
-            let components = calendar.components( .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: startDate!, toDate: endDate!, options: NSCalendarOptions.allZeros)
+            let components = calendar.components( [.Hour, .Minute, .Second], fromDate: startDate!, toDate: endDate!, options: NSCalendarOptions())
             return "\(components.hour)hr \(components.minute)min \(components.second)sec"
         }
     }

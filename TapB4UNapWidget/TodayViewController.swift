@@ -27,12 +27,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     // MARK: UIViewController overrides
     
     override func viewDidLoad() {
-        println("viewDidLoad was called")
+        print("viewDidLoad was called")
         super.viewDidLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
-        println("viewWillAppear was called")
+        print("viewWillAppear was called")
         super.viewWillAppear(animated)
         
         refreshUI()
@@ -45,11 +45,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     override func viewWillDisappear(animated:Bool) {
-        println("viewWillDisappear was called")
+        print("viewWillDisappear was called")
     }
     
     override func viewDidDisappear(animated:Bool) {
-        println("viewDidDisappear was called")
+        print("viewDidDisappear was called")
         // for the today widget, this is called as soon as you swipe up to close the notification center.
         // stop the timer so it doesn't consume resources when notification center is not visible.
         stopSleepingTimer()
@@ -63,7 +63,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     // MARK: NCWidgetProviding
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
+    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
     
         // system calls occasionally so that it can preload the content in the background
     
@@ -72,7 +72,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        println("widgetPerformUpdateWithCompletionHandler was called")
+        print("widgetPerformUpdateWithCompletionHandler was called")
         refreshUI()
         completionHandler(NCUpdateResult.NewData)
     }
@@ -121,7 +121,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     private func stopSleepingTimer() {
         sleepTimer?.invalidate()
         sleepTimer = nil;
-        println("timer stopped")
+        print("timer stopped")
     }
     
     func timerHandler() {
@@ -181,7 +181,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     private func sendSilentPush() -> Bool {
     
-        println("attempting to send silent push")
+        print("attempting to send silent push")
         if let
             appId = SettingsManager.stringForKey(.ParseAppId),
             clientKey = SettingsManager.stringForKey(.ParseClientKey)
@@ -197,7 +197,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             
             return true
         }
-        println("Parse settings not available, cannot send push")
+        print("Parse settings not available, cannot send push")
         return false
     }
     
@@ -213,7 +213,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func checkForSaveCompletion() {
-        println("checkForSaveCompletion, pollingCount is \(self.pollingCount)")
+        print("checkForSaveCompletion, pollingCount is \(self.pollingCount)")
         
         let sleepSample = self.timeKeeper.sleepSample()
         let mostRecentSleep = self.timeKeeper.mostRecentSleepSample()

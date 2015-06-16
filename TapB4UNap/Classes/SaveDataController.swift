@@ -45,7 +45,7 @@ class SaveDataController : UIViewController {
         sleepManager.saveToHealthStore {
             sleepSample, success, error in
             if success {
-                println("sleep data saved successfully!")
+                print("sleep data saved successfully!")
                 dispatch_async(dispatch_get_main_queue()) {
                     self.statusMessageLabel.text = "Saved to HealthKit. You slept for:"
                     let timeElapsedString = sleepSample.formattedString()
@@ -53,7 +53,7 @@ class SaveDataController : UIViewController {
                     self.adjustSleepButton.hidden = false
                 }
             } else {
-                println("Error: \(error.localizedDescription)")
+                print("Error: \(error.localizedDescription)")
             }
         }
     }
@@ -79,7 +79,7 @@ class SaveDataController : UIViewController {
                         self.timeLabel.text = sleepSample.formattedString()
                     }
                 } else {
-                    println("Error: \(error.localizedDescription)")
+                    print("Error: \(error.localizedDescription)")
                 }
             }
         }
@@ -95,7 +95,7 @@ class SaveDataController : UIViewController {
         swapControls(contraintToMoveOffScreen: copyrightBottomConstraint, constraintToMoveOnScreen: aboutBottomConstraint)
     }
     
-    private func swapControls(#contraintToMoveOffScreen:NSLayoutConstraint , constraintToMoveOnScreen:NSLayoutConstraint) {
+    private func swapControls(contraintToMoveOffScreen contraintToMoveOffScreen:NSLayoutConstraint , constraintToMoveOnScreen:NSLayoutConstraint) {
         self.view.layoutIfNeeded()
         UIView.animateWithDuration(0.3,
             animations: {

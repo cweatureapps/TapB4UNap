@@ -27,9 +27,7 @@ class AdjustTimeTableViewController: UITableViewController {
         startTimeDatePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         endTimeDatePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         
-        var mostRecentSleep = timeKeeper.mostRecentSleepSample()
-        
-        if  let mostRecentSleep = mostRecentSleep,
+        if  let mostRecentSleep = timeKeeper.mostRecentSleepSample(),
             sleepStartDate = mostRecentSleep.startDate,
             sleepEndDate = mostRecentSleep.endDate
         {
