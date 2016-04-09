@@ -13,10 +13,10 @@ import Foundation
 class SleepManager {
 
     private let timeKeeper = TimeKeeper()
-    
+
     /**
      Saves the sleep sample which was recorded by TimeKeeper.
-    
+
      - parameter completion: The completion called after saving to HealthKit, passing the sleepSample that was saved, whether save was successful, and an error if it failed.
      */
     func saveToHealthStore(completion: ((SleepSample!, Bool, NSError!) -> Void)!) {
@@ -42,15 +42,15 @@ class SleepManager {
             }
         }
     }
-    
+
     /**
      Overwrite the most recent sleep sample with another sleep sample. Used to adjust/edit an entry.
 
      - parameter sleepSample: The new sleep sample you wish to use to overwrite the most recent one.
      - parameter completion:  The completion called after saving to HealthKit, passing whether save was successful, and an error if it failed.
      */
-    func saveAdjustedSleepTimeToHealthStore(sleepSample:SleepSample, completion: (Bool, NSError!) -> Void) {
-        HealthStore.sharedInstance.overwriteMostRecentSleepSample(timeKeeper.mostRecentSleepSample()! , withSample: sleepSample) {
+    func saveAdjustedSleepTimeToHealthStore(sleepSample: SleepSample, completion: (Bool, NSError!) -> Void) {
+        HealthStore.sharedInstance.overwriteMostRecentSleepSample(timeKeeper.mostRecentSleepSample()!, withSample: sleepSample) {
             success, error in
             if success {
                 print("sleep data adjusted successfully")
@@ -62,7 +62,7 @@ class SleepManager {
             completion(success, error)
         }
     }
-    
+
     /**
      Handles silent push notifications triggered from the today extension.
      This will save the sleep sample to HealthKit if it can save,
@@ -77,5 +77,5 @@ class SleepManager {
             }
         }
     }
-    
+
 }

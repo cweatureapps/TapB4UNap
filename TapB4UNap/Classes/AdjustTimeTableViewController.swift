@@ -23,20 +23,19 @@ class AdjustTimeTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         startTimeDatePicker.addTarget(self, action: #selector(AdjustTimeTableViewController.datePickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         endTimeDatePicker.addTarget(self, action: #selector(AdjustTimeTableViewController.datePickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         if  let mostRecentSleep = timeKeeper.mostRecentSleepSample(),
             sleepStartDate = mostRecentSleep.startDate,
-            sleepEndDate = mostRecentSleep.endDate
-        {
+            sleepEndDate = mostRecentSleep.endDate {
             sleepSample.startDate = sleepStartDate
             sleepSample.endDate = sleepEndDate
             refreshUI()
         }
     }
-    
-    func datePickerChanged(datePicker:UIDatePicker) {
+
+    func datePickerChanged(datePicker: UIDatePicker) {
         sleepSample.startDate = startTimeDatePicker.date
         sleepSample.endDate = endTimeDatePicker.date
         sleepSample.resetSeconds()
@@ -50,13 +49,13 @@ class AdjustTimeTableViewController: UITableViewController {
 
         endTimeLabel.text = formatDate(sleepSample.endDate!)
         endTimeDatePicker.date = sleepSample.endDate!
-        
+
         let formattedSleepTime = sleepSample.formattedString()
         sleptForLabel.text = formattedSleepTime ?? "Error: invalid sleep time"
         sleptForLabel.textColor = formattedSleepTime != nil ? UIColor.blackColor() : UIColor.redColor()
     }
-    
-    private func formatDate(date:NSDate) -> String {
+
+    private func formatDate(date: NSDate) -> String {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "dd-MMM-yyyy hh:mm a"
         return formatter.stringFromDate(date)
@@ -68,14 +67,14 @@ class AdjustTimeTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinastionViewController].
         // Pass the selected object to the new view controller.
-        
+
         if segue.identifier == "saveAdjusted" {
             sleepSample.startDate = startTimeDatePicker.date
             sleepSample.endDate = endTimeDatePicker.date
         }
-        
+
     }
 
-  
-    
+
+
 }

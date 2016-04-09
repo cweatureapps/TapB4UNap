@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class SaveDataController : UIViewController {
+class SaveDataController: UIViewController {
 
     // MARK: privates
-    
+
     private let sleepManager = SleepManager()
 
     @IBOutlet weak private var statusMessageLabel: UILabel!
@@ -22,17 +22,17 @@ class SaveDataController : UIViewController {
     @IBOutlet weak private var copyrightButton: UILabel!
     @IBOutlet weak private var aboutBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak private var copyrightBottomConstraint: NSLayoutConstraint!
-    
+
     // MARK: controller code
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SaveDataController.resetUI), name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent;
+        return .LightContent
     }
 
     func resetUI() {
@@ -40,7 +40,7 @@ class SaveDataController : UIViewController {
         timeLabel.text = ""
         adjustSleepButton.hidden = true
     }
-    
+
     func saveToHealthStore() {
         sleepManager.saveToHealthStore {
             sleepSample, success, error in
@@ -57,17 +57,17 @@ class SaveDataController : UIViewController {
             }
         }
     }
-    
+
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
 
     // MARK: unwind methods
-    
+
     @IBAction func cancelToSaveDataController(segue: UIStoryboardSegue) {
     }
-    
+
     @IBAction func saveAdjustedSleeptime(segue: UIStoryboardSegue) {
         if let vc = segue.sourceViewController as? AdjustTimeTableViewController {
             let sleepSample = vc.sleepSample
@@ -84,25 +84,23 @@ class SaveDataController : UIViewController {
             }
         }
     }
-    
+
     // MARK: copyright animation
-    
+
     @IBAction func showCopyrightLabel(sender: UIButton) {
         swapControls(contraintToMoveOffScreen: aboutBottomConstraint, constraintToMoveOnScreen: copyrightBottomConstraint)
     }
-    
+
     @IBAction func showAboutButton(sender: AnyObject) {
         swapControls(contraintToMoveOffScreen: copyrightBottomConstraint, constraintToMoveOnScreen: aboutBottomConstraint)
     }
-    
-    private func swapControls(contraintToMoveOffScreen contraintToMoveOffScreen:NSLayoutConstraint , constraintToMoveOnScreen:NSLayoutConstraint) {
+
+    private func swapControls(contraintToMoveOffScreen contraintToMoveOffScreen: NSLayoutConstraint, constraintToMoveOnScreen: NSLayoutConstraint) {
         self.view.layoutIfNeeded()
-        UIView.animateWithDuration(0.3,
-            animations: {
+        UIView.animateWithDuration(0.3, animations: {
                 contraintToMoveOffScreen.constant = -100
                 self.view.layoutIfNeeded()
-            },
-            completion: {
+            }, completion: {
                 finished in
                 if finished {
                     self.view.layoutIfNeeded()

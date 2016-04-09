@@ -287,6 +287,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B285A4F19F4673800ECE1A5 /* Build configuration list for PBXNativeTarget "TapB4UNap" */;
 			buildPhases = (
+				5BE35AF01CB8F9AD004918B9 /* Run SwiftLint */,
 				5B285A2C19F4673800ECE1A5 /* Sources */,
 				5B285A2D19F4673800ECE1A5 /* Frameworks */,
 				5B285A2E19F4673800ECE1A5 /* Resources */,
@@ -306,6 +307,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B285A5219F4673800ECE1A5 /* Build configuration list for PBXNativeTarget "TapB4UNapTests" */;
 			buildPhases = (
+				5BE35AF11CB8F9D0004918B9 /* Run SwiftLint */,
 				5B285A4119F4673800ECE1A5 /* Sources */,
 				5B285A4219F4673800ECE1A5 /* Frameworks */,
 				5B285A4319F4673800ECE1A5 /* Resources */,
@@ -324,6 +326,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B285A7319F9A69A00ECE1A5 /* Build configuration list for PBXNativeTarget "TapB4UNapWidget" */;
 			buildPhases = (
+				5BE35AF21CB8F9D9004918B9 /* Run SwiftLint */,
 				5B285A6119F9A69A00ECE1A5 /* Sources */,
 				5B285A6219F9A69A00ECE1A5 /* Frameworks */,
 				5B285A6319F9A69A00ECE1A5 /* Resources */,
@@ -430,6 +433,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5BE35AF01CB8F9AD004918B9 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/swiftlint.sh\"";
+		};
+		5BE35AF11CB8F9D0004918B9 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/swiftlint.sh\"";
+		};
+		5BE35AF21CB8F9D9004918B9 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/swiftlint.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5B285A2C19F4673800ECE1A5 /* Sources */ = {

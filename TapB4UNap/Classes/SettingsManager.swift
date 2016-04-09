@@ -24,21 +24,21 @@ class SettingsManager {
     class func registerDefaultsFromPlist() {
         let plistPath = NSBundle.mainBundle().pathForResource("Defaults", ofType: "plist")
         if let plistPath = plistPath {
-            let defaultsDictionary:NSDictionary! = NSDictionary(contentsOfFile: plistPath)
+            let defaultsDictionary: NSDictionary! = NSDictionary(contentsOfFile: plistPath)
             for (key, value) in defaultsDictionary {
                 sharedUserDefaults.setValue(value, forKey: key as! String)
             }
             SettingsManager.sharedUserDefaults.synchronize()
         }
     }
-    
+
     /**
      Returns string setting from Defaults.plist
 
      - parameter key: The key in the plist
      - returns: The string associated with the key, nil if it cannot be found.
      */
-    class func stringForKey(key:Defaults) -> String? {
+    class func stringForKey(key: Defaults) -> String? {
         return SettingsManager.sharedUserDefaults.stringForKey(key.rawValue)
     }
 
@@ -48,4 +48,3 @@ class SettingsManager {
 enum Defaults: String {
     case PlaceholderSetting
 }
-    
