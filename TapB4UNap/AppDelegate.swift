@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,27 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let sleepManager = SleepManager()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0;
-        
-        if let
-            appId = SettingsManager.stringForKey(.ParseAppId),
-            clientKey = SettingsManager.stringForKey(.ParseClientKey)
-        {
-            SettingsManager.registerDefaultsFromPlist()
-            
-            Parse.setApplicationId(appId, clientKey: clientKey)
-            
-            let settings = UIUserNotificationSettings(forTypes:([UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]), categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        }
-
         return true
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        
         // handle the url scheme "cwtapb4unap://save" and save to the HealthStore
         if let ctrl = window?.rootViewController as? SaveDataController {
             if url.absoluteString == "cwtapb4unap://save" {
@@ -66,29 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken:  NSData) {
-        print("didRegisterForRemoteNotificationsWithDeviceToken was called, deviceToken: \(deviceToken)")
-        let currentInstallation = PFInstallation.currentInstallation()
-        currentInstallation.setDeviceTokenFromData(deviceToken)
-        currentInstallation.channels = ["global"]
-        currentInstallation.saveInBackgroundWithBlock(nil)
-    }
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void){
-        if let
-            aps = userInfo["aps"] as? [String: AnyObject],
-            contentAvailable = aps["content-available"] as? Int
-            where contentAvailable == 1
-        {
-            // silent notification
-            print("silent notification received")
-            sleepManager.handleSilentNotification()
-            completionHandler(UIBackgroundFetchResult.NewData);
-        } else {
-            PFPush.handlePush(userInfo)
-        }
     }
 
 }

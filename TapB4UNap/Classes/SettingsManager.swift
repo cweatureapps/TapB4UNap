@@ -44,18 +44,8 @@ class SettingsManager {
 
 }
 
-/**
- Represents all the defaults stored in the plist
- */
-enum Defaults:String {
-    /**
-     *  AppId to use for Parse
-     */
-    case ParseAppId = "ParseAppId"
-    
-    /**
-     *  ClientKey to use for Parse
-     */
-    case ParseClientKey = "ParseClientKey"
+/// Represents all the defaults stored in the plist
+enum Defaults: String {
+    case PlaceholderSetting
 }
     

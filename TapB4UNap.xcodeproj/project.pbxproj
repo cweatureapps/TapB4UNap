@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B1355CE1AD2BA2300106F0E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF176761AC6BDCC0007A37C /* Parse.framework */; };
-		5B1355CF1AD2BA2800106F0E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF176751AC6BDCC0007A37C /* Bolts.framework */; };
-		5B1355D01AD2BA3500106F0E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF176751AC6BDCC0007A37C /* Bolts.framework */; };
-		5B1355D11AD2BA3800106F0E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF176761AC6BDCC0007A37C /* Parse.framework */; };
 		5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A3519F4673800ECE1A5 /* AppDelegate.swift */; };
 		5B285A3B19F4673800ECE1A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A3919F4673800ECE1A5 /* Main.storyboard */; };
 		5B285A3D19F4673800ECE1A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A3C19F4673800ECE1A5 /* Images.xcassets */; };
@@ -24,7 +20,6 @@
 		5B4889A41A8EAFC000F967EB /* AdjustTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4889A31A8EAFC000F967EB /* AdjustTimeTableViewController.swift */; };
 		5B6C3B811A9A0ED200278990 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6C3B801A9A0ED200278990 /* HealthKit.framework */; };
 		5B94CBA61AD2BB3F001FD709 /* SleepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B94CBA51AD2BB3F001FD709 /* SleepManager.swift */; };
-		5B94CBA81AD34107001FD709 /* TimeKeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B94CBA71AD34107001FD709 /* TimeKeeperTests.swift */; };
 		5BBF48B01AD96243005F3E8D /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBF48AF1AD96243005F3E8D /* SettingsManager.swift */; };
 		5BBF48B31AD9832A005F3E8D /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBF48AF1AD96243005F3E8D /* SettingsManager.swift */; };
 		5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BBF48B41ADA6498005F3E8D /* Defaults.plist */; };
@@ -109,7 +104,6 @@
 		5B4889A31A8EAFC000F967EB /* AdjustTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdjustTimeTableViewController.swift; path = Classes/AdjustTimeTableViewController.swift; sourceTree = "<group>"; };
 		5B6C3B801A9A0ED200278990 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		5B94CBA51AD2BB3F001FD709 /* SleepManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SleepManager.swift; path = Classes/SleepManager.swift; sourceTree = "<group>"; };
-		5B94CBA71AD34107001FD709 /* TimeKeeperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeKeeperTests.swift; sourceTree = "<group>"; };
 		5BBF48AF1AD96243005F3E8D /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsManager.swift; path = Classes/SettingsManager.swift; sourceTree = "<group>"; };
 		5BBF48B41ADA6498005F3E8D /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		5BD07E2D1A052E64000A6E9E /* hov6CQ-large.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hov6CQ-large.jpg"; sourceTree = "<group>"; };
@@ -117,8 +111,6 @@
 		5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hov6CQ-1280x400.jpg"; sourceTree = "<group>"; };
 		5BD5EAA11A918C830069E008 /* SleepSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SleepSample.swift; path = Classes/SleepSample.swift; sourceTree = "<group>"; };
 		5BDB91B219FF6F37009CBA13 /* SaveDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SaveDataController.swift; path = Classes/SaveDataController.swift; sourceTree = "<group>"; };
-		5BF176751AC6BDCC0007A37C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ThirdParty/Bolts.framework; sourceTree = "<group>"; };
-		5BF176761AC6BDCC0007A37C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ThirdParty/Parse.framework; sourceTree = "<group>"; };
 		5BF1767B1AC6BE9D0007A37C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5BF1767C1AC6BE9D0007A37C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5BF1767D1AC6BE9D0007A37C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -149,8 +141,6 @@
 				5BF1769A1AC6C5800007A37C /* StoreKit.framework in Frameworks */,
 				5BF1769B1AC6C5800007A37C /* SystemConfiguration.framework in Frameworks */,
 				5B6C3B811A9A0ED200278990 /* HealthKit.framework in Frameworks */,
-				5B1355CF1AD2BA2800106F0E /* Bolts.framework in Frameworks */,
-				5B1355CE1AD2BA2300106F0E /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,8 +167,6 @@
 				5BF1768F1AC6BE9D0007A37C /* StoreKit.framework in Frameworks */,
 				5BF176901AC6BE9D0007A37C /* SystemConfiguration.framework in Frameworks */,
 				5B285A6819F9A69A00ECE1A5 /* NotificationCenter.framework in Frameworks */,
-				5B1355D01AD2BA3500106F0E /* Bolts.framework in Frameworks */,
-				5B1355D11AD2BA3800106F0E /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				5B285A4919F4673800ECE1A5 /* Supporting Files */,
-				5B94CBA71AD34107001FD709 /* TimeKeeperTests.swift */,
 			);
 			path = TapB4UNapTests;
 			sourceTree = "<group>";
@@ -257,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				5BF1767B1AC6BE9D0007A37C /* AudioToolbox.framework */,
-				5BF176751AC6BDCC0007A37C /* Bolts.framework */,
 				5BF1767C1AC6BE9D0007A37C /* CFNetwork.framework */,
 				5BF1767D1AC6BE9D0007A37C /* CoreGraphics.framework */,
 				5BF1767E1AC6BE9D0007A37C /* CoreLocation.framework */,
@@ -266,7 +252,6 @@
 				5BF176801AC6BE9D0007A37C /* libz.dylib */,
 				5BF176811AC6BE9D0007A37C /* MobileCoreServices.framework */,
 				5B285A6719F9A69A00ECE1A5 /* NotificationCenter.framework */,
-				5BF176761AC6BDCC0007A37C /* Parse.framework */,
 				5BF176821AC6BE9D0007A37C /* QuartzCore.framework */,
 				5BF176831AC6BE9D0007A37C /* Security.framework */,
 				5BF176841AC6BE9D0007A37C /* StoreKit.framework */,
@@ -466,7 +451,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B94CBA81AD34107001FD709 /* TimeKeeperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

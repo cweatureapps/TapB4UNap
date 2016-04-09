@@ -28,7 +28,7 @@ class SaveDataController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "resetUI", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SaveDataController.resetUI), name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
