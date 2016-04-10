@@ -1,5 +1,5 @@
 //
-//  SaveDataController.swift
+//  SaveDataViewController.swift
 //  TapB4UNap
 //
 //  Created by Ken Ko on 28/10/2014.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SaveDataController: UIViewController {
+class SaveDataViewController: UIViewController {
 
     // MARK: privates
 
@@ -28,7 +28,7 @@ class SaveDataController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SaveDataController.resetUI), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SaveDataViewController.resetUI), name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -65,7 +65,7 @@ class SaveDataController: UIViewController {
 
     // MARK: unwind methods
 
-    @IBAction func cancelToSaveDataController(segue: UIStoryboardSegue) {
+    @IBAction func cancelToSaveDataViewController(segue: UIStoryboardSegue) {
     }
 
     @IBAction func saveAdjustedSleeptime(segue: UIStoryboardSegue) {

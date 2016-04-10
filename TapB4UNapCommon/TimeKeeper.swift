@@ -5,11 +5,10 @@
 //  Created by Ken Ko on 21/10/2014.
 //  Copyright (c) 2014 Ken Ko. All rights reserved.
 //
-//  This class interacts with the userDefaults to allow sharing data between the extension and the app.
-//
 
 import Foundation
 
+/// This class interacts with the userDefaults to allow sharing data between the extension and the app.
 class TimeKeeper {
 
     private let sleepStartedKey = "sleepStarted"

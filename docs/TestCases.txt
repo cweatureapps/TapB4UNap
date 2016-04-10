@@ -1,5 +1,16 @@
 Manual test cases
 
+---Extension UI---
+
+1. Tap sleep, counter begins
+
+2. Tap cancel, goes back to starting screen
+
+3. When tap on save, says "saving..."
+
+4. After saving, open the today extension, it is reset
+
+
 ---Saving from extension---
 
 1. fresh install, no permissions, no data, app is not running
@@ -32,5 +43,8 @@ the screen will be cleared
 
 4. tap save
 - on saving, seconds remain dropped at zero
-- main screen cant edit anymore
 - check saved correctly
+
+
+
+

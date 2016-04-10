@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         // handle the url scheme "cwtapb4unap://save" and save to the HealthStore
-        if let ctrl = window?.rootViewController as? SaveDataController {
+        if let ctrl = window?.rootViewController as? SaveDataViewController {
             if url.absoluteString == "cwtapb4unap://save" {
                 ctrl.saveToHealthStore()
             }

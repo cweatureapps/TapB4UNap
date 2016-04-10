@@ -4,12 +4,11 @@
 //
 //  Created by Ken Ko on 6/04/2015.
 //  Copyright (c) 2015 Ken Ko. All rights reserved.
+//
 
 import Foundation
 
-/**
- *  Coordinates interaction between TimeKeeper and HealthStore
- */
+/// Coordinates interaction between TimeKeeper and HealthStore
 class SleepManager {
 
     private let timeKeeper = TimeKeeper()

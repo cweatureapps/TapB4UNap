@@ -5,12 +5,11 @@
 //  Created by Ken Ko on 21/10/2014.
 //  Copyright (c) 2014 Ken Ko. All rights reserved.
 //
-//  Wraps the single instance of HKHealthStore
-//  and provides helper methods.
 
 import Foundation
 import HealthKit
 
+///  Wraps the single instance of HKHealthStore and provides helper methods.
 class HealthStore {
 
     static let sharedInstance: HealthStore = HealthStore()

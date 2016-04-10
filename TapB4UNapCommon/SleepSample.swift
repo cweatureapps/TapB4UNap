@@ -8,9 +8,7 @@
 
 import Foundation
 
-/**
- *  Model representing the start and end date-time for a sleep sample.
- */
+/// Model representing the start and end date-time for a sleep sample.
 struct SleepSample {
 
     /** When sleep started */

@@ -8,10 +8,13 @@
 
 import Foundation
 
-/**
- *  Manages shared user defaults.
- */
+/// Manages shared user defaults.
 class SettingsManager {
+
+    /// Represents all the defaults stored in the plist
+    enum Defaults: String {
+        case PlaceholderSetting
+    }
 
     /**
      The NSUserDefaults for the app group which can be shared between the app and the today extension
@@ -41,10 +44,4 @@ class SettingsManager {
     class func stringForKey(key: Defaults) -> String? {
         return SettingsManager.sharedUserDefaults.stringForKey(key.rawValue)
     }
-
-}
-
-/// Represents all the defaults stored in the plist
-enum Defaults: String {
-    case PlaceholderSetting
 }
