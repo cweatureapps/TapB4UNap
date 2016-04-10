@@ -13,12 +13,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     // MARK: Privates
 
+    private let sleepManager = SleepManager()
+
     private let timeKeeper = TimeKeeper()
     private var sleepTimer: NSTimer?
     private var pushCompletionTimer: NSTimer?
     private var pollingCount = 0
 
     @IBOutlet weak private var sleepButton: UIButton!
+    @IBOutlet weak private var adjustButton: UIButton!
     @IBOutlet weak private var cancelButton: UIButton!
     @IBOutlet weak private var wakeButton: UIButton!
     @IBOutlet weak private var statusMessageLabel: UILabel!
@@ -88,20 +91,40 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         startSleepingTimer()
     }
 
+    @IBAction func adjustButtonHandler(sender: AnyObject) {
+        extensionContext?.openURL(NSURL(string: "cwtapb4unap://adjust")!, completionHandler: nil)
+    }
+
     @IBAction func cancelButtonHandler(sender: AnyObject) {
         timeKeeper.resetSleepData()
         refreshUI()
     }
 
-    @IBAction func wakeButtonHandler(sender: UILongPressGestureRecognizer) {
+    @IBAction func wakeButtonHandler(sender: AnyObject) {
         stopSleepingTimer()
         timeKeeper.endSleepIfNeeded(NSDate())
         refreshUI()
-        saveUsingContainingApp()
+        saveToHealthKit()
     }
 
-    private func saveUsingContainingApp() {
-        extensionContext?.openURL(NSURL(string: "cwtapb4unap://save")!, completionHandler: nil)
+    private func saveToHealthKit() {
+        sleepManager.saveToHealthStore { sleepSample, success, error in
+            if success {
+                print("sleep data saved successfully!")
+                let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC)))
+                dispatch_after(delay, dispatch_get_main_queue()) {
+                    self.statusMessageLabel.text = "You slept for \(sleepSample.formattedString())"
+                }
+            } else {
+                print("widget save error: \(error.localizedDescription)")
+                dispatch_async(dispatch_get_main_queue()) {
+                    // TODO: better error handling, e.g. for unauthorized
+                    self.statusMessageLabel.text = "Sorry, something went wrong"
+                    self.adjustButton.hidden = true
+                }
+                self.timeKeeper.resetSleepData()
+            }
+        }
     }
 
     // MARK: sleeping timer
@@ -132,30 +155,29 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     func refreshUI() {
         if var sleepSample = timeKeeper.sleepSample() {
             if sleepSample.isSleeping() {
-
                 sleepSample.endDate = NSDate()
                 let formattedTime = sleepSample.formattedString()
                 if statusMessageLabel.text != formattedTime {
                     statusMessageLabel.text = formattedTime
                 }
-
                 sleepButton.hidden = true
                 cancelButton.hidden = false
                 wakeButton.hidden = false
+                adjustButton.hidden = true
 
             } else if sleepSample.canSave() {
-                statusMessageLabel.text = "saving."
-
+                statusMessageLabel.text = "Saving..."
                 sleepButton.hidden = true
-                cancelButton.hidden = false
-                wakeButton.hidden = false
+                cancelButton.hidden = true
+                wakeButton.hidden = true
+                adjustButton.hidden = false
             }
         } else {
-            statusMessageLabel.text = "Tap sleep to start!"
-
+            statusMessageLabel.text = "Tap sleep to start"
             sleepButton.hidden = false
             cancelButton.hidden = true
             wakeButton.hidden = true
+            adjustButton.hidden = true
         }
     }
 

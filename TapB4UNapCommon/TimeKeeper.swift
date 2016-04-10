@@ -61,6 +61,7 @@ class TimeKeeper {
     func backupSleepData(sleepSample: SleepSample) {
         userDefaults.setObject(sleepSample.startDate, forKey: mostRecentSleepStartKey)
         userDefaults.setObject(sleepSample.endDate, forKey: mostRecentSleepEndKey)
+        userDefaults.synchronize()
     }
 
     /**

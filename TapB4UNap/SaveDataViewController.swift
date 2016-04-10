@@ -6,10 +6,14 @@
 //  Copyright (c) 2014 Ken Ko. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import HealthKit
 
 class SaveDataViewController: UIViewController {
+
+    private enum Strings {
+        static let saveSuccess = "Saved to HealthKit. You slept for:"
+    }
 
     // MARK: privates
 
@@ -42,14 +46,12 @@ class SaveDataViewController: UIViewController {
     }
 
     func saveToHealthStore() {
-        sleepManager.saveToHealthStore {
-            sleepSample, success, error in
+        sleepManager.saveToHealthStore { sleepSample, success, error in
             if success {
                 print("sleep data saved successfully!")
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.statusMessageLabel.text = "Saved to HealthKit. You slept for:"
-                    let timeElapsedString = sleepSample.formattedString()
-                    self.timeLabel.text = timeElapsedString
+                    self.statusMessageLabel.text = Strings.saveSuccess
+                    self.timeLabel.text = sleepSample.formattedString()
                     self.adjustSleepButton.hidden = false
                 }
             } else {
@@ -58,10 +60,41 @@ class SaveDataViewController: UIViewController {
         }
     }
 
+    /// Called by deeplink to adjust the time
+    func adjust() {
+        performSegueWithIdentifier("adjustSegue", sender: nil)
+    }
+
+    /// Should be called by `AppDelegate.applicationShouldRequestHealthAuthorization(_:)` when handling HealthKit authorization request from an extension
+    func handleExtensionAuthorization() {
+        HKHealthStore().handleAuthorizationForExtensionWithCompletion { success, error in
+            if success {
+                print("healthkit authorization process completed by parent app")
+            } else {
+                print("something went wrong with HealthKit authorization. Error: \(error?.localizedDescription)")
+            }
+            dispatch_async(dispatch_get_main_queue()) {
+                self.statusMessageLabel.text = "Saving..."
+            }
+            /*
+            NOTE: more testing needed.
+            Currently works if user authorizes very quickly.
+            The first auth request might timeout if the user stays on the auth screen. which means we need to try to save again.
+            */
+            let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
+            dispatch_after(delay, dispatch_get_main_queue()) {
+                if let mostRecentSleepSample = TimeKeeper().mostRecentSleepSample() {
+                    self.statusMessageLabel.text = Strings.saveSuccess
+                    self.timeLabel.text = mostRecentSleepSample.formattedString()
+                    self.adjustSleepButton.hidden = false
+                }
+            }
+        }
+    }
+
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-
 
     // MARK: unwind methods
 
@@ -75,8 +108,9 @@ class SaveDataViewController: UIViewController {
                 success, error in
                 if success {
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.statusMessageLabel.text = "Saved to HealthKit. You slept for:"
+                        self.statusMessageLabel.text = Strings.saveSuccess
                         self.timeLabel.text = sleepSample.formattedString()
+                        self.adjustSleepButton.hidden = false
                     }
                 } else {
                     print("Error: \(error.localizedDescription)")
@@ -100,14 +134,11 @@ class SaveDataViewController: UIViewController {
         UIView.animateWithDuration(0.3, animations: {
                 contraintToMoveOffScreen.constant = -100
                 self.view.layoutIfNeeded()
-            }, completion: {
-                finished in
-                if finished {
+            }, completion: { _ in
+                self.view.layoutIfNeeded()
+                UIView.animateWithDuration(0.3) {
+                    constraintToMoveOnScreen.constant = 20
                     self.view.layoutIfNeeded()
-                    UIView.animateWithDuration(0.3) {
-                        constraintToMoveOnScreen.constant = 20
-                        self.view.layoutIfNeeded()
-                    }
                 }
             })
     }

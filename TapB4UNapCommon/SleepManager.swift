@@ -21,15 +21,15 @@ class SleepManager {
     func saveToHealthStore(completion: ((SleepSample!, Bool, NSError!) -> Void)!) {
         if let sleepSample = timeKeeper.sleepSample() {
             if sleepSample.canSave() {
-                HealthStore.sharedInstance.saveSleepSample(sleepSample) {
-                    success, error in
+                HealthStore.sharedInstance.saveSleepSample(sleepSample) { success, error in
                     if success {
                         print("sleep data saved successfully")
                         self.timeKeeper.backupSleepData(sleepSample)
                         self.timeKeeper.resetSleepData()
                     } else {
-                        print("Error saving to health store: \(error)")
-                        // TODO: should call completion with error
+                        print("Error saving to health store: \(error?.localizedDescription)")
+                        // note: "Not authorized" error control flow goes into here
+                        // TODO: introduce Swift errors; should map HKErrorCode to friendly messages
                     }
                     if completion != nil {
                         completion(sleepSample, success, error)
@@ -61,20 +61,4 @@ class SleepManager {
             completion(success, error)
         }
     }
-
-    /**
-     Handles silent push notifications triggered from the today extension.
-     This will save the sleep sample to HealthKit if it can save,
-     or set up a geo-fence if currently sleeping.
-     */
-    func handleSilentNotification() {
-        if let sleepSample = timeKeeper.sleepSample() {
-            if sleepSample.canSave() {
-                saveToHealthStore(nil)
-            } else if sleepSample.isSleeping() {
-                // TODO: set up geofence
-            }
-        }
-    }
-
 }

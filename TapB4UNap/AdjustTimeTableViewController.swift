@@ -51,8 +51,8 @@ class AdjustTimeTableViewController: UITableViewController {
         endTimeDatePicker.date = sleepSample.endDate!
 
         let formattedSleepTime = sleepSample.formattedString()
-        sleptForLabel.text = formattedSleepTime ?? "Error: invalid sleep time"
-        sleptForLabel.textColor = formattedSleepTime != nil ? UIColor.blackColor() : UIColor.redColor()
+        sleptForLabel.text = formattedSleepTime.isEmpty ? "Error: invalid sleep time" : formattedSleepTime
+        sleptForLabel.textColor = formattedSleepTime.isEmpty ? UIColor.redColor() : UIColor.blackColor()
     }
 
     private func formatDate(date: NSDate) -> String {

@@ -22,7 +22,7 @@ class HealthStore {
 
     private func requestAuthorisationForHealthStore(completion: ((Bool, NSError?) -> Void)!) {
         let dataTypesToReadAndWrite: Set = [HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!]
-        self.hkHealthStore.requestAuthorizationToShareTypes(dataTypesToReadAndWrite,
+        hkHealthStore.requestAuthorizationToShareTypes(dataTypesToReadAndWrite,
             readTypes: dataTypesToReadAndWrite,
             completion: completion)
     }
@@ -30,16 +30,16 @@ class HealthStore {
     /* saves a sleep sample to health kit */
     func saveSleepSample(sleepSample: SleepSample, completion: ((Bool, NSError?) -> Void)!) {
 
-        self.requestAuthorisationForHealthStore {
+        requestAuthorisationForHealthStore {
             success, error in
             if success {
-                print("Authorised to write to HealthKit")
+                print("HealthKit authorization flow completed")
 
                 let categoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!
                 let metadata = [ HKMetadataKeyWasUserEntered : true ]
                 let sample = HKCategorySample(type: categoryType, value: HKCategoryValueSleepAnalysis.Asleep.rawValue, startDate: sleepSample.startDate!, endDate: sleepSample.endDate!, metadata: metadata)
 
-                print("Saving...")
+                print("Attempting save...")
 
                 self.hkHealthStore.saveObject(sample, withCompletion: completion)
             } else if error != nil {

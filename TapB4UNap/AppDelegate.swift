@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HealthKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,17 +15,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private let sleepManager = SleepManager()
 
+    private var rootViewController: SaveDataViewController? {
+        return  window?.rootViewController as? SaveDataViewController
+    }
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         return true
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        // handle the url scheme "cwtapb4unap://save" and save to the HealthStore
-        if let ctrl = window?.rootViewController as? SaveDataViewController {
-            if url.absoluteString == "cwtapb4unap://save" {
-                ctrl.saveToHealthStore()
-            }
+        switch url.absoluteString {
+            case "cwtapb4unap://save":
+                rootViewController?.saveToHealthStore()
+            case "cwtapb4unap://adjust":
+                rootViewController?.adjust()
+            default:
+                return false
         }
         return true
     }
@@ -44,4 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
     }
 
+    func applicationShouldRequestHealthAuthorization(application: UIApplication) {
+        rootViewController?.handleExtensionAuthorization()
+    }
 }

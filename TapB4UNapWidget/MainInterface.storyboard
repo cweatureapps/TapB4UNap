@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
@@ -49,6 +48,17 @@
                                                     <action selector="sleepButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="hEE-a7-5rr"/>
                                                 </connections>
                                             </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WLD-Hd-H4I">
+                                                <rect key="frame" x="139" y="10" width="42" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="adjust">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="adjustButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="aTd-2U-Ti2"/>
+                                                </connections>
+                                            </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o32-JF-of9">
                                                 <rect key="frame" x="182" y="10" width="36" height="30"/>
                                                 <gestureRecognizers/>
@@ -76,8 +86,10 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="centerY" secondItem="odH-dT-2QS" secondAttribute="centerY" id="1XU-aH-k0j"/>
+                                            <constraint firstItem="WLD-Hd-H4I" firstAttribute="centerY" secondItem="gMa-7j-58l" secondAttribute="centerY" id="EBV-iD-zxo"/>
                                             <constraint firstAttribute="centerY" secondItem="kth-vJ-WrW" secondAttribute="centerY" id="L1F-D1-6jj"/>
                                             <constraint firstAttribute="centerX" secondItem="kth-vJ-WrW" secondAttribute="centerX" id="S9J-lF-0AT"/>
+                                            <constraint firstItem="WLD-Hd-H4I" firstAttribute="centerX" secondItem="kth-vJ-WrW" secondAttribute="centerX" id="ZZp-qL-6FJ"/>
                                             <constraint firstAttribute="centerX" secondItem="odH-dT-2QS" secondAttribute="centerX" constant="40" id="ago-yj-KQ8"/>
                                             <constraint firstAttribute="centerX" secondItem="o32-JF-of9" secondAttribute="centerX" constant="-40" id="bII-1y-HMh"/>
                                             <constraint firstAttribute="height" constant="50" id="iPM-pL-sH4"/>
@@ -114,6 +126,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="100"/>
                     <connections>
+                        <outlet property="adjustButton" destination="WLD-Hd-H4I" id="8Ce-2M-2gi"/>
                         <outlet property="cancelButton" destination="odH-dT-2QS" id="LLf-x4-xsR"/>
                         <outlet property="sleepButton" destination="kth-vJ-WrW" id="4zX-RG-Wgk"/>
                         <outlet property="statusMessageLabel" destination="JLU-3K-hMP" id="UNn-QN-Ol0"/>

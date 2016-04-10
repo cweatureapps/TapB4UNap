@@ -14,6 +14,7 @@
 		5B285A6D19F9A69A00ECE1A5 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A6C19F9A69A00ECE1A5 /* TodayViewController.swift */; };
 		5B285A6F19F9A69A00ECE1A5 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A6E19F9A69A00ECE1A5 /* MainInterface.storyboard */; };
 		5B285A7219F9A69A00ECE1A5 /* TapB4UNapWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5B285A6519F9A69A00ECE1A5 /* TapB4UNapWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5B661F1A1CBA6D01000B76FE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6C3B801A9A0ED200278990 /* HealthKit.framework */; };
 		5B661F1F1CBA725F000B76FE /* AdjustTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F1D1CBA725F000B76FE /* AdjustTimeTableViewController.swift */; };
 		5B661F201CBA725F000B76FE /* SaveDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F1E1CBA725F000B76FE /* SaveDataViewController.swift */; };
 		5B661F231CBA7272000B76FE /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F211CBA7272000B76FE /* HealthStore.swift */; };
@@ -160,6 +161,7 @@
 				5BF1768C1AC6BE9D0007A37C /* MobileCoreServices.framework in Frameworks */,
 				5BF1768D1AC6BE9D0007A37C /* QuartzCore.framework in Frameworks */,
 				5BF1768E1AC6BE9D0007A37C /* Security.framework in Frameworks */,
+				5B661F1A1CBA6D01000B76FE /* HealthKit.framework in Frameworks */,
 				5BF176901AC6BE9D0007A37C /* SystemConfiguration.framework in Frameworks */,
 				5B285A6819F9A69A00ECE1A5 /* NotificationCenter.framework in Frameworks */,
 			);
@@ -381,7 +383,7 @@
 								enabled = 1;
 							};
 							com.apple.HealthKit = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -581,7 +583,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -618,7 +620,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
