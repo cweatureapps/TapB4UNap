@@ -108,18 +108,25 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
 
     private func saveToHealthKit() {
-        sleepManager.saveToHealthStore { sleepSample, success, error in
-            if success {
+        sleepManager.saveToHealthStore { result in
+            switch result {
+            case .Success(let sleepSample):
                 print("sleep data saved successfully!")
                 let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC)))
                 dispatch_after(delay, dispatch_get_main_queue()) {
                     self.statusMessageLabel.text = "You slept for \(sleepSample.formattedString())"
                 }
-            } else {
-                print("widget save error: \(error.localizedDescription)")
+            case .Failure(let error):
+                print("widget save error")
                 dispatch_async(dispatch_get_main_queue()) {
-                    // TODO: better error handling, e.g. for unauthorized
-                    self.statusMessageLabel.text = "Sorry, something went wrong"
+                    let errorMessage: String
+                    if let healthStoreError = error as? HealthStoreError,
+                        case HealthStoreError.NotAuthorized  = healthStoreError {
+                        errorMessage = "Please allow Apple Health to share sleep data with TapB4UNap"
+                    } else {
+                        errorMessage = "Sorry, something went wrong"
+                    }
+                    self.statusMessageLabel.text = errorMessage
                     self.adjustButton.hidden = true
                 }
                 self.timeKeeper.resetSleepData()

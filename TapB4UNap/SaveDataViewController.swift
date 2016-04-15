@@ -13,6 +13,8 @@ class SaveDataViewController: UIViewController {
 
     private enum Strings {
         static let saveSuccess = "Saved to HealthKit. You slept for:"
+        static let genericError = "Sorry, something went wrong"
+        static let saving = "Saving..."
     }
 
     // MARK: privates
@@ -46,16 +48,18 @@ class SaveDataViewController: UIViewController {
     }
 
     func saveToHealthStore() {
-        sleepManager.saveToHealthStore { sleepSample, success, error in
-            if success {
+        sleepManager.saveToHealthStore { result in
+            switch result {
+            case .Success(let sleepSample):
                 print("sleep data saved successfully!")
                 dispatch_async(dispatch_get_main_queue()) {
                     self.statusMessageLabel.text = Strings.saveSuccess
                     self.timeLabel.text = sleepSample.formattedString()
                     self.adjustSleepButton.hidden = false
                 }
-            } else {
-                print("Error: \(error.localizedDescription)")
+            case .Failure:
+                print("SaveDataViewController error")
+                TimeKeeper().resetSleepData()
             }
         }
     }
@@ -68,18 +72,20 @@ class SaveDataViewController: UIViewController {
     /// Should be called by `AppDelegate.applicationShouldRequestHealthAuthorization(_:)` when handling HealthKit authorization request from an extension
     func handleExtensionAuthorization() {
         HKHealthStore().handleAuthorizationForExtensionWithCompletion { success, error in
-            if success {
-                print("healthkit authorization process completed by parent app")
-            } else {
-                print("something went wrong with HealthKit authorization. Error: \(error?.localizedDescription)")
-            }
             dispatch_async(dispatch_get_main_queue()) {
-                self.statusMessageLabel.text = "Saving..."
+                if success {
+                    print("healthkit authorization process completed by parent app")
+                     self.statusMessageLabel.text = Strings.saving
+                } else {
+                    print("something went wrong with HealthKit authorization. Error: \(error?.localizedDescription)")
+                     self.statusMessageLabel.text = Strings.genericError
+                }
             }
+
             /*
-            NOTE: more testing needed.
-            Currently works if user authorizes very quickly.
-            The first auth request might timeout if the user stays on the auth screen. which means we need to try to save again.
+            If user authorizes quickly, control flow will go back to the widget via the original closure.
+            However, that first auth request might timeout and fail silently if the user stays on the auth screen.
+            If there is no recent sleep sample here, it means we need to try to save again.
             */
             let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
             dispatch_after(delay, dispatch_get_main_queue()) {
@@ -87,6 +93,8 @@ class SaveDataViewController: UIViewController {
                     self.statusMessageLabel.text = Strings.saveSuccess
                     self.timeLabel.text = mostRecentSleepSample.formattedString()
                     self.adjustSleepButton.hidden = false
+                } else {
+                    self.saveToHealthStore()
                 }
             }
         }
@@ -104,16 +112,16 @@ class SaveDataViewController: UIViewController {
     @IBAction func saveAdjustedSleeptime(segue: UIStoryboardSegue) {
         if let vc = segue.sourceViewController as? AdjustTimeTableViewController {
             let sleepSample = vc.sleepSample
-            sleepManager.saveAdjustedSleepTimeToHealthStore(sleepSample) {
-                success, error in
-                if success {
+            sleepManager.saveAdjustedSleepTimeToHealthStore(sleepSample) { result in
+                switch result {
+                case .Success:
                     dispatch_async(dispatch_get_main_queue()) {
                         self.statusMessageLabel.text = Strings.saveSuccess
                         self.timeLabel.text = sleepSample.formattedString()
                         self.adjustSleepButton.hidden = false
                     }
-                } else {
-                    print("Error: \(error.localizedDescription)")
+                case .Failure:
+                    print("Error with saveAdjustedSleeptime")
                 }
             }
         }

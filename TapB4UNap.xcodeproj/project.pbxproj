@@ -22,6 +22,10 @@
 		5B661F251CBA7272000B76FE /* SleepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F221CBA7272000B76FE /* SleepManager.swift */; };
 		5B661F261CBA7272000B76FE /* SleepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F221CBA7272000B76FE /* SleepManager.swift */; };
 		5B6C3B811A9A0ED200278990 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6C3B801A9A0ED200278990 /* HealthKit.framework */; };
+		5BA0E30B1CC0556000E481DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30A1CC0556000E481DA /* Result.swift */; };
+		5BA0E30D1CC0570C00E481DA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30C1CC0570C00E481DA /* Errors.swift */; };
+		5BA0E30E1CC057E700E481DA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30C1CC0570C00E481DA /* Errors.swift */; };
+		5BA0E30F1CC057EC00E481DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30A1CC0556000E481DA /* Result.swift */; };
 		5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BBF48B41ADA6498005F3E8D /* Defaults.plist */; };
 		5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */; };
 		5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */; };
@@ -104,6 +108,8 @@
 		5B661F211CBA7272000B76FE /* HealthStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
 		5B661F221CBA7272000B76FE /* SleepManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepManager.swift; sourceTree = "<group>"; };
 		5B6C3B801A9A0ED200278990 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		5BA0E30A1CC0556000E481DA /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		5BA0E30C1CC0570C00E481DA /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		5BBF48B41ADA6498005F3E8D /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hov6CQ-1280x400.jpg"; sourceTree = "<group>"; };
@@ -274,7 +280,9 @@
 		5BE35B061CBA59B4004918B9 /* TapB4UNapCommon */ = {
 			isa = PBXGroup;
 			children = (
+				5BA0E30C1CC0570C00E481DA /* Errors.swift */,
 				5B661F211CBA7272000B76FE /* HealthStore.swift */,
+				5BA0E30A1CC0556000E481DA /* Result.swift */,
 				5BE35B071CBA59B4004918B9 /* SettingsManager.swift */,
 				5B661F221CBA7272000B76FE /* SleepManager.swift */,
 				5BE35B081CBA59B4004918B9 /* SleepSample.swift */,
@@ -489,11 +497,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BA0E30B1CC0556000E481DA /* Result.swift in Sources */,
 				5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */,
 				5B661F251CBA7272000B76FE /* SleepManager.swift in Sources */,
 				5B661F1F1CBA725F000B76FE /* AdjustTimeTableViewController.swift in Sources */,
 				5BE35B0A1CBA59B4004918B9 /* SettingsManager.swift in Sources */,
 				5BE35B0E1CBA59B4004918B9 /* TimeKeeper.swift in Sources */,
+				5BA0E30D1CC0570C00E481DA /* Errors.swift in Sources */,
 				5BE35B0C1CBA59B4004918B9 /* SleepSample.swift in Sources */,
 				5B661F201CBA725F000B76FE /* SaveDataViewController.swift in Sources */,
 				5B661F231CBA7272000B76FE /* HealthStore.swift in Sources */,
@@ -517,6 +527,8 @@
 				5BE35B0B1CBA59B4004918B9 /* SettingsManager.swift in Sources */,
 				5BE35B0F1CBA59B4004918B9 /* TimeKeeper.swift in Sources */,
 				5B285A6D19F9A69A00ECE1A5 /* TodayViewController.swift in Sources */,
+				5BA0E30F1CC057EC00E481DA /* Result.swift in Sources */,
+				5BA0E30E1CC057E700E481DA /* Errors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

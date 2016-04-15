@@ -20,19 +20,25 @@ class HealthStore {
         self.hkHealthStore = HKHealthStore()
     }
 
-    private func requestAuthorisationForHealthStore(completion: ((Bool, NSError?) -> Void)!) {
+    private func requestAuthorisationForHealthStore(completion: (Result<Void>) -> Void) {
         let dataTypesToReadAndWrite: Set = [HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!]
         hkHealthStore.requestAuthorizationToShareTypes(dataTypesToReadAndWrite,
-            readTypes: dataTypesToReadAndWrite,
-            completion: completion)
+            readTypes: dataTypesToReadAndWrite) { success, error in
+                if success {
+                    completion(.Success())
+                } else {
+                    let errorMessage = error?.localizedDescription ?? "HealthKit authorization failed"
+                    completion(.Failure(HealthStoreError.NotAuthorized(errorMessage)))
+                }
+            }
     }
 
     /* saves a sleep sample to health kit */
-    func saveSleepSample(sleepSample: SleepSample, completion: ((Bool, NSError?) -> Void)!) {
+    func saveSleepSample(sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
 
-        requestAuthorisationForHealthStore {
-            success, error in
-            if success {
+        requestAuthorisationForHealthStore { result in
+            switch result {
+            case .Success:
                 print("HealthKit authorization flow completed")
 
                 let categoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!
@@ -41,79 +47,91 @@ class HealthStore {
 
                 print("Attempting save...")
 
-                self.hkHealthStore.saveObject(sample, withCompletion: completion)
-            } else if error != nil {
-                print(error)
+                self.hkHealthStore.saveObject(sample) { success, error in
+                    if success {
+                        completion(.Success())
+                    } else {
+                        let errorMessage = error?.localizedDescription ?? "HealthKit save failed"
+                        completion(.Failure(HealthStoreError.SaveFailed(errorMessage)))
+                    }
+                }
+            case .Failure:
+                completion(result)
             }
 
         }
     }
 
     /* looks for Sleep Analysis samples in HealthKit which have a start date in the given SleepSample range */
-    func querySleepSample(sleepSample: SleepSample, completion: (([AnyObject]!, NSError!) -> Void)!) {
-        self.requestAuthorisationForHealthStore {
-            success, error in
-            if success {
+    func querySleepSample(sleepSample: SleepSample, completion: (Result<[HKSample]?>) -> Void) {
+        self.requestAuthorisationForHealthStore { result in
+            switch result {
+            case .Success:
                 let predicate = HKQuery.predicateForSamplesWithStartDate(sleepSample.startDate!, endDate: sleepSample.endDate!, options: .StrictStartDate)
                 let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
                 let categoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!
                 let sampleQuery = HKSampleQuery(sampleType: categoryType, predicate: predicate, limit: 0, sortDescriptors: [sortDescriptor]) {
                     sampleQuery, results, error in
-                    completion(results, error)
+                    if let error = error {
+                        completion(.Failure(HealthStoreError.QueryFailed(error.localizedDescription)))
+                    } else {
+                        completion(.Success(results))
+                    }
                 }
                 self.hkHealthStore.executeQuery(sampleQuery)
+            case .Failure(let error):
+                completion(.Failure(error))
             }
         }
     }
 
     /* delete an HKObject from health kit */
-    func deleteSleepData(hkObject: HKObject!, completion: ((Bool, NSError?) -> Void)!) {
-        self.requestAuthorisationForHealthStore {
-            success, error in
-            if success {
-                self.hkHealthStore.deleteObject(hkObject, withCompletion:completion)
+    func deleteSleepData(hkObject: HKObject, completion: (Result<Void>) -> Void) {
+        self.requestAuthorisationForHealthStore { result in
+            switch result {
+            case .Success:
+                self.hkHealthStore.deleteObject(hkObject) { success, error in
+                    if success {
+                        completion(.Success())
+                    } else {
+                        let errorMessage = error?.localizedDescription ?? "Delete failed"
+                        completion(.Failure(HealthStoreError.DeleteFailed(errorMessage)))
+                    }
+                }
+            case .Failure:
+                completion(result)
             }
         }
     }
 
     /* queries and then deletes the recent sleep sample from HealthKit, and then saves the new sample */
-    func overwriteMostRecentSleepSample(mostRecentSleepSample: SleepSample, withSample sleepSample: SleepSample, completion: (Bool, NSError!) -> Void) {
-
+    func overwriteMostRecentSleepSample(mostRecentSleepSample: SleepSample, withSample sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
         print("overwriting most recent sleep")
-
-        HealthStore.sharedInstance.querySleepSample(mostRecentSleepSample) {
-            objArr, error in
-
-            if let error = error {
-                let error = NSError(domain: "com.cweatureapps.TapB4UNap.HealthStore", code: 11, userInfo: ["message": "error during query: \(error.localizedDescription)"])
-                completion(false, error)
-                return
-            }
-
-            if objArr.isEmpty {
-                let error = NSError(domain: "com.cweatureapps.TapB4UNap.HealthStore", code: 12, userInfo: ["message": "no records found in sleep sample query"])
-                completion(false, error)
-                return
-            }
-
-            if objArr.count > 1 {
-                // NOTE: this is a rare edge case and shouldn't happen with realistic data
-                let error = NSError(domain: "com.cweatureapps.TapB4UNap.HealthStore", code: 13, userInfo: ["message": "more than 1 record was found in sleep sample query"])
-                completion(false, error)
-                return
-            }
-
-            HealthStore.sharedInstance.deleteSleepData(objArr[0] as! HKObject) {
-                success, error in
-                if success {
-                    HealthStore.sharedInstance.saveSleepSample(sleepSample) {
-                        success, error in
-                        print("saveSleepData completed")
-                        completion(success, nil)
+        querySleepSample(mostRecentSleepSample) { result in
+            switch result {
+                case .Failure(let error):
+                    completion(.Failure(error))
+                case .Success(let samples):
+                    guard let samples = samples where !samples.isEmpty else {
+                        completion(.Failure(HealthStoreError.OverwriteFailed("no records found in sleep sample query")))
+                        return
                     }
-                } else {
-                    completion(false, error)
-                }
+                    guard let firstSample = samples.first where samples.count == 1 else {
+                        completion(.Failure(HealthStoreError.OverwriteFailed("more than 1 record was found in sleep sample query")))
+                        return
+                    }
+
+                    self.deleteSleepData(firstSample) { result in
+                        switch result {
+                        case .Success:
+                            self.saveSleepSample(sleepSample) { result in
+                                print("saveSleepData completed")
+                                completion(.Success())
+                            }
+                        case .Failure:
+                            completion(result)
+                        }
+                    }
             }
         }
     }
