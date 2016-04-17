@@ -13,6 +13,21 @@ class SleepManager {
 
     private let timeKeeper = TimeKeeper()
 
+    /// Checks that we have HealthKit authorization, and save the sleep start data if we have permission
+    func startSleep(completion: (Result<Void>) -> Void) {
+        HealthStore.sharedInstance.requestAuthorisationForHealthStore { result in
+            dispatch_async(dispatch_get_main_queue()) {
+                switch result {
+                    case .Success:
+                        self.timeKeeper.startSleep(NSDate())
+                        completion(.Success())
+                    case .Failure(let error):
+                        completion(.Failure(error))
+                }
+            }
+        }
+    }
+
     /**
      Saves the sleep sample which was recorded by TimeKeeper.
 
@@ -26,15 +41,17 @@ class SleepManager {
             return
         }
         HealthStore.sharedInstance.saveSleepSample(sleepSample) { result in
-            switch result {
-            case .Success:
-                log("sleep data saved successfully")
-                self.timeKeeper.backupSleepData(sleepSample)
-                self.timeKeeper.resetSleepData()
-                completion(.Success(sleepSample))
-            case .Failure(let error):
-                log("saveToHealthStore failed", error)
-                completion(.Failure(error))
+            dispatch_async(dispatch_get_main_queue()) {
+                switch result {
+                case .Success:
+                    log("sleep data saved successfully")
+                    self.timeKeeper.backupSleepData(sleepSample)
+                    self.timeKeeper.resetSleepData()
+                    completion(.Success(sleepSample))
+                case .Failure(let error):
+                    log("saveToHealthStore failed", error)
+                    completion(.Failure(error))
+                }
             }
         }
     }
@@ -47,14 +64,16 @@ class SleepManager {
      */
     func saveAdjustedSleepTimeToHealthStore(sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
         HealthStore.sharedInstance.overwriteMostRecentSleepSample(timeKeeper.mostRecentSleepSample()!, withSample: sleepSample) { result in
-            switch result {
-            case .Success:
-                log("sleep data adjusted successfully")
-                self.timeKeeper.backupSleepData(sleepSample)
-                completion(.Success())
-            case .Failure(let error):
-                log("Error saving to health store", error)
-                completion(result)
+            dispatch_async(dispatch_get_main_queue()) {
+                switch result {
+                case .Success:
+                    log("sleep data adjusted successfully")
+                    self.timeKeeper.backupSleepData(sleepSample)
+                    completion(.Success())
+                case .Failure(let error):
+                    log("Error saving to health store", error)
+                    completion(result)
+                }
             }
         }
     }

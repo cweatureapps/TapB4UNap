@@ -89,8 +89,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     // MARK: handlers
 
     @IBAction func sleepButtonHandler(sender: AnyObject) {
-        timeKeeper.startSleep(NSDate())
-        startSleepingTimer()
+        sleepManager.startSleep { result in
+            switch result {
+            case .Success:
+                self.startSleepingTimer()
+            case .Failure(let error):
+                log("sleep start failed", error)
+                self.handleSleepManagerError(error)
+            }
+        }
     }
 
     @IBAction func adjustButtonHandler(sender: AnyObject) {
@@ -114,29 +121,29 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             switch result {
             case .Success(let sleepSample):
                 log("sleep data saved successfully!")
-                let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC)))
-                dispatch_after(delay, dispatch_get_main_queue()) {
-                    self.statusMessageLabel.text = "You slept for \(sleepSample.formattedString())"
-                }
+                self.statusMessageLabel.text = "You slept for \(sleepSample.formattedString())"
             case .Failure(let error):
                 log("widget save error", error)
-                dispatch_async(dispatch_get_main_queue()) {
-                    let errorMessage: String
-                    if let error = error as? TapB4UNapError,
-                        case TapB4UNapError.NotAuthorized  = error {
-                        errorMessage = "Please allow Apple Health to share sleep data with TapB4UNap"
-                    } else {
-                        errorMessage = "Sorry, something went wrong"
-                    }
-                    self.statusMessageLabel.text = errorMessage
-                    self.adjustButton.hidden = true
-                }
+                self.handleSleepManagerError(error)
             }
         }
     }
 
+    private func handleSleepManagerError(error: ErrorType) {
+        let errorMessage: String
+        if let error = error as? TapB4UNapError,
+            case TapB4UNapError.NotAuthorized  = error {
+            errorMessage = "Please allow Apple Health to share sleep data with TapB4UNap"
+        } else {
+            errorMessage = "Sorry, something went wrong"
+        }
+        self.statusMessageLabel.text = errorMessage
+        self.adjustButton.hidden = true
+    }
+
     // MARK: sleeping timer
     private func startSleepingTimer() {
+        log("timer start")
         sleepTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector:#selector(TodayViewController.timerHandler), userInfo:nil, repeats:true)
         sleepTimer!.fire()
     }

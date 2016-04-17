@@ -50,17 +50,15 @@ class SaveDataViewController: UIViewController {
 
     func saveToHealthStore() {
         sleepManager.saveToHealthStore { result in
-            dispatch_async(dispatch_get_main_queue()) {
-                switch result {
-                case .Success(let sleepSample):
-                    log("SaveDataViewController, sleep data saved successfully")
-                    self.statusMessageLabel.text = Strings.saveSuccess
-                    self.timeLabel.text = sleepSample.formattedString()
-                    self.adjustSleepButton.hidden = false
-                case .Failure(let error):
-                    log("SaveDataViewController saveToHealthStore error", error)
-                    TimeKeeper().resetSleepData()
-                }
+            switch result {
+            case .Success(let sleepSample):
+                log("SaveDataViewController, sleep data saved successfully")
+                self.statusMessageLabel.text = Strings.saveSuccess
+                self.timeLabel.text = sleepSample.formattedString()
+                self.adjustSleepButton.hidden = false
+            case .Failure(let error):
+                log("SaveDataViewController saveToHealthStore error", error)
+                TimeKeeper().resetSleepData()
             }
         }
     }
@@ -115,19 +113,17 @@ class SaveDataViewController: UIViewController {
         if let vc = segue.sourceViewController as? AdjustTimeTableViewController {
             let sleepSample = vc.sleepSample
             sleepManager.saveAdjustedSleepTimeToHealthStore(sleepSample) { result in
-                dispatch_async(dispatch_get_main_queue()) {
-                    switch result {
-                    case .Success:
-                        log("saveAdjustedSleeptime was successful")
-                        self.statusMessageLabel.text = Strings.saveSuccess
-                        self.timeLabel.text = sleepSample.formattedString()
-                        self.adjustSleepButton.hidden = false
-                    case .Failure(let error):
-                        log("Error with saveAdjustedSleeptime", error)
-                        self.statusMessageLabel.text = Strings.genericError
-                        self.timeLabel.text = ""
-                        self.adjustSleepButton.hidden = true
-                    }
+                switch result {
+                case .Success:
+                    log("saveAdjustedSleeptime was successful")
+                    self.statusMessageLabel.text = Strings.saveSuccess
+                    self.timeLabel.text = sleepSample.formattedString()
+                    self.adjustSleepButton.hidden = false
+                case .Failure(let error):
+                    log("Error with saveAdjustedSleeptime", error)
+                    self.statusMessageLabel.text = Strings.genericError
+                    self.timeLabel.text = ""
+                    self.adjustSleepButton.hidden = true
                 }
             }
         }

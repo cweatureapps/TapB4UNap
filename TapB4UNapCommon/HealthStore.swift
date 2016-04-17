@@ -25,7 +25,8 @@ class HealthStore {
         return hkHealthStore.authorizationStatusForType(HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!) == HKAuthorizationStatus.SharingAuthorized
     }
 
-    private func requestAuthorisationForHealthStore(completion: (Result<Void>) -> Void) {
+    /// Request for authorization from HealthKit
+    func requestAuthorisationForHealthStore(completion: (Result<Void>) -> Void) {
         let dataTypesToShare: Set = [HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!]
         hkHealthStore.requestAuthorizationToShareTypes(dataTypesToShare, readTypes: nil) { _, error in
             if self.isAuthorized() {
