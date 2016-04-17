@@ -19,26 +19,23 @@ class SleepManager {
      - parameter completion: The completion called after saving to HealthKit, passing the sleepSample that was saved, whether save was successful, and an error if it failed.
      */
     func saveToHealthStore(completion: (Result<SleepSample>) -> Void) {
-        if let sleepSample = timeKeeper.sleepSample() where sleepSample.canSave() {
-            HealthStore.sharedInstance.saveSleepSample(sleepSample) { result in
-                switch result {
-                case .Success:
-                    print("sleep data saved successfully")
-                    self.timeKeeper.backupSleepData(sleepSample)
-                    self.timeKeeper.resetSleepData()
-                    completion(.Success(sleepSample))
-                case .Failure(let error):
-                    completion(.Failure(error))
-                    // note: "Not authorized" error control flow goes into here
-                    // TODO: introduce Swift errors; should map HKErrorCode to friendly messages
-                }
-//                if completion != nil {
-//                    completion(sleepSample, success, error)
-//                }
+        guard let sleepSample = timeKeeper.sleepSample() where sleepSample.canSave() else {
+            let errorMessage = "sleepSample was not in a state that could be saved"
+            log(errorMessage)
+            completion(.Failure(TapB4UNapError.SaveFailed(errorMessage)))
+            return
+        }
+        HealthStore.sharedInstance.saveSleepSample(sleepSample) { result in
+            switch result {
+            case .Success:
+                log("sleep data saved successfully")
+                self.timeKeeper.backupSleepData(sleepSample)
+                self.timeKeeper.resetSleepData()
+                completion(.Success(sleepSample))
+            case .Failure(let error):
+                log("saveToHealthStore failed", error)
+                completion(.Failure(error))
             }
-        } else {
-            print("warning: saveToHealthStore() was called when sleepSample was not in a state that could be saved")
-            completion(.Failure(SleepManagerError.SaveFailed("sleepSample was not in a state that could be saved")))
         }
     }
 
@@ -52,11 +49,11 @@ class SleepManager {
         HealthStore.sharedInstance.overwriteMostRecentSleepSample(timeKeeper.mostRecentSleepSample()!, withSample: sleepSample) { result in
             switch result {
             case .Success:
-                print("sleep data adjusted successfully")
+                log("sleep data adjusted successfully")
                 self.timeKeeper.backupSleepData(sleepSample)
                 completion(.Success())
             case .Failure(let error):
-                print("Error saving to health store: \(error)")
+                log("Error saving to health store", error)
                 completion(result)
             }
         }

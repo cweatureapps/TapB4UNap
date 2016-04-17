@@ -26,6 +26,10 @@
 		5BA0E30D1CC0570C00E481DA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30C1CC0570C00E481DA /* Errors.swift */; };
 		5BA0E30E1CC057E700E481DA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30C1CC0570C00E481DA /* Errors.swift */; };
 		5BA0E30F1CC057EC00E481DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30A1CC0556000E481DA /* Result.swift */; };
+		5BA7F2F61CC31F39003174E8 /* TapB4UNapErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F51CC31F39003174E8 /* TapB4UNapErrorTests.swift */; };
+		5BA7F2F81CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F71CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift */; };
+		5BA7F2FA1CC39C76003174E8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* Utils.swift */; };
+		5BA7F2FB1CC39C76003174E8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* Utils.swift */; };
 		5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BBF48B41ADA6498005F3E8D /* Defaults.plist */; };
 		5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */; };
 		5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */; };
@@ -110,6 +114,9 @@
 		5B6C3B801A9A0ED200278990 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		5BA0E30A1CC0556000E481DA /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		5BA0E30C1CC0570C00E481DA /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		5BA7F2F51CC31F39003174E8 /* TapB4UNapErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapB4UNapErrorTests.swift; sourceTree = "<group>"; };
+		5BA7F2F71CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthStore+ExtensionAuthorization.swift"; sourceTree = "<group>"; };
+		5BA7F2F91CC39C76003174E8 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		5BBF48B41ADA6498005F3E8D /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hov6CQ-1280x400.jpg"; sourceTree = "<group>"; };
@@ -202,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				5B661F1D1CBA725F000B76FE /* AdjustTimeTableViewController.swift */,
+				5BA7F2F71CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift */,
 				5B285A3C19F4673800ECE1A5 /* Images.xcassets */,
 				5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */,
 				5B285A3919F4673800ECE1A5 /* Main.storyboard */,
@@ -226,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				5B285A4919F4673800ECE1A5 /* Supporting Files */,
+				5BA7F2F51CC31F39003174E8 /* TapB4UNapErrorTests.swift */,
 			);
 			path = TapB4UNapTests;
 			sourceTree = "<group>";
@@ -287,6 +296,7 @@
 				5B661F221CBA7272000B76FE /* SleepManager.swift */,
 				5BE35B081CBA59B4004918B9 /* SleepSample.swift */,
 				5BE35B091CBA59B4004918B9 /* TimeKeeper.swift */,
+				5BA7F2F91CC39C76003174E8 /* Utils.swift */,
 			);
 			path = TapB4UNapCommon;
 			sourceTree = "<group>";
@@ -357,7 +367,7 @@
 		5B285A2819F4673800ECE1A5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Ken Ko";
 				TargetAttributes = {
@@ -507,6 +517,8 @@
 				5BE35B0C1CBA59B4004918B9 /* SleepSample.swift in Sources */,
 				5B661F201CBA725F000B76FE /* SaveDataViewController.swift in Sources */,
 				5B661F231CBA7272000B76FE /* HealthStore.swift in Sources */,
+				5BA7F2F81CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift in Sources */,
+				5BA7F2FA1CC39C76003174E8 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BA7F2F61CC31F39003174E8 /* TapB4UNapErrorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +536,7 @@
 			files = (
 				5BE35B0D1CBA59B4004918B9 /* SleepSample.swift in Sources */,
 				5B661F261CBA7272000B76FE /* SleepManager.swift in Sources */,
+				5BA7F2FB1CC39C76003174E8 /* Utils.swift in Sources */,
 				5B661F241CBA7272000B76FE /* HealthStore.swift in Sources */,
 				5BE35B0B1CBA59B4004918B9 /* SettingsManager.swift in Sources */,
 				5BE35B0F1CBA59B4004918B9 /* TimeKeeper.swift in Sources */,
@@ -685,6 +699,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -697,6 +712,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.com.cweature.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapB4UNap.app/TapB4UNap";
 			};
 			name = Debug;
@@ -705,6 +721,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

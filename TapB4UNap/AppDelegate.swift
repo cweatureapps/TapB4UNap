@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import HealthKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    private let sleepManager = SleepManager()
 
     private var rootViewController: SaveDataViewController? {
         return  window?.rootViewController as? SaveDataViewController
@@ -30,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 rootViewController?.saveToHealthStore()
             case "cwtapb4unap://adjust":
                 rootViewController?.adjust()
+            case "cwtapb4unap://reset":
+                TimeKeeper().resetSleepData()
             default:
                 return false
         }

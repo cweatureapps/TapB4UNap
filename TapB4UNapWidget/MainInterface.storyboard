@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
@@ -25,11 +26,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3I-Ll-vSg" userLabel="contents">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap sleep to start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLU-3K-hMP">
-                                        <rect key="frame" x="0.0" y="25" width="320" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="BK3-MU-W9s"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap sleep to start" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLU-3K-hMP">
+                                        <rect key="frame" x="32" y="25" width="256" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -102,8 +100,8 @@
                                     <constraint firstItem="gMa-7j-58l" firstAttribute="top" secondItem="O3I-Ll-vSg" secondAttribute="top" constant="50" id="6wg-yL-7Ln"/>
                                     <constraint firstItem="JLU-3K-hMP" firstAttribute="top" secondItem="O3I-Ll-vSg" secondAttribute="top" constant="25" id="CfE-kB-JAD"/>
                                     <constraint firstAttribute="height" constant="100" id="FWg-zB-ilD"/>
-                                    <constraint firstItem="JLU-3K-hMP" firstAttribute="leading" secondItem="O3I-Ll-vSg" secondAttribute="leading" id="QZt-Ew-Hf8"/>
-                                    <constraint firstAttribute="trailing" secondItem="JLU-3K-hMP" secondAttribute="trailing" id="skX-5w-gxe"/>
+                                    <constraint firstItem="JLU-3K-hMP" firstAttribute="width" secondItem="O3I-Ll-vSg" secondAttribute="width" multiplier="0.8" id="SGP-PW-IVd"/>
+                                    <constraint firstItem="JLU-3K-hMP" firstAttribute="centerX" secondItem="O3I-Ll-vSg" secondAttribute="centerX" id="XE4-uO-GIA"/>
                                     <constraint firstAttribute="trailing" secondItem="gMa-7j-58l" secondAttribute="trailing" id="wtp-sR-B5q"/>
                                     <constraint firstItem="gMa-7j-58l" firstAttribute="leading" secondItem="O3I-Ll-vSg" secondAttribute="leading" id="xk1-Gn-OzH"/>
                                 </constraints>

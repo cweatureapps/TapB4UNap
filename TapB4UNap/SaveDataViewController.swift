@@ -15,6 +15,7 @@ class SaveDataViewController: UIViewController {
         static let saveSuccess = "Saved to HealthKit. You slept for:"
         static let genericError = "Sorry, something went wrong"
         static let saving = "Saving..."
+        static let authNeeded = "Please allow Apple Health to share sleep data with TapB4UNap"
     }
 
     // MARK: privates
@@ -49,17 +50,17 @@ class SaveDataViewController: UIViewController {
 
     func saveToHealthStore() {
         sleepManager.saveToHealthStore { result in
-            switch result {
-            case .Success(let sleepSample):
-                print("sleep data saved successfully!")
-                dispatch_async(dispatch_get_main_queue()) {
+            dispatch_async(dispatch_get_main_queue()) {
+                switch result {
+                case .Success(let sleepSample):
+                    log("SaveDataViewController, sleep data saved successfully")
                     self.statusMessageLabel.text = Strings.saveSuccess
                     self.timeLabel.text = sleepSample.formattedString()
                     self.adjustSleepButton.hidden = false
+                case .Failure(let error):
+                    log("SaveDataViewController saveToHealthStore error", error)
+                    TimeKeeper().resetSleepData()
                 }
-            case .Failure:
-                print("SaveDataViewController error")
-                TimeKeeper().resetSleepData()
             }
         }
     }
@@ -71,15 +72,16 @@ class SaveDataViewController: UIViewController {
 
     /// Should be called by `AppDelegate.applicationShouldRequestHealthAuthorization(_:)` when handling HealthKit authorization request from an extension
     func handleExtensionAuthorization() {
-        HKHealthStore().handleAuthorizationForExtensionWithCompletion { success, error in
-            dispatch_async(dispatch_get_main_queue()) {
-                if success {
-                    print("healthkit authorization process completed by parent app")
-                     self.statusMessageLabel.text = Strings.saving
-                } else {
-                    print("something went wrong with HealthKit authorization. Error: \(error?.localizedDescription)")
-                     self.statusMessageLabel.text = Strings.genericError
+        self.statusMessageLabel.text = Strings.saving
+        HealthStore.sharedInstance.handleExtensionAuthorization { result in
+
+            if case .Failure(let error) = result {
+                log("extension authorization failed", error)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.statusMessageLabel.text = Strings.authNeeded
+                    self.adjustSleepButton.hidden = true
                 }
+                return
             }
 
             /*
@@ -94,7 +96,7 @@ class SaveDataViewController: UIViewController {
                     self.timeLabel.text = mostRecentSleepSample.formattedString()
                     self.adjustSleepButton.hidden = false
                 } else {
-                    self.saveToHealthStore()
+                    self.saveToHealthStore() // try again
                 }
             }
         }
@@ -113,15 +115,19 @@ class SaveDataViewController: UIViewController {
         if let vc = segue.sourceViewController as? AdjustTimeTableViewController {
             let sleepSample = vc.sleepSample
             sleepManager.saveAdjustedSleepTimeToHealthStore(sleepSample) { result in
-                switch result {
-                case .Success:
-                    dispatch_async(dispatch_get_main_queue()) {
+                dispatch_async(dispatch_get_main_queue()) {
+                    switch result {
+                    case .Success:
+                        log("saveAdjustedSleeptime was successful")
                         self.statusMessageLabel.text = Strings.saveSuccess
                         self.timeLabel.text = sleepSample.formattedString()
                         self.adjustSleepButton.hidden = false
+                    case .Failure(let error):
+                        log("Error with saveAdjustedSleeptime", error)
+                        self.statusMessageLabel.text = Strings.genericError
+                        self.timeLabel.text = ""
+                        self.adjustSleepButton.hidden = true
                     }
-                case .Failure:
-                    print("Error with saveAdjustedSleeptime")
                 }
             }
         }

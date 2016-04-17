@@ -29,12 +29,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     // MARK: UIViewController overrides
 
     override func viewDidLoad() {
-        print("viewDidLoad was called")
+        log("viewDidLoad was called")
         super.viewDidLoad()
     }
 
     override func viewWillAppear(animated: Bool) {
-        print("viewWillAppear was called")
+        log("viewWillAppear was called")
         super.viewWillAppear(animated)
 
         refreshUI()
@@ -42,16 +42,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         if let sleepSample = timeKeeper.sleepSample() {
             if sleepSample.isSleeping() {
                 startSleepingTimer()
+            } else if sleepSample.canSave() {
+                saveToHealthKit()
             }
         }
     }
 
     override func viewWillDisappear(animated: Bool) {
-        print("viewWillDisappear was called")
+        log("viewWillDisappear was called")
     }
 
     override func viewDidDisappear(animated: Bool) {
-        print("viewDidDisappear was called")
+        log("viewDidDisappear was called")
         // for the today widget, this is called as soon as you swipe up to close the notification center.
         // stop the timer so it doesn't consume resources when notification center is not visible.
         stopSleepingTimer()
@@ -74,7 +76,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        print("widgetPerformUpdateWithCompletionHandler was called")
+        log("widgetPerformUpdateWithCompletionHandler was called")
         refreshUI()
         completionHandler(NCUpdateResult.NewData)
     }
@@ -111,17 +113,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         sleepManager.saveToHealthStore { result in
             switch result {
             case .Success(let sleepSample):
-                print("sleep data saved successfully!")
+                log("sleep data saved successfully!")
                 let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC)))
                 dispatch_after(delay, dispatch_get_main_queue()) {
                     self.statusMessageLabel.text = "You slept for \(sleepSample.formattedString())"
                 }
             case .Failure(let error):
-                print("widget save error")
+                log("widget save error", error)
                 dispatch_async(dispatch_get_main_queue()) {
                     let errorMessage: String
-                    if let healthStoreError = error as? HealthStoreError,
-                        case HealthStoreError.NotAuthorized  = healthStoreError {
+                    if let error = error as? TapB4UNapError,
+                        case TapB4UNapError.NotAuthorized  = error {
                         errorMessage = "Please allow Apple Health to share sleep data with TapB4UNap"
                     } else {
                         errorMessage = "Sorry, something went wrong"
@@ -129,7 +131,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     self.statusMessageLabel.text = errorMessage
                     self.adjustButton.hidden = true
                 }
-                self.timeKeeper.resetSleepData()
             }
         }
     }
@@ -143,7 +144,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     private func stopSleepingTimer() {
         sleepTimer?.invalidate()
         sleepTimer = nil
-        print("timer stopped")
+        log("timer stopped")
     }
 
     func timerHandler() {

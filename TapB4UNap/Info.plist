@@ -54,5 +54,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Allows you to adjust and modify a recent sleep entry you recorded</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Allows you to record your sleep data in Apple Health</string>
 </dict>
 </plist>
