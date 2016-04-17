@@ -26,19 +26,18 @@ class HealthStore {
     }
 
     private func requestAuthorisationForHealthStore(completion: (Result<Void>) -> Void) {
-        let dataTypesToReadAndWrite: Set = [HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!]
-        hkHealthStore.requestAuthorizationToShareTypes(dataTypesToReadAndWrite,
-            readTypes: dataTypesToReadAndWrite) { promptCompleted, error in
-                if self.isAuthorized() {
-                    completion(.Success())
-                } else {
-                    let errorMessage = error?.localizedDescription ?? ""
-                    completion(.Failure(TapB4UNapError.NotAuthorized(errorMessage)))
-                }
+        let dataTypesToShare: Set = [HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!]
+        hkHealthStore.requestAuthorizationToShareTypes(dataTypesToShare, readTypes: nil) { _, error in
+            if self.isAuthorized() {
+                completion(.Success())
+            } else {
+                let errorMessage = error?.localizedDescription ?? ""
+                completion(.Failure(TapB4UNapError.NotAuthorized(errorMessage)))
             }
+        }
     }
 
-    /// saves a sleep sample to health kit 
+    /// saves a sleep sample to health kit
     func saveSleepSample(sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
         requestAuthorisationForHealthStore { result in
             switch result {
@@ -63,7 +62,7 @@ class HealthStore {
         }
     }
 
-    /// looks for Sleep Analysis samples in HealthKit which have a start date in the given SleepSample range 
+    /// looks for Sleep Analysis samples in HealthKit which have a start date in the given SleepSample range
     func querySleepSample(sleepSample: SleepSample, completion: (Result<[HKSample]?>) -> Void) {
         self.requestAuthorisationForHealthStore { result in
             switch result {
@@ -86,7 +85,7 @@ class HealthStore {
         }
     }
 
-    /// delete an HKObject from health kit 
+    /// delete an HKObject from health kit
     func deleteSleepData(hkObject: HKObject, completion: (Result<Void>) -> Void) {
         self.requestAuthorisationForHealthStore { result in
             switch result {
