@@ -117,14 +117,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
 
     private func saveToHealthKit() {
-        sleepManager.saveToHealthStore { result in
+        sleepManager.saveToHealthStore { [weak self] result in
             switch result {
             case .Success(let sleepSample):
                 log("sleep data saved successfully!")
-                self.statusMessageLabel.text = "You slept for \(sleepSample.formattedString())"
+                let statusMessage = "You slept for \(sleepSample.formattedString())"
+                self?.updateScreen(statusMessage: statusMessage, screenState: .Finished)
             case .Failure(let error):
                 log("widget save error", error)
-                self.handleSleepManagerError(error)
+                self?.handleSleepManagerError(error)
             }
         }
     }
@@ -137,8 +138,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         } else {
             errorMessage = "Sorry, something went wrong"
         }
-        self.statusMessageLabel.text = errorMessage
-        self.adjustButton.hidden = true
+        updateScreen(statusMessage: errorMessage, screenState: .Error)
     }
 
     // MARK: sleeping timer
@@ -172,27 +172,44 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             if sleepSample.isSleeping() {
                 sleepSample.endDate = NSDate()
                 let formattedTime = sleepSample.formattedString()
-                if statusMessageLabel.text != formattedTime {
-                    statusMessageLabel.text = formattedTime
-                }
-                sleepButton.hidden = true
-                cancelButton.hidden = false
-                wakeButton.hidden = false
-                adjustButton.hidden = true
+                updateScreen(statusMessage: formattedTime, screenState: .Sleeping)
 
             } else if sleepSample.canSave() {
-                statusMessageLabel.text = "Saving..."
-                sleepButton.hidden = true
-                cancelButton.hidden = true
-                wakeButton.hidden = true
-                adjustButton.hidden = false
+                updateScreen(statusMessage: "Saving...", screenState: .Saving)
             }
         } else {
-            statusMessageLabel.text = "Tap sleep to start"
+            updateScreen(statusMessage: "Tap sleep to start", screenState: .Begin)
+        }
+    }
+
+    private enum ScreenState {
+        case Begin, Sleeping, Saving, Finished, Error
+    }
+
+    private func updateScreen(statusMessage statusMessage: String, screenState: ScreenState) {
+        statusMessageLabel.text = statusMessage
+        switch screenState {
+        case .Begin:
             sleepButton.hidden = false
             cancelButton.hidden = true
             wakeButton.hidden = true
             adjustButton.hidden = true
+        case .Sleeping:
+            sleepButton.hidden = true
+            cancelButton.hidden = false
+            wakeButton.hidden = false
+            adjustButton.hidden = true
+        case .Saving: fallthrough
+        case .Error:
+            sleepButton.hidden = true
+            cancelButton.hidden = true
+            wakeButton.hidden = true
+            adjustButton.hidden = true
+        case .Finished:
+            sleepButton.hidden = true
+            cancelButton.hidden = true
+            wakeButton.hidden = true
+            adjustButton.hidden = false
         }
     }
 
