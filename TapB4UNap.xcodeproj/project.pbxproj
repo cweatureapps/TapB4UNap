@@ -111,6 +111,7 @@
 		5B661F1E1CBA725F000B76FE /* SaveDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveDataViewController.swift; sourceTree = "<group>"; };
 		5B661F211CBA7272000B76FE /* HealthStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
 		5B661F221CBA7272000B76FE /* SleepManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepManager.swift; sourceTree = "<group>"; };
+		5B6B6FA41CD2CB6A00A015E2 /* TestCases.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TestCases.md; sourceTree = "<group>"; };
 		5B6C3B801A9A0ED200278990 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		5BA0E30A1CC0556000E481DA /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		5BA0E30C1CC0570C00E481DA /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -186,6 +187,7 @@
 		5B285A2719F4673800ECE1A5 = {
 			isa = PBXGroup;
 			children = (
+				5B6B6FA31CD2CB6A00A015E2 /* docs */,
 				5B285A6619F9A69A00ECE1A5 /* Frameworks */,
 				5B285A3119F4673800ECE1A5 /* Products */,
 				5B285A3219F4673800ECE1A5 /* TapB4UNap */,
@@ -284,6 +286,14 @@
 				5B285A6B19F9A69A00ECE1A5 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5B6B6FA31CD2CB6A00A015E2 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				5B6B6FA41CD2CB6A00A015E2 /* TestCases.md */,
+			);
+			path = docs;
 			sourceTree = "<group>";
 		};
 		5BE35B061CBA59B4004918B9 /* TapB4UNapCommon */ = {

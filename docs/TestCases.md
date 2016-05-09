@@ -49,17 +49,18 @@ the screen will be cleared
 
 ### Not determined yet
 1. Reset simulator contents and settings
-2. From widget, start and end to record sleep
+2. From widget, tap on Sleep
 3. In the alert, select **Not Now**
 Expected: The widget text should update to say that it needs permission
 4. Close the today extensions, and re-open
-Expected: The widget will attempt to save again and prompt for permissions
+Expected: The widget text should reset to the original
 5. Redo test steps 2-4 again 
 
 ### Permission denied - first time
 1. Reset simulator contents and settings
-2. From widget, start and end to record sleep
+2. From widget, tap on Sleep
 3. In the alert, select **Open "TapB4UNap"**
+Expected: App should open and show the permissions screen
 4. Select "Don't Allow"
 Expected: the app text should update to say that it needs permission
 5. open today extensions to see the widget again
@@ -70,8 +71,8 @@ Repeat test ***Permission denied - first time*** , but wait 30 seconds in step 4
 
 ### Permission denied - from widget
 Pre-condition: already denied
-1. From widget, start and end to record sleep
-Expected: The widget text should update to say that it needs permission
+1. From widget, tap on sleep
+Expected: The widget text should immediately update to say that it needs permission
 2. Close the today extensions, and re-open
 Expected: The widget should be reset
 
@@ -83,9 +84,10 @@ Expected: should be saved sucessfully
 
 ### Permission granted - first time
 1. Reset simulator contents and settings
-2. From widget, start and end to record sleep
+2. From widget, tap on sleep
 3. In the alert, select **Open "TapB4UNap"**
-4. Grant both read and write permissions
+Expected: App should open and show the permissions screen
+4. Grant write permissions
 Expected: the app text should update to say that it was saved, and the sleep time that was recorded. Open up apple health to confirm it was saved ok.
 
 ### Permission granted - user takes a long time
