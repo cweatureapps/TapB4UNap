@@ -45,7 +45,7 @@ class SleepManager {
                 switch result {
                 case .Success:
                     log("sleep data saved successfully")
-                    self.timeKeeper.backupSleepData(sleepSample)
+                    self.timeKeeper.saveSuccess(sleepSample)
                     self.timeKeeper.resetSleepData()
                     completion(.Success(sleepSample))
                 case .Failure(let error):
@@ -60,7 +60,7 @@ class SleepManager {
      Overwrite the most recent sleep sample with another sleep sample. Used to adjust/edit an entry.
 
      - parameter sleepSample: The new sleep sample you wish to use to overwrite the most recent one.
-     - parameter completion:  The completion called after saving to HealthKit, passing whether save was successful, and an error if it failed.
+     - parameter completion:  The completion called after saving to HealthKit with the result of whether it was successful
      */
     func saveAdjustedSleepTimeToHealthStore(sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
         HealthStore.sharedInstance.overwriteMostRecentSleepSample(timeKeeper.mostRecentSleepSample()!, withSample: sleepSample) { result in
@@ -68,7 +68,7 @@ class SleepManager {
                 switch result {
                 case .Success:
                     log("sleep data adjusted successfully")
-                    self.timeKeeper.backupSleepData(sleepSample)
+                    self.timeKeeper.saveSuccess(sleepSample)
                     completion(.Success())
                 case .Failure(let error):
                     log("Error saving to health store", error)

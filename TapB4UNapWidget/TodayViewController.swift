@@ -9,60 +9,16 @@
 import UIKit
 import NotificationCenter
 
-class TodayViewController: UIViewController, NCWidgetProviding {
+class TodayViewController: UIViewController, NCWidgetProviding, TimerViewControllerDelegate {
 
-    // MARK: Privates
+    private weak var timerViewController: TimerViewController?
 
-    private let sleepManager = SleepManager()
-
-    private let timeKeeper = TimeKeeper()
-    private var sleepTimer: NSTimer?
-    private var pushCompletionTimer: NSTimer?
-    private var pollingCount = 0
-
-    @IBOutlet weak private var sleepButton: UIButton!
-    @IBOutlet weak private var adjustButton: UIButton!
-    @IBOutlet weak private var cancelButton: UIButton!
-    @IBOutlet weak private var wakeButton: UIButton!
-    @IBOutlet weak private var statusMessageLabel: UILabel!
-
-    // MARK: UIViewController overrides
-
-    override func viewDidLoad() {
-        log("viewDidLoad was called")
-        super.viewDidLoad()
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        log("viewWillAppear was called")
-        super.viewWillAppear(animated)
-
-        refreshUI()
-
-        if let sleepSample = timeKeeper.sleepSample() {
-            if sleepSample.isSleeping() {
-                startSleepingTimer()
-            } else if sleepSample.canSave() {
-                saveToHealthKit()
-            }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if let timerViewController = segue.destinationViewController as? TimerViewController {
+            timerViewController.delegate = self
+            self.timerViewController = timerViewController
         }
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        log("viewWillDisappear was called")
-    }
-
-    override func viewDidDisappear(animated: Bool) {
-        log("viewDidDisappear was called")
-        // for the today widget, this is called as soon as you swipe up to close the notification center.
-        // stop the timer so it doesn't consume resources when notification center is not visible.
-        stopSleepingTimer()
-        super.viewDidDisappear(animated)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: NCWidgetProviding
@@ -77,7 +33,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         log("widgetPerformUpdateWithCompletionHandler was called")
-        refreshUI()
+
+        timerViewController?.refreshUI()
         completionHandler(NCUpdateResult.NewData)
     }
 
@@ -86,131 +43,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         return newInsets
     }
 
-    // MARK: handlers
+    // MARK: TimerViewControllerDelegate
 
-    @IBAction func sleepButtonHandler(sender: AnyObject) {
-        sleepManager.startSleep { result in
-            switch result {
-            case .Success:
-                self.startSleepingTimer()
-            case .Failure(let error):
-                log("sleep start failed", error)
-                self.handleSleepManagerError(error)
-            }
-        }
-    }
-
-    @IBAction func adjustButtonHandler(sender: AnyObject) {
+    func adjustButtonHandler() {
         extensionContext?.openURL(NSURL(string: "cwtapb4unap://adjust")!, completionHandler: nil)
-    }
-
-    @IBAction func cancelButtonHandler(sender: AnyObject) {
-        timeKeeper.resetSleepData()
-        refreshUI()
-    }
-
-    @IBAction func wakeButtonHandler(sender: AnyObject) {
-        stopSleepingTimer()
-        timeKeeper.endSleepIfNeeded(NSDate())
-        refreshUI()
-        saveToHealthKit()
-    }
-
-    private func saveToHealthKit() {
-        sleepManager.saveToHealthStore { [weak self] result in
-            switch result {
-            case .Success(let sleepSample):
-                log("sleep data saved successfully!")
-                let statusMessage = "You slept for \(sleepSample.formattedString())"
-                self?.updateScreen(statusMessage: statusMessage, screenState: .Finished)
-            case .Failure(let error):
-                log("widget save error", error)
-                self?.handleSleepManagerError(error)
-            }
-        }
-    }
-
-    private func handleSleepManagerError(error: ErrorType) {
-        let errorMessage: String
-        if let error = error as? TapB4UNapError,
-            case TapB4UNapError.NotAuthorized  = error {
-            errorMessage = "Please allow Apple Health to share sleep data with TapB4UNap"
-        } else {
-            errorMessage = "Sorry, something went wrong"
-        }
-        updateScreen(statusMessage: errorMessage, screenState: .Error)
-    }
-
-    // MARK: sleeping timer
-    private func startSleepingTimer() {
-        log("timer start")
-        sleepTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector:#selector(TodayViewController.timerHandler), userInfo:nil, repeats:true)
-        sleepTimer!.fire()
-    }
-
-    private func stopSleepingTimer() {
-        sleepTimer?.invalidate()
-        sleepTimer = nil
-        log("timer stopped")
-    }
-
-    func timerHandler() {
-        if let sleepSample = timeKeeper.sleepSample() {
-            if !sleepSample.isSleeping() {
-                stopSleepingTimer()
-            }
-        } else {
-            stopSleepingTimer()
-        }
-        refreshUI()
-    }
-
-    // MARK: UI updates
-
-    func refreshUI() {
-        if var sleepSample = timeKeeper.sleepSample() {
-            if sleepSample.isSleeping() {
-                sleepSample.endDate = NSDate()
-                let formattedTime = sleepSample.formattedString()
-                updateScreen(statusMessage: formattedTime, screenState: .Sleeping)
-
-            } else if sleepSample.canSave() {
-                updateScreen(statusMessage: "Saving...", screenState: .Saving)
-            }
-        } else {
-            updateScreen(statusMessage: "Tap sleep to start", screenState: .Begin)
-        }
-    }
-
-    private enum ScreenState {
-        case Begin, Sleeping, Saving, Finished, Error
-    }
-
-    private func updateScreen(statusMessage statusMessage: String, screenState: ScreenState) {
-        statusMessageLabel.text = statusMessage
-        switch screenState {
-        case .Begin:
-            sleepButton.hidden = false
-            cancelButton.hidden = true
-            wakeButton.hidden = true
-            adjustButton.hidden = true
-        case .Sleeping:
-            sleepButton.hidden = true
-            cancelButton.hidden = false
-            wakeButton.hidden = false
-            adjustButton.hidden = true
-        case .Saving: fallthrough
-        case .Error:
-            sleepButton.hidden = true
-            cancelButton.hidden = true
-            wakeButton.hidden = true
-            adjustButton.hidden = true
-        case .Finished:
-            sleepButton.hidden = true
-            cancelButton.hidden = true
-            wakeButton.hidden = true
-            adjustButton.hidden = false
-        }
     }
 
 }

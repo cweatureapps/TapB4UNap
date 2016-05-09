@@ -40,9 +40,10 @@ struct SleepSample {
     /// Formatted string showing the time elapsed in this sleep sample
     func formattedString() -> String {
         guard let startDate = startDate, endDate = endDate where isValid() else { return "" }
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components( [.Hour, .Minute, .Second], fromDate: startDate, toDate: endDate, options: NSCalendarOptions())
-        return "\(components.hour)hr \(components.minute)min \(components.second)sec"
+        let dateComponentsFormatter = NSDateComponentsFormatter()
+        dateComponentsFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehavior.Pad
+        dateComponentsFormatter.allowedUnits = [.Hour, .Minute, .Second]
+        return dateComponentsFormatter.stringFromDate(startDate, toDate: endDate) ?? ""
     }
 
     /// returns true if it can be saved, and startDate is before endDate

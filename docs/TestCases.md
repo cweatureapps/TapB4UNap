@@ -29,7 +29,12 @@ the screen will be cleared
 
 ## Editing the time
 
-1. tap adjust. then cancel, main screen shouldn't change
+** TODO**
+1. tap adjust from extension. then cancel. 
+expected: 
+- launches app to adjust. 
+- after cancel, adjustment shouldn't be saved
+- should be able to to launch adjust again from the app
 
 2. fields should be correct:
 - start and end times should correspond to the most recent sleep

@@ -24,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         switch url.absoluteString {
-            case "cwtapb4unap://save":
-                rootViewController?.saveToHealthStore()
             case "cwtapb4unap://adjust":
                 rootViewController?.adjust()
             case "cwtapb4unap://reset":

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
@@ -26,84 +25,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3I-Ll-vSg" userLabel="contents">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap sleep to start" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLU-3K-hMP">
-                                        <rect key="frame" x="32" y="25" width="256" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMa-7j-58l" userLabel="buttonContainer">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="50"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kth-vJ-WrW">
-                                                <rect key="frame" x="141" y="10" width="37" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="sleep">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="sleepButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="hEE-a7-5rr"/>
-                                                </connections>
-                                            </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WLD-Hd-H4I">
-                                                <rect key="frame" x="139" y="10" width="42" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="adjust">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="adjustButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="aTd-2U-Ti2"/>
-                                                </connections>
-                                            </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o32-JF-of9">
-                                                <rect key="frame" x="182" y="10" width="36" height="30"/>
-                                                <gestureRecognizers/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="wake">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="wakeButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="ptr-wr-iRs"/>
-                                                </connections>
-                                            </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odH-dT-2QS">
-                                                <rect key="frame" x="97" y="10" width="45" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="cancel">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="cancelButtonHandler:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="rdt-X3-rWC"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="centerY" secondItem="odH-dT-2QS" secondAttribute="centerY" id="1XU-aH-k0j"/>
-                                            <constraint firstItem="WLD-Hd-H4I" firstAttribute="centerY" secondItem="gMa-7j-58l" secondAttribute="centerY" id="EBV-iD-zxo"/>
-                                            <constraint firstAttribute="centerY" secondItem="kth-vJ-WrW" secondAttribute="centerY" id="L1F-D1-6jj"/>
-                                            <constraint firstAttribute="centerX" secondItem="kth-vJ-WrW" secondAttribute="centerX" id="S9J-lF-0AT"/>
-                                            <constraint firstItem="WLD-Hd-H4I" firstAttribute="centerX" secondItem="kth-vJ-WrW" secondAttribute="centerX" id="ZZp-qL-6FJ"/>
-                                            <constraint firstAttribute="centerX" secondItem="odH-dT-2QS" secondAttribute="centerX" constant="40" id="ago-yj-KQ8"/>
-                                            <constraint firstAttribute="centerX" secondItem="o32-JF-of9" secondAttribute="centerX" constant="-40" id="bII-1y-HMh"/>
-                                            <constraint firstAttribute="height" constant="50" id="iPM-pL-sH4"/>
-                                            <constraint firstAttribute="centerY" secondItem="o32-JF-of9" secondAttribute="centerY" id="qi9-dZ-Xgf"/>
-                                            <constraint firstItem="kth-vJ-WrW" firstAttribute="baseline" secondItem="odH-dT-2QS" secondAttribute="baseline" id="rOq-eQ-BkM"/>
-                                        </constraints>
-                                    </view>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7SG-0K-B1n">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                        <connections>
+                                            <segue destination="eVw-Qd-rGl" kind="embed" id="kiM-cN-Wbn"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="gMa-7j-58l" firstAttribute="top" secondItem="O3I-Ll-vSg" secondAttribute="top" constant="50" id="6wg-yL-7Ln"/>
-                                    <constraint firstItem="JLU-3K-hMP" firstAttribute="top" secondItem="O3I-Ll-vSg" secondAttribute="top" constant="25" id="CfE-kB-JAD"/>
+                                    <constraint firstAttribute="bottom" secondItem="7SG-0K-B1n" secondAttribute="bottom" id="2EJ-Sf-jmD"/>
+                                    <constraint firstItem="7SG-0K-B1n" firstAttribute="leading" secondItem="O3I-Ll-vSg" secondAttribute="leading" id="72g-V2-uO4"/>
                                     <constraint firstAttribute="height" constant="100" id="FWg-zB-ilD"/>
-                                    <constraint firstItem="JLU-3K-hMP" firstAttribute="width" secondItem="O3I-Ll-vSg" secondAttribute="width" multiplier="0.8" id="SGP-PW-IVd"/>
-                                    <constraint firstItem="JLU-3K-hMP" firstAttribute="centerX" secondItem="O3I-Ll-vSg" secondAttribute="centerX" id="XE4-uO-GIA"/>
-                                    <constraint firstAttribute="trailing" secondItem="gMa-7j-58l" secondAttribute="trailing" id="wtp-sR-B5q"/>
-                                    <constraint firstItem="gMa-7j-58l" firstAttribute="leading" secondItem="O3I-Ll-vSg" secondAttribute="leading" id="xk1-Gn-OzH"/>
+                                    <constraint firstAttribute="trailing" secondItem="7SG-0K-B1n" secondAttribute="trailing" id="Ohj-xa-Ycd"/>
+                                    <constraint firstItem="7SG-0K-B1n" firstAttribute="top" secondItem="O3I-Ll-vSg" secondAttribute="top" id="QPt-pr-aAa"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -123,17 +57,24 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="100"/>
-                    <connections>
-                        <outlet property="adjustButton" destination="WLD-Hd-H4I" id="8Ce-2M-2gi"/>
-                        <outlet property="cancelButton" destination="odH-dT-2QS" id="LLf-x4-xsR"/>
-                        <outlet property="sleepButton" destination="kth-vJ-WrW" id="4zX-RG-Wgk"/>
-                        <outlet property="statusMessageLabel" destination="JLU-3K-hMP" id="UNn-QN-Ol0"/>
-                        <outlet property="wakeButton" destination="o32-JF-of9" id="dec-aj-eQ0"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="516" y="285"/>
+        </scene>
+        <!--Timer View Controller-->
+        <scene sceneID="4Fo-Fl-5qY">
+            <objects>
+                <viewController id="eVw-Qd-rGl" customClass="TimerViewController" customModule="TapB4UNapWidget" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uek-en-6D5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xKe-7T-09Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="516" y="593"/>
         </scene>
     </scenes>
     <resources>

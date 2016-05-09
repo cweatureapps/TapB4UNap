@@ -11,11 +11,16 @@ import Foundation
 /// This class interacts with the userDefaults to allow sharing data between the extension and the app.
 class TimeKeeper {
 
-    private let sleepStartedKey = "sleepStarted"
-    private let sleepEndedKey = "sleepEnded"
-    private let mostRecentSleepStartKey = "mostRecentSleepStart"
-    private let mostRecentSleepEndKey = "mostRecentSleepEnd"
+    private enum UserDefaultsKeys {
+        private static let sleepStartedKey = "sleepStarted"
+        private static let sleepEndedKey = "sleepEnded"
+        private static let mostRecentSleepStartKey = "mostRecentSleepStart"
+        private static let mostRecentSleepEndKey = "mostRecentSleepEnd"
+        private static let lastSavedKey = "lastSaved"
+    }
+
     private let userDefaults: NSUserDefaults = SettingsManager.sharedUserDefaults
+    private let wasRecentlySavedTimeInterval: NSTimeInterval = 60 * 5 // 5 minutes
 
     /**
      Saves the sleep start with the given value.
@@ -23,7 +28,7 @@ class TimeKeeper {
      */
     func startSleep(date: NSDate) {
         resetRecentSleepData()
-        userDefaults.setObject(date, forKey: sleepStartedKey)
+        userDefaults.setObject(date, forKey: UserDefaultsKeys.sleepStartedKey)
         userDefaults.synchronize()
     }
 
@@ -32,7 +37,7 @@ class TimeKeeper {
      - parameter date: The date value of when sleep ended
      */
     func endSleep(date: NSDate) {
-        userDefaults.setObject(date, forKey: sleepEndedKey)
+        userDefaults.setObject(date, forKey: UserDefaultsKeys.sleepEndedKey)
         userDefaults.synchronize()
     }
 
@@ -51,16 +56,18 @@ class TimeKeeper {
      - returns: The current sleep sample. Returns nil if both start and end dates are nil.
      */
     func sleepSample() -> SleepSample? {
-        return sleepSampleForKeys(startKey:sleepStartedKey, endKey:sleepEndedKey)
+        return sleepSampleForKeys(startKey: UserDefaultsKeys.sleepStartedKey, endKey: UserDefaultsKeys.sleepEndedKey)
     }
 
     /**
-     Backup the sleep data. The last backed up value can be retrieved again `mostRecentSleepSample()`.
+     Should be called when data is saved in HealthKit successfully.
+     This will backup the sleep data, and also record the time when this save occurred.
      - parameter sleepSample: The SleepSample to backup.
      */
-    func backupSleepData(sleepSample: SleepSample) {
-        userDefaults.setObject(sleepSample.startDate, forKey: mostRecentSleepStartKey)
-        userDefaults.setObject(sleepSample.endDate, forKey: mostRecentSleepEndKey)
+    func saveSuccess(sleepSample: SleepSample) {
+        userDefaults.setObject(sleepSample.startDate, forKey: UserDefaultsKeys.mostRecentSleepStartKey)
+        userDefaults.setObject(sleepSample.endDate, forKey: UserDefaultsKeys.mostRecentSleepEndKey)
+        userDefaults.setObject(NSDate(), forKey: UserDefaultsKeys.lastSavedKey)
         userDefaults.synchronize()
     }
 
@@ -68,25 +75,33 @@ class TimeKeeper {
      Removes the saved values for sleep start and sleep end.
      */
     func resetSleepData() {
-        userDefaults.removeObjectForKey(sleepStartedKey)
-        userDefaults.removeObjectForKey(sleepEndedKey)
+        userDefaults.removeObjectForKey(UserDefaultsKeys.sleepStartedKey)
+        userDefaults.removeObjectForKey(UserDefaultsKeys.sleepEndedKey)
         userDefaults.synchronize()
     }
 
     private func resetRecentSleepData() {
-        userDefaults.removeObjectForKey(mostRecentSleepStartKey)
-        userDefaults.removeObjectForKey(mostRecentSleepEndKey)
+        userDefaults.removeObjectForKey(UserDefaultsKeys.mostRecentSleepStartKey)
+        userDefaults.removeObjectForKey(UserDefaultsKeys.mostRecentSleepEndKey)
         userDefaults.synchronize()
     }
 
     /**
-     The last saved recent sleep sample, as saved by `backupSleepData(sleepSample)`
+     The most recently saved sleep sample, when `saveSuccess(sleepSample)` was last called.
      - returns: The most recently backed up sleep sample. Returns nil if both start and end dates are nil.
      */
     func mostRecentSleepSample() -> SleepSample? {
-        return sleepSampleForKeys(startKey:mostRecentSleepStartKey, endKey:mostRecentSleepEndKey)
+        return sleepSampleForKeys(startKey: UserDefaultsKeys.mostRecentSleepStartKey, endKey: UserDefaultsKeys.mostRecentSleepEndKey)
     }
 
+
+    /**
+    Whether `saveSuccess` was called recently. You may want make it easy for the user to adjust the sleep sample if the save was recent.
+    */
+    func wasRecentlySaved() -> Bool {
+        guard let lastSavedDate = userDefaults.objectForKey(UserDefaultsKeys.lastSavedKey) as? NSDate else { return false }
+        return lastSavedDate.timeIntervalSinceNow > -wasRecentlySavedTimeInterval
+    }
 
     private func sleepSampleForKeys(startKey startKey: String, endKey: String) -> SleepSample? {
         let startDate = userDefaults.objectForKey(startKey) as! NSDate?
