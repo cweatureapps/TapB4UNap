@@ -20,7 +20,6 @@
 		5B4B1DEB1CE0B567008CFE09 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */; };
 		5B661F1A1CBA6D01000B76FE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6C3B801A9A0ED200278990 /* HealthKit.framework */; };
 		5B661F1F1CBA725F000B76FE /* AdjustTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F1D1CBA725F000B76FE /* AdjustTimeTableViewController.swift */; };
-		5B661F201CBA725F000B76FE /* SaveDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F1E1CBA725F000B76FE /* SaveDataViewController.swift */; };
 		5B661F231CBA7272000B76FE /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F211CBA7272000B76FE /* HealthStore.swift */; };
 		5B661F241CBA7272000B76FE /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F211CBA7272000B76FE /* HealthStore.swift */; };
 		5B661F251CBA7272000B76FE /* SleepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F221CBA7272000B76FE /* SleepManager.swift */; };
@@ -34,6 +33,7 @@
 		5BA7F2F81CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F71CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift */; };
 		5BA7F2FA1CC39C76003174E8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* Utils.swift */; };
 		5BA7F2FB1CC39C76003174E8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* Utils.swift */; };
+		5BBB932C1CE740E800C2A730 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB932B1CE740E800C2A730 /* MainViewController.swift */; };
 		5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BBF48B41ADA6498005F3E8D /* Defaults.plist */; };
 		5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */; };
 		5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */; };
@@ -114,7 +114,6 @@
 		5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
 		5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		5B661F1D1CBA725F000B76FE /* AdjustTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustTimeTableViewController.swift; sourceTree = "<group>"; };
-		5B661F1E1CBA725F000B76FE /* SaveDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveDataViewController.swift; sourceTree = "<group>"; };
 		5B661F211CBA7272000B76FE /* HealthStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
 		5B661F221CBA7272000B76FE /* SleepManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepManager.swift; sourceTree = "<group>"; };
 		5B6B6FA41CD2CB6A00A015E2 /* TestCases.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TestCases.md; sourceTree = "<group>"; };
@@ -124,6 +123,7 @@
 		5BA7F2F51CC31F39003174E8 /* TapB4UNapErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapB4UNapErrorTests.swift; sourceTree = "<group>"; };
 		5BA7F2F71CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthStore+ExtensionAuthorization.swift"; sourceTree = "<group>"; };
 		5BA7F2F91CC39C76003174E8 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5BBB932B1CE740E800C2A730 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5BBF48B41ADA6498005F3E8D /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hov6CQ-1280x400.jpg"; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 				5B285A3C19F4673800ECE1A5 /* Images.xcassets */,
 				5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */,
 				5B285A3919F4673800ECE1A5 /* Main.storyboard */,
-				5B661F1E1CBA725F000B76FE /* SaveDataViewController.swift */,
+				5BBB932B1CE740E800C2A730 /* MainViewController.swift */,
 				5B285A3319F4673800ECE1A5 /* Supporting Files */,
 			);
 			path = TapB4UNap;
@@ -528,6 +528,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BA0E30B1CC0556000E481DA /* Result.swift in Sources */,
+				5BBB932C1CE740E800C2A730 /* MainViewController.swift in Sources */,
 				5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */,
 				5B661F251CBA7272000B76FE /* SleepManager.swift in Sources */,
 				5B661F1F1CBA725F000B76FE /* AdjustTimeTableViewController.swift in Sources */,
@@ -535,7 +536,6 @@
 				5BE35B0E1CBA59B4004918B9 /* TimeKeeper.swift in Sources */,
 				5BA0E30D1CC0570C00E481DA /* Errors.swift in Sources */,
 				5BE35B0C1CBA59B4004918B9 /* SleepSample.swift in Sources */,
-				5B661F201CBA725F000B76FE /* SaveDataViewController.swift in Sources */,
 				5B661F231CBA7272000B76FE /* HealthStore.swift in Sources */,
 				5B4B1DEA1CE0B567008CFE09 /* TimerViewController.swift in Sources */,
 				5BA7F2F81CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift in Sources */,

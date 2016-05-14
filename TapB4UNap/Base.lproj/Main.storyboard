@@ -6,10 +6,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Save Data View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="Ggj-QZ-enn">
             <objects>
-                <viewController id="fP5-Xe-oqV" customClass="SaveDataViewController" customModule="TapB4UNap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fP5-Xe-oqV" customClass="MainViewController" customModule="TapB4UNap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="osP-ZG-vII"/>
                         <viewControllerLayoutGuide type="bottom" id="Wma-Zv-YIo"/>
@@ -229,7 +229,7 @@ CweatureApps.com Image from https://flic.kr/p/hov6CQ</string>
                     <navigationItem key="navigationItem" title="Adjust time" id="OCv-du-bcv">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="AhA-IF-GCE">
                             <connections>
-                                <segue destination="D2Q-0v-ATF" kind="unwind" unwindAction="cancelToSaveDataViewController:" id="IiL-cG-Pdg"/>
+                                <segue destination="D2Q-0v-ATF" kind="unwind" unwindAction="cancelToMainViewController:" id="IiL-cG-Pdg"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="MjY-L6-4Iw">

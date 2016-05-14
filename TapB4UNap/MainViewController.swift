@@ -1,5 +1,5 @@
 //
-//  SaveDataViewController.swift
+//  MainViewController.swift
 //  TapB4UNap
 //
 //  Created by Ken Ko on 28/10/2014.
@@ -9,7 +9,7 @@
 import UIKit
 import HealthKit
 
-class SaveDataViewController: UIViewController, TimerViewControllerDelegate {
+class MainViewController: UIViewController, TimerViewControllerDelegate {
 
     // MARK: privates
 
@@ -45,8 +45,8 @@ class SaveDataViewController: UIViewController, TimerViewControllerDelegate {
     // MARK: Notifications
 
     private func setupNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SaveDataViewController.willEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SaveDataViewController.didEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.willEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.didEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
 
     func willEnterForeground() {
@@ -92,7 +92,7 @@ class SaveDataViewController: UIViewController, TimerViewControllerDelegate {
 
     // MARK: unwind methods
 
-    @IBAction func cancelToSaveDataViewController(segue: UIStoryboardSegue) {
+    @IBAction func cancelToMainViewController(segue: UIStoryboardSegue) {
         self.timerViewController.refreshUI()
     }
 

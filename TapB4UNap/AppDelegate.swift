@@ -13,8 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    private var rootViewController: SaveDataViewController? {
-        return  window?.rootViewController as? SaveDataViewController
+    private var rootViewController: MainViewController? {
+        return  window?.rootViewController as? MainViewController
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
