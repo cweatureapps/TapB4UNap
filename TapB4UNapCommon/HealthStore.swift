@@ -12,6 +12,8 @@ import HealthKit
 ///  Wraps the single instance of HKHealthStore and provides helper methods.
 class HealthStore {
 
+    private static let authCancelledErrorCode = 100
+
     static let sharedInstance: HealthStore = HealthStore()
 
     private let hkHealthStore: HKHealthStore
@@ -25,6 +27,11 @@ class HealthStore {
         return hkHealthStore.authorizationStatusForType(HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!) == HKAuthorizationStatus.SharingAuthorized
     }
 
+    /// Whether sharing has been denied for sleep data
+    func isDenied() -> Bool {
+        return hkHealthStore.authorizationStatusForType(HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!) == HKAuthorizationStatus.SharingDenied
+    }
+
     /// Request for authorization from HealthKit
     func requestAuthorisationForHealthStore(completion: (Result<Void>) -> Void) {
         let dataTypesToShare: Set = [HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!]
@@ -32,8 +39,12 @@ class HealthStore {
             if self.isAuthorized() {
                 completion(.Success())
             } else {
-                let errorMessage = error?.localizedDescription ?? ""
-                completion(.Failure(TapB4UNapError.NotAuthorized(errorMessage)))
+                if let error = error where (error as NSError).domain == HKErrorDomain && (error as NSError).code == HealthStore.authCancelledErrorCode {
+                    completion(.Failure(TapB4UNapError.AuthorizationCancelled(error.localizedDescription ?? "")))
+                } else {
+                    let errorMessage = error?.localizedDescription ?? ""
+                    completion(.Failure(TapB4UNapError.NotAuthorized(errorMessage)))
+                }
             }
         }
     }

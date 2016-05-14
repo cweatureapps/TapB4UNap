@@ -10,6 +10,8 @@ import Foundation
 
 enum TapB4UNapError: ErrorType {
     case NotAuthorized(String)
+    /// user took too long on auth screen, when initiated from widget
+    case AuthorizationCancelled(String)
     case SaveFailed(String)
     case DeleteFailed(String)
     case OverwriteFailed(String)

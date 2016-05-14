@@ -18,11 +18,20 @@ class SleepManager {
         HealthStore.sharedInstance.requestAuthorisationForHealthStore { result in
             dispatch_async(dispatch_get_main_queue()) {
                 switch result {
-                    case .Success:
-                        self.timeKeeper.startSleep(NSDate())
-                        completion(.Success())
-                    case .Failure(let error):
-                        completion(.Failure(error))
+                case .Success:
+                    self.timeKeeper.startSleep(NSDate())
+                    completion(.Success())
+                case .Failure(let error):
+                    // When invoked from widget, if the auth screen takes too long, start timer anyway.
+                    // If user ends up authorizing, then sleep is tracked as expected.
+                    // If user denies auth, then UI should indicate authorization is required when ticking the timer.
+                    if let customError = error as? TapB4UNapError {
+                        if case .AuthorizationCancelled = customError {
+                            self.timeKeeper.startSleep(NSDate())
+                            completion(.Success())
+                        }
+                    }
+                    completion(.Failure(error))
                 }
             }
         }

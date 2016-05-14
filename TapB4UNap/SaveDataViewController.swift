@@ -30,11 +30,6 @@ class SaveDataViewController: UIViewController, TimerViewControllerDelegate {
         setupNotifications()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        timerViewController?.refreshUI()
-    }
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         if let timerViewController = segue.destinationViewController as? TimerViewController {
@@ -98,6 +93,7 @@ class SaveDataViewController: UIViewController, TimerViewControllerDelegate {
     // MARK: unwind methods
 
     @IBAction func cancelToSaveDataViewController(segue: UIStoryboardSegue) {
+        self.timerViewController.refreshUI()
     }
 
     @IBAction func saveAdjustedSleeptime(segue: UIStoryboardSegue) {

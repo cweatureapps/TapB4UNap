@@ -80,7 +80,10 @@ class TimeKeeper {
         userDefaults.synchronize()
     }
 
-    private func resetRecentSleepData() {
+    /**
+    Removes the saved backup values for the most recent sleep sample.
+    */
+    func resetRecentSleepData() {
         userDefaults.removeObjectForKey(UserDefaultsKeys.mostRecentSleepStartKey)
         userDefaults.removeObjectForKey(UserDefaultsKeys.mostRecentSleepEndKey)
         userDefaults.synchronize()

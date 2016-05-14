@@ -75,13 +75,13 @@ class TimerViewController: UIViewController {
 
     @IBAction func resetButtonHandler(sender: AnyObject) {
         timeKeeper.resetSleepData()
+        timeKeeper.resetRecentSleepData()
         refreshUI()
     }
 
     @IBAction func wakeButtonHandler(sender: AnyObject) {
         stopSleepingTimer()
         timeKeeper.endSleepIfNeeded(NSDate())
-        refreshUI()
         saveToHealthKit()
     }
 
@@ -143,16 +143,16 @@ class TimerViewController: UIViewController {
     // MARK: UI updates
 
     func refreshUI() {
+        guard !HealthStore.sharedInstance.isDenied() else {
+            handleSleepManagerError(TapB4UNapError.NotAuthorized("status was already denied"))
+            return
+        }
         if var sleepSample = timeKeeper.sleepSample() {
             if sleepSample.isSleeping() {
                 sleepSample.endDate = NSDate()
                 let formattedTime = sleepSample.formattedString()
                 updateScreen(screenState: .Sleeping)
                 timerLabel.text = formattedTime
-
-            } else if sleepSample.canSave() {
-                updateScreen(screenState: .Saving)
-                messageLabel.text = "Saving..."
             }
         } else {
             if let mostRecentSleep = timeKeeper.mostRecentSleepSample() where timeKeeper.wasRecentlySaved() {

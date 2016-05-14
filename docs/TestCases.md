@@ -1,44 +1,57 @@
 # Manual test cases
 
-## Extension UI
+## UI interactions
 
-1. Tap sleep, counter begins
+### From widget
+Prerequisite: screen is in initial state, with "Tap sleep to start"
+1. Tap sleep, counter begins. The time shown should not shift around with each 1 second tick
+2. Tap Reset, goes back to starting screen
+3. Start sleep again. Tap on Wake, it will show how long you slept for
+4. Tap on reset
+    4a. immediately tap on reset, screen should reset
+    4b. tap on reset only after timeout, screen should reset
+5. confirm saved OK in HealthKit
 
-2. Tap cancel, goes back to starting screen
-
-3. When tap on save, says "saving..."
-
-4. After saving, open the today extension, it is reset
+### From app
+Repeat the above test from the app
 
 
-## Saving from extension
 
-1. fresh install, no permissions, no data, app is not running
-- launches app, prompt for permissions, then save
-- note the delay during user input, should not impact the saved time
-- open extension again after save, should be reset correctly
+## Screen reset
 
-2. app is in the background, save from extensions
-- will come into foreground and save
+### from widget
+Prerequisite: After successful save
+1. Close widget and open it immediately, the finish screen is still shown.
+2. close widget and open it, wait for the reset timeout, and then open it again. The starting screen is shown
 
-3. app is in foreground, save from extensions
-will save
+### from app
+Prerequisite: After successful save
+1. Background the app, and open it again back immediately, the finish screen is still shown.
+2. Background the app, wait for the reset timeout, and then open it again. The starting screen is shown
 
-4. background the app, and switch back to it
-the screen will be cleared
+
 
 ## Editing the time
 
-** TODO**
-1. tap adjust from extension. then cancel. 
-expected: 
-- launches app to adjust. 
-- after cancel, adjustment shouldn't be saved
-- should be able to to launch adjust again from the app
+Prerequisite: After successful save
+Variations: Execute test case for both App and TX
 
-2. fields should be correct:
+1. Tap adjust. 
+Expected:
+- adjustment screen opens
+    App: modal present of adjustment screen
+    TX: opens the app at the adjustment screen
 - start and end times should correspond to the most recent sleep
 - sleep duration should be shown, including seconds
+
+2a. Change the pickers. But then tap cancel. 
+Expected: 
+- after cancel, adjustment shouldn't be saved
+- finish screen with adjust screen should be shown, and you should be able to to launch adjust again
+
+2b. Repeat (2a) but wait for reset timeout
+
+3. Tap adjust again.
 
 3. move the date pickers
 - sleep duration should be updated
@@ -49,10 +62,18 @@ expected:
 4. tap save
 - on saving, seconds remain dropped at zero
 - check saved correctly
+- finish screen with adjust screen should be shown, and you should be able to to launch adjust again
+- For TX: opening TX will also show the correct adjusted value, and you should be able to to launch adjust again
+
+5. Tap adjust again
+- start and end times should correspond to the most recent sleep (from the adjustment)
+- sleep duration should be shown, including seconds
+
+
 
 ## HealthKit Permissions
 
-### Not determined yet
+### TestCase 1 - Not determined yet (from widget)
 1. Reset simulator contents and settings
 2. From widget, tap on Sleep
 3. In the alert, select **Not Now**
@@ -61,43 +82,92 @@ Expected: The widget text should update to say that it needs permission
 Expected: The widget text should reset to the original
 5. Redo test steps 2-4 again 
 
-### Permission denied - first time
+### TestCase 2 - Not determined yet (from app)
+1. Reset simulator contents and settings
+2. From app, tap on Sleep
+Expected: App should open and show the permissions screen
+3. Kill the app, and reopen
+Expected: The text should reset to the original
+4. Redo test steps 2-4 again 
+
+### TestCase 3 - Permission denied (from widget) - first time
 1. Reset simulator contents and settings
 2. From widget, tap on Sleep
 3. In the alert, select **Open "TapB4UNap"**
 Expected: App should open and show the permissions screen
 4. Select "Don't Allow"
 Expected: the app text should update to say that it needs permission
-5. open today extensions to see the widget again
-Expected: The widget should be reset
+5. Open up the widget. 
+Expected: Text should say it needs permission
 
-### Permission denied - user takes a long time
-Repeat test ***Permission denied - first time*** , but wait 30 seconds in step 4, on the apple health permission screen
+### TestCase 3B - Permission denied - user takes a long time
+Repeat TestCase 3, but wait 30 seconds before step 4, on the apple health permission screen
+Expected: the app text should update to say that it needs permission
 
-### Permission denied - from widget
+### TestCase 4 - Permission denied (from app) - first time
+1. Reset simulator contents and settings
+2. From app, tap on Sleep
+Expected: App should open and show the permissions screen
+3. Select "Don't Allow"
+Expected: the app text should update to say that it needs permission
+4. Open up the widget. 
+Expected: Text should say it needs permission
+
+### TestCase 4B - Permission denied - user takes a long time
+Repeat TestCase 4, but wait 30 seconds before step 3, on the apple health permission screen
+Expected: the app text should update to say that it needs permission
+
+### TestCase 5 - Permission already denied
 Pre-condition: already denied
-1. From widget, tap on sleep
-Expected: The widget text should immediately update to say that it needs permission
-2. Close the today extensions, and re-open
-Expected: The widget should be reset
+1. Open up the widget. 
+Expected: Text should say it needs permission
+2. Switch app and return it foreground. 
+Expected: Text should say it needs permission
 
-### Grant permissions manually
+### TestCase 6 - Grant permissions manually
 Pre-condition: already denied
-1. Go to apple health and manually grant both read/write permissions
-2. From widget, start and end to record sleep
-Expected: should be saved sucessfully
+1. Go to apple health and manually grant permissions
+2. Open up the widget. Should be on the begin sleep screen.
+3. Open up the app. Should be on the begin sleep screen.
 
-### Permission granted - first time
+### TestCase 7 - Permission granted (from widget) - first time
 1. Reset simulator contents and settings
 2. From widget, tap on sleep
 3. In the alert, select **Open "TapB4UNap"**
 Expected: App should open and show the permissions screen
-4. Grant write permissions
-Expected: the app text should update to say that it was saved, and the sleep time that was recorded. Open up apple health to confirm it was saved ok.
+4. Grant permissions and tap Allow
+Expected: On the app, the counter should begin and show it is sleeping
+5. Open the widget
+Expected: Counter is also showing on the widget
 
-### Permission granted - user takes a long time
-Repeat test ***Permission granted - first time*** , but wait 30 seconds in step 4, on the apple health permission screen
-Expected: also check that the waiting time doesn't get included
+### TestCase 7B - Permission granted (from widget) - user takes a long time
+Repeat TestCase 7, but wait 30 seconds before step 4, on the apple health permission screen
+Note: The sleep start time begins when the healthkit timeout happens at around the 30 second mark
+
+### TestCase 8 - Permission granted (from app) - first time
+1. Reset simulator contents and settings
+2. From app, tap on sleep
+Expected: App should open and show the permissions screen
+3. Grant permissions and tap Allow
+Expected: On the app, the counter should begin and show it is sleeping
+4. Open the widget
+Expected: Counter is also showing on the widget
+
+### TestCase 8B - Permission granted (from app) - user takes a long time
+Repeat TestCase 8, but wait 30 seconds before step 3, on the apple health permission screen
+
+### TestCase 9 - Revoke permission while after sleep started
+Pre-condition: sleeping and timer is counting, make sure the app is open
+1. Go to apple health and manually revoke permission
+2. Go back to the app
+Expected: it should immediately say permissions are required
+3. Open the today extension
+Expected: it should say permissions are required
+4. Close and reopen the app
+Expected: it should say permissions are required
+5. Go to apple health and manually grant permissions
+Expected: Both app and widget resume the counter again, and sleep was started at the original time
+
 
 
 
