@@ -34,6 +34,7 @@
 		5BA7F2FA1CC39C76003174E8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* Utils.swift */; };
 		5BA7F2FB1CC39C76003174E8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* Utils.swift */; };
 		5BBB932C1CE740E800C2A730 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB932B1CE740E800C2A730 /* MainViewController.swift */; };
+		5BBB932A1CE7401100C2A730 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB93291CE7401100C2A730 /* Settings.bundle */; };
 		5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BBF48B41ADA6498005F3E8D /* Defaults.plist */; };
 		5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */; };
 		5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */; };
@@ -124,6 +125,7 @@
 		5BA7F2F71CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthStore+ExtensionAuthorization.swift"; sourceTree = "<group>"; };
 		5BA7F2F91CC39C76003174E8 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		5BBB932B1CE740E800C2A730 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5BBB93291CE7401100C2A730 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		5BBF48B41ADA6498005F3E8D /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hov6CQ-1280x400.jpg"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				5BBF48B41ADA6498005F3E8D /* Defaults.plist */,
 				5B285A3419F4673800ECE1A5 /* Info.plist */,
 				5B285A5A19F46F5300ECE1A5 /* TapB4UNap.entitlements */,
+				5BBB93291CE7401100C2A730 /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */,
 				5B285A3B19F4673800ECE1A5 /* Main.storyboard in Resources */,
 				5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */,
+				5BBB932A1CE7401100C2A730 /* Settings.bundle in Resources */,
 				5B285A3D19F4673800ECE1A5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
