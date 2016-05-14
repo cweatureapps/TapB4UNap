@@ -1,0 +1,32 @@
+disabled_rules: # Rule identifiers to exclude from running
+  - nesting
+  - todo
+  - valid_docs
+  - force_cast
+opt_in_rules:
+  - missing_docs
+  - empty_count
+excluded: # Paths to ignore during linting. Overridden by `included`.
+  - Carthage
+  - Pods
+  - QuartzCore
+  - UniversalApp/Modules/Registration/View/QuartzCode
+  - ThirdParty
+file_length:
+  warning: 600
+  error: 700
+line_length:
+  warning: 250
+  error: 350
+type_body_length:
+  warning: 500
+  error: 600
+function_body_length:
+  warning: 200
+  error: 300
+variable_name:
+  min_length: 1
+  max_length:
+    warning: 48
+    error: 64
+reporter: xcode
