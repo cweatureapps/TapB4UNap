@@ -40,11 +40,11 @@ class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clearColor()
-        refreshUI()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        refreshUI()
         if let sleepSample = timeKeeper.sleepSample() {
             if sleepSample.isSleeping() {
                 startSleepingTimer()

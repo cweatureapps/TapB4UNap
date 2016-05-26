@@ -3,29 +3,33 @@
 ## UI interactions
 
 ### From widget
-Prerequisite: screen is in initial state, with "Tap sleep to start"
+Pre-condition: app is closed. Launch the widget. screen is in initial state, with "Tap sleep to start"
 1. Tap sleep, counter begins. The time shown should not shift around with each 1 second tick
 2. Tap Reset, goes back to starting screen
-3. Start sleep again. Tap on Wake, it will show how long you slept for
-4. Tap on reset
-    4a. immediately tap on reset, screen should reset
-    4b. tap on reset only after timeout, screen should reset
-5. confirm saved OK in HealthKit
+3. Start sleep again. Tap on Wake, it will show how long you slept for.
+4. open up the (app), confirm it also shows the sleeping time
+5. Tap on reset
+    5a. immediately tap on reset, screen should reset
+    5b. tap on reset only after timeout, screen should reset
+6. open up the (app), confirm that screen state is also reset
+7. confirm saved OK in HealthKit
+
 
 ### From app
-Repeat the above test from the app
-
+Pre-condition: app is closed. Launch the app. screen is in initial state, with "Tap sleep to start"
+Repeat the above test from the app.
+In step 4 and 6, verify for the widget, rather than the app
 
 
 ## Screen reset
 
 ### from widget
-Prerequisite: After successful save
+Pre-condition: After successful save
 1. Close widget and open it immediately, the finish screen is still shown.
 2. close widget and open it, wait for the reset timeout, and then open it again. The starting screen is shown
 
 ### from app
-Prerequisite: After successful save
+Pre-condition: After successful save
 1. Background the app, and open it again back immediately, the finish screen is still shown.
 2. Background the app, wait for the reset timeout, and then open it again. The starting screen is shown
 
@@ -33,14 +37,12 @@ Prerequisite: After successful save
 
 ## Editing the time
 
-Prerequisite: After successful save
-Variations: Execute test case for both App and TX
+### From the App
+Pre-condition: After successful save
 
 1. Tap adjust. 
 Expected:
 - adjustment screen opens
-    App: modal present of adjustment screen
-    TX: opens the app at the adjustment screen
 - start and end times should correspond to the most recent sleep
 - sleep duration should be shown, including seconds
 
@@ -68,6 +70,15 @@ Expected:
 5. Tap adjust again
 - start and end times should correspond to the most recent sleep (from the adjustment)
 - sleep duration should be shown, including seconds
+
+### From the widget
+Repeat above test case, but initiate the adjust from the widget. It will open up the app to do the adjust.
+
+### Adjusting a deleted sample
+Pre-condition: saved into HealthKit, and on the adjust screen
+1. Go into Apple Health, and delete the sample
+2. Try to adjust it from TapB4UNap, and tap Save
+Expected: Something went wrong error message
 
 
 
