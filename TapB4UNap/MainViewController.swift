@@ -38,10 +38,6 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
         }
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-
     // MARK: Notifications
 
     private func setupNotifications() {
