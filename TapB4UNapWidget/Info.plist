@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>2.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -29,10 +29,6 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widget-extension</string>
 	</dict>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>healthkit</string>
