@@ -16,13 +16,6 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
     private let sleepManager = SleepManager()
     private weak var timerViewController: TimerViewController!
 
-    // MARK: Outlets
-
-    @IBOutlet weak private var aboutButton: UIButton!
-    @IBOutlet weak private var copyrightLabel: UILabel!
-    @IBOutlet weak private var aboutBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak private var copyrightBottomConstraint: NSLayoutConstraint!
-
     // MARK: controller code
 
     override func viewDidLoad() {
@@ -36,10 +29,6 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
             timerViewController.delegate = self
             self.timerViewController = timerViewController
         }
-    }
-
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
 
     // MARK: Notifications
@@ -116,29 +105,5 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
 
     func adjustButtonHandler() {
         performSegueWithIdentifier("adjustSegue", sender: self)
-    }
-
-    // MARK: copyright animation
-
-    @IBAction func showCopyrightLabel(sender: UIButton) {
-        swapControls(contraintToMoveOffScreen: aboutBottomConstraint, constraintToMoveOnScreen: copyrightBottomConstraint)
-    }
-
-    @IBAction func showAboutButton(sender: AnyObject) {
-        swapControls(contraintToMoveOffScreen: copyrightBottomConstraint, constraintToMoveOnScreen: aboutBottomConstraint)
-    }
-
-    private func swapControls(contraintToMoveOffScreen contraintToMoveOffScreen: NSLayoutConstraint, constraintToMoveOnScreen: NSLayoutConstraint) {
-        self.view.layoutIfNeeded()
-        UIView.animateWithDuration(0.3, animations: {
-                contraintToMoveOffScreen.constant = -100
-                self.view.layoutIfNeeded()
-            }, completion: { _ in
-                self.view.layoutIfNeeded()
-                UIView.animateWithDuration(0.3) {
-                    constraintToMoveOnScreen.constant = 20
-                    self.view.layoutIfNeeded()
-                }
-            })
     }
 }

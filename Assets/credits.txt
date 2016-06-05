@@ -1,0 +1,16 @@
+Attribution
+
+Background: 
+https://flic.kr/p/hov6CQ
+
+Hand icon:
+http://medialoot.com/item/multi-touch-gesture-icons/
+
+Moon icon, redrawn based on:
+http://www.flaticon.com/free-icon/last-quarte-phase-of-moon_1033
+
+Tab bar icons:
+https://design.google.com/icons
+
+Icon generation:
+https://makeappicon.com

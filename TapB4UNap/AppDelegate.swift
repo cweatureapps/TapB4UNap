@@ -14,7 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     private var rootViewController: MainViewController? {
-        return  window?.rootViewController as? MainViewController
+        guard let tabController = window?.rootViewController as? UITabBarController,
+            mainViewController = tabController.viewControllers?.first as? MainViewController else { return nil }
+        return mainViewController
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
