@@ -49,7 +49,7 @@ class TimerViewController: UIViewController {
             if sleepSample.isSleeping() {
                 startSleepingTimer()
             } else if sleepSample.canSave() {
-                saveToHealthKit()
+                wake()
             }
         }
     }
@@ -74,24 +74,20 @@ class TimerViewController: UIViewController {
     }
 
     @IBAction func resetButtonHandler(sender: AnyObject) {
-        timeKeeper.resetSleepData()
-        timeKeeper.resetRecentSleepData()
+        sleepManager.reset()
         refreshUI()
     }
 
     @IBAction func wakeButtonHandler(sender: AnyObject) {
-        stopSleepingTimer()
-        timeKeeper.endSleepIfNeeded(NSDate())
-        saveToHealthKit()
+        wake()
     }
-
 
     @IBAction func adjustButtonHandler(sender: AnyObject) {
         delegate?.adjustButtonHandler()
     }
 
-    private func saveToHealthKit() {
-        sleepManager.saveToHealthStore { [weak self] result in
+    private func wake() {
+        sleepManager.wakeIfNeeded { [weak self] result in
             switch result {
             case .Success:
                 log("sleep data saved successfully!")

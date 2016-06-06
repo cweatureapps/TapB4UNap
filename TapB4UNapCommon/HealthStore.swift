@@ -51,6 +51,12 @@ class HealthStore {
 
     /// saves a sleep sample to health kit
     func saveSleepSample(sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
+        guard sleepSample.canSave() else {
+            let errorMessage = "sleepSample was not in a state that could be saved"
+            log(errorMessage)
+            completion(.Failure(TapB4UNapError.SaveFailed(errorMessage)))
+            return
+        }
         requestAuthorisationForHealthStore { result in
             switch result {
             case .Success:
