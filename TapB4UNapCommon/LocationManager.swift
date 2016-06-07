@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import XCGLogger
 
 protocol LocationManagerDelegate {
     /// Called when exiting a region
@@ -36,6 +37,7 @@ class LocationManager: NSObject {
         static let isMonitoringKey = "isMonitoring"
     }
 
+    private let log = XCGLogger.defaultInstance()
     private let userDefaults: NSUserDefaults = SettingsManager.sharedUserDefaults
 
     private var isMonitoring: Bool {
@@ -65,13 +67,13 @@ class LocationManager: NSObject {
     */
     func setupGeofence() {
         guard CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) else {
-            log("Geofencing is not supported on this device")
+            log.debug("Geofencing is not supported on this device")
             return
         }
         switch CLLocationManager.authorizationStatus() {
         case .Denied: fallthrough
         case .Restricted:
-            log("no permission for location")
+            log.debug("no permission for location")
         case .NotDetermined: fallthrough
         case .AuthorizedWhenInUse:
             isAuthorizing = true
@@ -89,7 +91,7 @@ class LocationManager: NSObject {
     /// Stop monitoring all regions which are currently registered
     func cancelAllGeofences() {
         let monitoredRegions = coreLocationManager.monitoredRegions
-        log("number of regions to stop monitoring: \(monitoredRegions.count)")
+        log.debug("number of regions to stop monitoring: \(monitoredRegions.count)")
         for r in monitoredRegions {
             coreLocationManager.stopMonitoringForRegion(r)
         }
@@ -103,7 +105,7 @@ extension LocationManager: CLLocationManagerDelegate {
         let region = CLCircularRegion(center: coord, radius: Constants.radius, identifier: NSUUID().UUIDString)
         region.notifyOnEntry = false
         region.notifyOnExit = true
-        log("starting to monitor")
+        log.debug("starting to monitor")
         coreLocationManager.startMonitoringForRegion(region)
         isMonitoring = true
     }
@@ -117,16 +119,16 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         log.debug("didExitRegion called")
         guard isMonitoring else { return }
-        log("didExitRegion passed guard and is running")
+        log.debug("didExitRegion passed guard and is running")
         cancelAllGeofences()
         delegate?.didExitRegion()
     }
 
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        log(error.localizedDescription)
+        log.debug(error.localizedDescription)
     }
 
     func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
-        log(error.localizedDescription)
+        log.debug(error.localizedDescription)
     }
 }

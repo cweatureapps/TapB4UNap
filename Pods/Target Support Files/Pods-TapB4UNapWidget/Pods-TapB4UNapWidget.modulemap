@@ -1,0 +1,6 @@
+framework module Pods_TapB4UNapWidget {
+  umbrella header "Pods-TapB4UNapWidget-umbrella.h"
+
+  export *
+  module * { export * }
+}

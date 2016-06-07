@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XCGLogger
 
 protocol TimerViewControllerDelegate {
     func adjustButtonHandler()
@@ -14,6 +15,8 @@ protocol TimerViewControllerDelegate {
 
 class TimerViewController: UIViewController {
 
+    private let log = XCGLogger.defaultInstance()
+    
     var delegate: TimerViewControllerDelegate?
 
     // MARK: Privates
@@ -67,7 +70,7 @@ class TimerViewController: UIViewController {
             case .Success:
                 self.startSleepingTimer()
             case .Failure(let error):
-                log("sleep start failed", error)
+                Utils.logError("sleep start failed", error)
                 self.handleSleepManagerError(error)
             }
         }
@@ -90,10 +93,10 @@ class TimerViewController: UIViewController {
         sleepManager.wakeIfNeeded { [weak self] result in
             switch result {
             case .Success:
-                log("sleep data saved successfully!")
+                self?.log.debug("sleep data saved successfully!")
                 self?.refreshUI()
             case .Failure(let error):
-                log("widget save error", error)
+                Utils.logError("widget save error", error)
                 self?.handleSleepManagerError(error)
             }
         }
@@ -114,7 +117,7 @@ class TimerViewController: UIViewController {
     // MARK: sleeping timer
 
     func startSleepingTimer() {
-        log("timer start")
+        log.debug("timer start")
         sleepTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector:#selector(TimerViewController.timerHandler), userInfo:nil, repeats:true)
         sleepTimer!.fire()
     }
@@ -122,7 +125,7 @@ class TimerViewController: UIViewController {
     func stopSleepingTimer() {
         sleepTimer?.invalidate()
         sleepTimer = nil
-        log("timer stopped")
+        log.debug("timer stopped")
     }
 
     func timerHandler() {

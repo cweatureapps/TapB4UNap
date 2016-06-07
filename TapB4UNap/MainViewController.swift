@@ -8,11 +8,13 @@
 
 import UIKit
 import HealthKit
+import XCGLogger
 
 class MainViewController: UIViewController, TimerViewControllerDelegate {
 
     // MARK: privates
 
+    private let log = XCGLogger.defaultInstance()
     private let sleepManager = SleepManager()
     private weak var timerViewController: TimerViewController!
 
@@ -70,7 +72,7 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
                     this.timerViewController?.startSleepingTimer()
                 }
             case .Failure(let error):
-                log("extension authorization failed", error)
+                Utils.logError("extension authorization failed", error)
                 dispatch_async(dispatch_get_main_queue()) {
                     this.timerViewController.handleSleepManagerError(error)
                 }
@@ -91,10 +93,10 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
             sleepManager.saveAdjustedSleepTimeToHealthStore(sleepSample) { result in
                 switch result {
                 case .Success:
-                    log("saveAdjustedSleeptime was successful")
+                    self.log.debug("saveAdjustedSleeptime was successful")
                     self.timerViewController.refreshUI()
                 case .Failure(let error):
-                    log("Error with saveAdjustedSleeptime", error)
+                    Utils.logError("Error with saveAdjustedSleeptime", error)
                     self.timerViewController.handleSleepManagerError(error)
                 }
             }

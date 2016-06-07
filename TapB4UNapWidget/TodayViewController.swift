@@ -8,8 +8,14 @@
 
 import UIKit
 import NotificationCenter
+import XCGLogger
 
 class TodayViewController: UIViewController, NCWidgetProviding, TimerViewControllerDelegate {
+
+    private let log: XCGLogger = ({
+        Utils.configureLogger()
+        return XCGLogger.defaultInstance()
+    })()
 
     private weak var timerViewController: TimerViewController?
 
@@ -32,7 +38,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, TimerViewControl
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        log("widgetPerformUpdateWithCompletionHandler was called")
+        log.debug("widgetPerformUpdateWithCompletionHandler was called")
 
         timerViewController?.refreshUI()
         completionHandler(NCUpdateResult.NewData)

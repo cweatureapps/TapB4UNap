@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import XCGLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
+
+    let log = XCGLogger.defaultInstance()
 
     var window: UIWindow?
 
@@ -20,13 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        log("didFinishLaunchingWithOptions called")
+        Utils.configureLogger()
+        log.debug("didFinishLaunchingWithOptions called")
         // handle launch from local notification when app is terminated
         if let _ = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] {
-            log("It's a local notification")
+            log.debug("It's a local notification")
             wakeIfNeeded()
         } else if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
-            log("launched due to location update")
+            log.debug("launched due to location update")
             didExitRegion()
         }
         registerNotifications()
@@ -52,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     }
 
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        log("local notification received")
+        log.debug("local notification received")
 
         // User manually taps on a previous notification while the app is suspended.
         // This includes when the user pulls down the notification view over the top of the active app.
@@ -99,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
         notification.alertBody = "It looks like you are awake, tap to wake?"
         notification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-        log("AppDelegate didExitRegion called")
+        log.debug("AppDelegate didExitRegion called")
     }
 
     private func wakeIfNeeded() {

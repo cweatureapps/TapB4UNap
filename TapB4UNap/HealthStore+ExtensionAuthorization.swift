@@ -8,6 +8,7 @@
 
 import Foundation
 import HealthKit
+import XCGLogger
 
 extension HealthStore {
     /**
@@ -18,15 +19,16 @@ extension HealthStore {
         HKHealthStore().handleAuthorizationForExtensionWithCompletion { success, error in
 
             // do some logging
+            let log = XCGLogger.defaultInstance()
             if success {
-                log("healthkit authorization process completed by parent app")
+                log.info("healthkit authorization process completed by parent app")
             } else {
-                log("something went wrong with HealthKit authorization. Error: \(error?.localizedDescription)")
+                log.error("something went wrong with HealthKit authorization. Error: \(error?.localizedDescription)")
             }
 
             // guard against not authorized
             guard HealthStore.sharedInstance.isAuthorized() else {
-                log("not authorized after extension requested auth")
+                log.error("not authorized after extension requested auth")
                 completion(.Failure(TapB4UNapError.NotAuthorized("")))
                 return
             }

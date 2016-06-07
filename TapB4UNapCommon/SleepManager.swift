@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import XCGLogger
 
 /// Coordinates interaction between TimeKeeper and HealthStore
 class SleepManager {
 
+    private let log = XCGLogger.defaultInstance()
     private let timeKeeper = TimeKeeper()
     private let locationManager = LocationManager.sharedInstance
 
@@ -54,12 +56,12 @@ class SleepManager {
             dispatch_async(dispatch_get_main_queue()) {
                 switch result {
                 case .Success:
-                    log("sleep data saved successfully")
+                    self.log.debug("sleep data saved successfully")
                     self.timeKeeper.saveSuccess(sleepSample)
                     self.timeKeeper.resetSleepData()
                     completion?(.Success(sleepSample))
                 case .Failure(let error):
-                    log("saveToHealthStore failed", error)
+                    Utils.logError("saveToHealthStore failed", error)
                     completion?(.Failure(error))
                 }
             }
@@ -84,11 +86,11 @@ class SleepManager {
             dispatch_async(dispatch_get_main_queue()) {
                 switch result {
                 case .Success:
-                    log("sleep data adjusted successfully")
+                    self.log.debug("sleep data adjusted successfully")
                     self.timeKeeper.saveSuccess(sleepSample)
                     completion(.Success())
                 case .Failure(let error):
-                    log("Error saving to health store", error)
+                    Utils.logError("Error saving to health store", error)
                     completion(result)
                 }
             }
