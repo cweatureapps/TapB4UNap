@@ -276,9 +276,14 @@ public class XCGFileLogDestination: XCGBaseLogDestination {
         if let writeToFileURL = writeToFileURL,
           let path = writeToFileURL.path {
 
-            NSFileManager.defaultManager().createFileAtPath(path, contents: nil, attributes: nil)
+            // Temporary changes made to append to log until supported by XCGLogger
+            // https://github.com/DaveWoodCom/XCGLogger/issues/40
+            if(!NSFileManager.defaultManager().fileExistsAtPath(path)) {  // hacked to always append
+                NSFileManager.defaultManager().createFileAtPath(path, contents: nil, attributes: nil)
+            }
             do {
                 logFileHandle = try NSFileHandle(forWritingToURL: writeToFileURL)
+                logFileHandle?.seekToEndOfFile() // hacked to always append
             }
             catch let error as NSError {
                 owner._logln("Attempt to open log file for writing failed: \(error.localizedDescription)", logLevel: .Error)
