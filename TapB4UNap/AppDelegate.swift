@@ -23,18 +23,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        Utils.configureLogger()
         log.debug("didFinishLaunchingWithOptions called")
+
+        Utils.configureLogger()
+        registerNotifications()
+
+        // handle launch due to location update
+        if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
+            log.debug("launched due to location update")
+            didExitRegion()
+            return true  // return early to prevent LocationManagerDelegate from receiving a second region exit message
+        }
+
+        // Start receiving location region update
+        LocationManager.sharedInstance.delegate = self
+
         // handle launch from local notification when app is terminated
         if let _ = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] {
             log.debug("It's a local notification")
             wakeIfNeeded()
-        } else if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
-            log.debug("launched due to location update")
-            didExitRegion()
         }
-        registerNotifications()
-        LocationManager.sharedInstance.delegate = self
+
         return true
     }
 
