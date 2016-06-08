@@ -16,7 +16,7 @@ protocol TimerViewControllerDelegate {
 class TimerViewController: UIViewController {
 
     private let log = XCGLogger.defaultInstance()
-    
+
     var delegate: TimerViewControllerDelegate?
 
     // MARK: Privates

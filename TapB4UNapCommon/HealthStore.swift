@@ -16,7 +16,7 @@ class HealthStore {
     private static let authCancelledErrorCode = 100
 
     private let log = XCGLogger.defaultInstance()
-    
+
     static let sharedInstance: HealthStore = HealthStore()
 
     private let hkHealthStore: HKHealthStore

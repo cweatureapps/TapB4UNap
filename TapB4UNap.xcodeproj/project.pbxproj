@@ -411,7 +411,6 @@
 				5B285A6119F9A69A00ECE1A5 /* Sources */,
 				5B285A6219F9A69A00ECE1A5 /* Frameworks */,
 				5B285A6319F9A69A00ECE1A5 /* Resources */,
-				3A491BF5FFD3F300EDED55C8 /* 📦 Embed Pods Frameworks */,
 				BF266D86D3DEEA696F608908 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
@@ -581,21 +580,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		3A491BF5FFD3F300EDED55C8 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TapB4UNapWidget/Pods-TapB4UNapWidget-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5BE35AF01CB8F9AD004918B9 /* Run SwiftLint */ = {
@@ -910,6 +894,7 @@
 				CODE_SIGN_ENTITLEMENTS = TapB4UNapWidget/TapB4UNapWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -935,6 +920,7 @@
 				CODE_SIGN_ENTITLEMENTS = TapB4UNapWidget/TapB4UNapWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

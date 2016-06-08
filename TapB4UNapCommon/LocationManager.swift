@@ -19,7 +19,7 @@ protocol LocationManagerDelegate {
 The `LocationManager` handles region monitoring for this app.
 
 - remark:
-Region monitoring has been chosen as it allows more fine grain accuracy in detecting change. 
+Region monitoring has been chosen as it allows more fine grain accuracy in detecting change.
 It will also make it easy to support iBeacon technology in the future.
 
 Significant location change works at approximately 500m which is too much for our purposes.
@@ -117,7 +117,7 @@ extension LocationManager: CLLocationManagerDelegate {
         isAuthorizing = false
         startMonitoring()
     }
-    
+
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         log.info("didExitRegion called")
         guard isMonitoring else { return }
