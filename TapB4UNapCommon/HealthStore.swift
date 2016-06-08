@@ -8,12 +8,15 @@
 
 import Foundation
 import HealthKit
+import XCGLogger
 
 ///  Wraps the single instance of HKHealthStore and provides helper methods.
 class HealthStore {
 
     private static let authCancelledErrorCode = 100
 
+    private let log = XCGLogger.defaultInstance()
+    
     static let sharedInstance: HealthStore = HealthStore()
 
     private let hkHealthStore: HKHealthStore
@@ -51,6 +54,12 @@ class HealthStore {
 
     /// saves a sleep sample to health kit
     func saveSleepSample(sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
+        guard sleepSample.canSave() else {
+            let errorMessage = "sleepSample was not in a state that could be saved"
+            log.error(errorMessage)
+            completion(.Failure(TapB4UNapError.SaveFailed(errorMessage)))
+            return
+        }
         requestAuthorisationForHealthStore { result in
             switch result {
             case .Success:
@@ -58,10 +67,11 @@ class HealthStore {
                 let metadata = [ HKMetadataKeyWasUserEntered : true ]
                 let sample = HKCategorySample(type: categoryType, value: HKCategoryValueSleepAnalysis.Asleep.rawValue, startDate: sleepSample.startDate!, endDate: sleepSample.endDate!, metadata: metadata)
 
-                log("Saving...")
+                self.log.debug("Saving...")
 
                 self.hkHealthStore.saveObject(sample) { success, error in
                     if success {
+                        self.log.info("saveSleepSample success")
                         completion(.Success())
                     } else {
                         let errorMessage = error?.localizedDescription ?? "HealthKit save failed"
@@ -118,7 +128,7 @@ class HealthStore {
 
     /// queries and then deletes the recent sleep sample from HealthKit, and then saves the new sample
     func overwriteMostRecentSleepSample(mostRecentSleepSample: SleepSample, withSample sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
-        log("overwriting most recent sleep")
+        log.debug("overwriting most recent sleep")
         querySleepSample(mostRecentSleepSample) { result in
             switch result {
                 case .Failure(let error):
@@ -137,7 +147,7 @@ class HealthStore {
                         switch result {
                         case .Success:
                             self.saveSleepSample(sleepSample) { result in
-                                log("saveSleepData completed")
+                                self.log.debug("saveSleepData completed")
                                 completion(.Success())
                             }
                         case .Failure:

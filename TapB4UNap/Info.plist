@@ -37,6 +37,12 @@
 	<true/>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Allows you to record your sleep data in Apple Health</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Your location is used to notify you if you forget to tap wake</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is used to notify you if you forget to tap wake</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location is used to notify you if you forget to tap wake</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
