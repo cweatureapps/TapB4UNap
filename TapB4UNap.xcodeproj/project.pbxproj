@@ -38,8 +38,8 @@
 		5BBB932A1CE7401100C2A730 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB93291CE7401100C2A730 /* Settings.bundle */; };
 		5BBB932C1CE740E800C2A730 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB932B1CE740E800C2A730 /* MainViewController.swift */; };
 		5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BBF48B41ADA6498005F3E8D /* Defaults.plist */; };
-		5BC73C221D06F7FA00D18638 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* Utils.swift */; };
-		5BC73C231D06F7FA00D18638 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* Utils.swift */; };
+		5BC73C221D06F7FA00D18638 /* LogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* LogUtils.swift */; };
+		5BC73C231D06F7FA00D18638 /* LogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* LogUtils.swift */; };
 		5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */; };
 		5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */; };
 		5BE35B0A1CBA59B4004918B9 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE35B071CBA59B4004918B9 /* SettingsManager.swift */; };
@@ -133,7 +133,7 @@
 		5BA0E30C1CC0570C00E481DA /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		5BA7F2F51CC31F39003174E8 /* TapB4UNapErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapB4UNapErrorTests.swift; sourceTree = "<group>"; };
 		5BA7F2F71CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthStore+ExtensionAuthorization.swift"; sourceTree = "<group>"; };
-		5BA7F2F91CC39C76003174E8 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5BA7F2F91CC39C76003174E8 /* LogUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogUtils.swift; sourceTree = "<group>"; };
 		5BBB93291CE7401100C2A730 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		5BBB932B1CE740E800C2A730 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MainViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5BBF48B41ADA6498005F3E8D /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
@@ -338,7 +338,7 @@
 				5B661F221CBA7272000B76FE /* SleepManager.swift */,
 				5BE35B081CBA59B4004918B9 /* SleepSample.swift */,
 				5BE35B091CBA59B4004918B9 /* TimeKeeper.swift */,
-				5BA7F2F91CC39C76003174E8 /* Utils.swift */,
+				5BA7F2F91CC39C76003174E8 /* LogUtils.swift */,
 				5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */,
 				5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */,
 				5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */,
@@ -667,7 +667,7 @@
 				5B2ECEA01D0434DD00096C04 /* LocationManager.swift in Sources */,
 				5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */,
 				5B661F251CBA7272000B76FE /* SleepManager.swift in Sources */,
-				5BC73C221D06F7FA00D18638 /* Utils.swift in Sources */,
+				5BC73C221D06F7FA00D18638 /* LogUtils.swift in Sources */,
 				5B661F1F1CBA725F000B76FE /* AdjustTimeTableViewController.swift in Sources */,
 				5BE35B0A1CBA59B4004918B9 /* SettingsManager.swift in Sources */,
 				5BE35B0E1CBA59B4004918B9 /* TimeKeeper.swift in Sources */,
@@ -699,7 +699,7 @@
 				5B661F241CBA7272000B76FE /* HealthStore.swift in Sources */,
 				5BE35B0B1CBA59B4004918B9 /* SettingsManager.swift in Sources */,
 				5BE35B0F1CBA59B4004918B9 /* TimeKeeper.swift in Sources */,
-				5BC73C231D06F7FA00D18638 /* Utils.swift in Sources */,
+				5BC73C231D06F7FA00D18638 /* LogUtils.swift in Sources */,
 				5B285A6D19F9A69A00ECE1A5 /* TodayViewController.swift in Sources */,
 				5BA0E30F1CC057EC00E481DA /* Result.swift in Sources */,
 				5BA0E30E1CC057E700E481DA /* Errors.swift in Sources */,

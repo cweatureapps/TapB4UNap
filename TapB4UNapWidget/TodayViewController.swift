@@ -13,7 +13,7 @@ import XCGLogger
 class TodayViewController: UIViewController, NCWidgetProviding, TimerViewControllerDelegate {
 
     private let log: XCGLogger = ({
-        Utils.configureLogger()
+        LogUtils.configureLogger()
         return XCGLogger.defaultInstance()
     })()
 

@@ -25,12 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         log.debug("didFinishLaunchingWithOptions called")
 
-        Utils.configureLogger()
+        LogUtils.configureLogger()
         registerNotifications()
 
         // handle launch due to location update
         if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
-            log.debug("launched due to location update")
+            log.info("app was launched due to location update")
             didExitRegion()
             return true  // return early to prevent LocationManagerDelegate from receiving a second region exit message
         }
@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
 
         // handle launch from local notification when app is terminated
         if let _ = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] {
-            log.debug("It's a local notification")
+            log.info("app was launched due to local notification")
             wakeIfNeeded()
         }
 
@@ -108,14 +108,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     // MARK: - LocationManagerDelegate
 
     func didExitRegion() {
+        log.info("AppDelegate didExitRegion called")
         let notification = UILocalNotification()
         notification.alertBody = "It looks like you are awake, tap to wake?"
         notification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-        log.debug("AppDelegate didExitRegion called")
     }
 
     private func wakeIfNeeded() {
+        log.debug("AppDelegate wakeIfNeeded called")
         SleepManager().wakeIfNeeded(nil)
     }
 }

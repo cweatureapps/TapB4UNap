@@ -72,7 +72,7 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
                     this.timerViewController?.startSleepingTimer()
                 }
             case .Failure(let error):
-                Utils.logError("extension authorization failed", error)
+                LogUtils.logError("extension authorization failed", error)
                 dispatch_async(dispatch_get_main_queue()) {
                     this.timerViewController.handleSleepManagerError(error)
                 }
@@ -96,7 +96,7 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
                     self.log.debug("saveAdjustedSleeptime was successful")
                     self.timerViewController.refreshUI()
                 case .Failure(let error):
-                    Utils.logError("Error with saveAdjustedSleeptime", error)
+                    LogUtils.logError("Error with saveAdjustedSleeptime", error)
                     self.timerViewController.handleSleepManagerError(error)
                 }
             }

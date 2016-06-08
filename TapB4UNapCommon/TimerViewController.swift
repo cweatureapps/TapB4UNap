@@ -70,7 +70,7 @@ class TimerViewController: UIViewController {
             case .Success:
                 self.startSleepingTimer()
             case .Failure(let error):
-                Utils.logError("sleep start failed", error)
+                LogUtils.logError("sleep start failed", error)
                 self.handleSleepManagerError(error)
             }
         }
@@ -96,7 +96,7 @@ class TimerViewController: UIViewController {
                 self?.log.debug("sleep data saved successfully!")
                 self?.refreshUI()
             case .Failure(let error):
-                Utils.logError("widget save error", error)
+                LogUtils.logError("widget save error", error)
                 self?.handleSleepManagerError(error)
             }
         }

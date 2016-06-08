@@ -47,6 +47,7 @@ class SleepManager {
      - parameter completion: The completion called after saving to HealthKit, passing the sleepSample that was saved, whether save was successful, and an error if it failed.
      */
     func wakeIfNeeded(completion: ((Result<SleepSample>) -> Void)?) {
+        log.debug("wakeIfNeeded called")
         locationManager.cancelAllGeofences()
         timeKeeper.endSleepIfNeeded(NSDate())
         guard let sleepSample = timeKeeper.sleepSample() where sleepSample.canSave() else {
@@ -56,12 +57,12 @@ class SleepManager {
             dispatch_async(dispatch_get_main_queue()) {
                 switch result {
                 case .Success:
-                    self.log.debug("sleep data saved successfully")
+                    self.log.info("sleep data saved successfully")
                     self.timeKeeper.saveSuccess(sleepSample)
                     self.timeKeeper.resetSleepData()
                     completion?(.Success(sleepSample))
                 case .Failure(let error):
-                    Utils.logError("saveToHealthStore failed", error)
+                    LogUtils.logError("saveToHealthStore failed", error)
                     completion?(.Failure(error))
                 }
             }
@@ -86,11 +87,11 @@ class SleepManager {
             dispatch_async(dispatch_get_main_queue()) {
                 switch result {
                 case .Success:
-                    self.log.debug("sleep data adjusted successfully")
+                    self.log.info("sleep data adjusted successfully")
                     self.timeKeeper.saveSuccess(sleepSample)
                     completion(.Success())
                 case .Failure(let error):
-                    Utils.logError("Error saving to health store", error)
+                    LogUtils.logError("Error saving to health store", error)
                     completion(result)
                 }
             }

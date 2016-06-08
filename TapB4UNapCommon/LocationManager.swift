@@ -84,6 +84,7 @@ class LocationManager: NSObject {
     }
 
     private func startMonitoring() {
+        log.debug("startMonitoring called")
         cancelAllGeofences()
         coreLocationManager.requestLocation()
     }
@@ -91,7 +92,7 @@ class LocationManager: NSObject {
     /// Stop monitoring all regions which are currently registered
     func cancelAllGeofences() {
         let monitoredRegions = coreLocationManager.monitoredRegions
-        log.debug("number of regions to stop monitoring: \(monitoredRegions.count)")
+        log.info("stop monitoring all regions, count: \(monitoredRegions.count)")
         for r in monitoredRegions {
             coreLocationManager.stopMonitoringForRegion(r)
         }
@@ -101,13 +102,14 @@ class LocationManager: NSObject {
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        log.info("didUpdateLocations called, location received")
         guard !isMonitoring, let coord = locations.first?.coordinate else { return }
         let region = CLCircularRegion(center: coord, radius: Constants.radius, identifier: NSUUID().UUIDString)
         region.notifyOnEntry = false
         region.notifyOnExit = true
-        log.debug("starting to monitor")
         coreLocationManager.startMonitoringForRegion(region)
         isMonitoring = true
+        log.info("started monitoring region, number of regions: \(coreLocationManager.monitoredRegions.count)")
     }
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -117,7 +119,7 @@ extension LocationManager: CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-        log.debug("didExitRegion called")
+        log.info("didExitRegion called")
         guard isMonitoring else { return }
         log.debug("didExitRegion passed guard and is running")
         cancelAllGeofences()
@@ -125,10 +127,10 @@ extension LocationManager: CLLocationManagerDelegate {
     }
 
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        log.debug(error.localizedDescription)
+        log.error(error.localizedDescription)
     }
 
     func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
-        log.debug(error.localizedDescription)
+        log.error(error.localizedDescription)
     }
 }
