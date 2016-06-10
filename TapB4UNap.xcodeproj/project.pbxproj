@@ -18,6 +18,8 @@
 		5B285A7219F9A69A00ECE1A5 /* TapB4UNapWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5B285A6519F9A69A00ECE1A5 /* TapB4UNapWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5B2ECEA01D0434DD00096C04 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */; };
 		5B2ECEA11D0434DD00096C04 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */; };
+		5B45CA2F1D0AD40D0093407E /* common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B45CA2E1D0AD40D0093407E /* common.xcassets */; };
+		5B45CA301D0AD40D0093407E /* common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B45CA2E1D0AD40D0093407E /* common.xcassets */; };
 		5B4B1DE71CE086D4008CFE09 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */; };
 		5B4B1DE81CE086D4008CFE09 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */; };
 		5B4B1DEA1CE0B567008CFE09 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */; };
@@ -122,6 +124,7 @@
 		5B285A6E19F9A69A00ECE1A5 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		5B285A7919FA6EF600ECE1A5 /* TapB4UNapWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TapB4UNapWidget.entitlements; sourceTree = "<group>"; };
 		5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		5B45CA2E1D0AD40D0093407E /* common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = common.xcassets; sourceTree = "<group>"; };
 		5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
 		5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TimerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5B661F1D1CBA725F000B76FE /* AdjustTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustTimeTableViewController.swift; sourceTree = "<group>"; };
@@ -342,6 +345,7 @@
 				5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */,
 				5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */,
 				5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */,
+				5B45CA2E1D0AD40D0093407E /* common.xcassets */,
 			);
 			path = TapB4UNapCommon;
 			sourceTree = "<group>";
@@ -497,6 +501,7 @@
 				5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */,
 				5B285A3B19F4673800ECE1A5 /* Main.storyboard in Resources */,
 				5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */,
+				5B45CA2F1D0AD40D0093407E /* common.xcassets in Resources */,
 				5BBB932A1CE7401100C2A730 /* Settings.bundle in Resources */,
 				5B285A3D19F4673800ECE1A5 /* Images.xcassets in Resources */,
 			);
@@ -516,6 +521,7 @@
 				5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */,
 				5B4B1DE81CE086D4008CFE09 /* TimerViewController.xib in Resources */,
 				5B285A6F19F9A69A00ECE1A5 /* MainInterface.storyboard in Resources */,
+				5B45CA301D0AD40D0093407E /* common.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,10 +27,12 @@ class TimerViewController: UIViewController {
 
     // MARK: Outlets
 
+    @IBOutlet weak private var addButton: UIButton!
     @IBOutlet weak private var sleepButton: UIButton!
-    @IBOutlet weak private var resetButton: UIButton!
+    @IBOutlet weak private var cancelButton: UIButton!
     @IBOutlet weak private var wakeButton: UIButton!
-    @IBOutlet weak private var adjustButton: UIButton!
+    @IBOutlet weak private var editButton: UIButton!
+    @IBOutlet weak private var doneButton: UIButton!
     @IBOutlet weak private var messageLabel: UILabel!
     @IBOutlet weak private var timerLabel: UILabel!
 
@@ -171,32 +173,47 @@ class TimerViewController: UIViewController {
     private func updateScreen(screenState screenState: ScreenState) {
         switch screenState {
         case .Begin:
+            addButton.hidden = false
             sleepButton.hidden = false
-            resetButton.hidden = true
+            cancelButton.hidden = true
             wakeButton.hidden = true
-            adjustButton.hidden = true
+            editButton.hidden = true
+            doneButton.hidden = true
+
             messageLabel.hidden = false
             timerLabel.hidden = true
+
         case .Sleeping:
+            addButton.hidden = true
             sleepButton.hidden = true
-            resetButton.hidden = false
+            cancelButton.hidden = false
             wakeButton.hidden = false
-            adjustButton.hidden = true
+            editButton.hidden = true
+            doneButton.hidden = true
+
             messageLabel.hidden = true
             timerLabel.hidden = false
+
         case .Saving: fallthrough
         case .Error:
+            addButton.hidden = true
             sleepButton.hidden = true
-            resetButton.hidden = true
+            cancelButton.hidden = true
             wakeButton.hidden = true
-            adjustButton.hidden = true
+            editButton.hidden = true
+            doneButton.hidden = true
+
             messageLabel.hidden = false
             timerLabel.hidden = true
+
         case .Finished:
+            addButton.hidden = true
             sleepButton.hidden = true
-            resetButton.hidden = false
+            cancelButton.hidden = true
             wakeButton.hidden = true
-            adjustButton.hidden = false
+            editButton.hidden = false
+            doneButton.hidden = false
+
             messageLabel.hidden = false
             timerLabel.hidden = true
         }

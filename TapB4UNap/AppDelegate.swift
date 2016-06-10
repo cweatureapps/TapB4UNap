@@ -23,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        log.debug("didFinishLaunchingWithOptions called")
 
         LogUtils.configureLogger()
+        log.debug("didFinishLaunchingWithOptions called")
         registerNotifications()
 
         // handle launch due to location update

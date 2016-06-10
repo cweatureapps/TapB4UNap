@@ -21,9 +21,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7CN-LM-KxR">
-                                <rect key="frame" x="24" y="171" width="366" height="100"/>
+                                <rect key="frame" x="24" y="146" width="366" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="Ea8-Mx-eWp"/>
+                                    <constraint firstAttribute="height" constant="150" id="Ea8-Mx-eWp"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="JQq-Vd-ZXe" kind="embed" id="fMj-aH-Tzf"/>
@@ -242,7 +242,7 @@
                         <viewControllerLayoutGuide type="bottom" id="YKN-8h-3jO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ESt-ys-gaG">
-                        <rect key="frame" x="0.0" y="0.0" width="366" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="366" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
