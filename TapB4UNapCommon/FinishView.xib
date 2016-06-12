@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="of0-7C-rbC" userLabel="Finished" customClass="DashboardView" customModule="TapB4UNap" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="302" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gpx-Ur-mxi">
+                    <rect key="frame" x="0.0" y="0.0" width="302" height="76"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You slept for 00:00:00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkj-po-Q4r">
+                            <rect key="frame" x="30" y="24" width="243" height="29"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Wkj-po-Q4r" firstAttribute="width" secondItem="gpx-Ur-mxi" secondAttribute="width" multiplier="0.8" constant="1" id="8OA-W1-iTB"/>
+                        <constraint firstItem="Wkj-po-Q4r" firstAttribute="centerY" secondItem="gpx-Ur-mxi" secondAttribute="centerY" id="Not-6f-QMM"/>
+                        <constraint firstItem="Wkj-po-Q4r" firstAttribute="centerX" secondItem="gpx-Ur-mxi" secondAttribute="centerX" id="r3x-bq-ZrG"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcQ-cm-dl3" userLabel="buttonContainer">
+                    <rect key="frame" x="0.0" y="76" width="302" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrq-jR-S5V">
+                            <rect key="frame" x="91" y="0.0" width="40" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-18"/>
+                            <state key="normal" title="Edit" backgroundImage="icon_edit">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTI-P4-O0l">
+                            <rect key="frame" x="171" y="0.0" width="40" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-18"/>
+                            <state key="normal" title="Done" backgroundImage="icon_tick">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="yTI-P4-O0l" firstAttribute="top" secondItem="KcQ-cm-dl3" secondAttribute="top" id="72e-af-WAB"/>
+                        <constraint firstAttribute="height" constant="50" id="GO7-Yh-r2W"/>
+                        <constraint firstItem="qrq-jR-S5V" firstAttribute="top" secondItem="KcQ-cm-dl3" secondAttribute="top" id="eo1-0e-hEY"/>
+                        <constraint firstItem="qrq-jR-S5V" firstAttribute="centerX" secondItem="KcQ-cm-dl3" secondAttribute="centerX" constant="-40" id="eqp-iO-9mR"/>
+                        <constraint firstItem="yTI-P4-O0l" firstAttribute="centerX" secondItem="KcQ-cm-dl3" secondAttribute="centerX" constant="40" id="qdi-XL-GPR"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="KcQ-cm-dl3" secondAttribute="trailing" id="9io-sc-WTb"/>
+                <constraint firstItem="KcQ-cm-dl3" firstAttribute="top" secondItem="gpx-Ur-mxi" secondAttribute="bottom" id="Dwm-82-jzO"/>
+                <constraint firstItem="gpx-Ur-mxi" firstAttribute="top" secondItem="of0-7C-rbC" secondAttribute="top" id="LEU-DM-AKS"/>
+                <constraint firstItem="gpx-Ur-mxi" firstAttribute="leading" secondItem="of0-7C-rbC" secondAttribute="leading" id="PNe-Bg-6fK"/>
+                <constraint firstAttribute="bottom" secondItem="KcQ-cm-dl3" secondAttribute="bottom" constant="24" id="Ruc-GS-yrb"/>
+                <constraint firstItem="KcQ-cm-dl3" firstAttribute="leading" secondItem="of0-7C-rbC" secondAttribute="leading" id="Z5O-eV-2DG"/>
+                <constraint firstAttribute="trailing" secondItem="gpx-Ur-mxi" secondAttribute="trailing" id="f53-Gf-4Id"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="button1" destination="qrq-jR-S5V" id="qPt-9Z-RS9"/>
+                <outlet property="button2" destination="yTI-P4-O0l" id="ghz-Wa-5fz"/>
+                <outlet property="messageLabel" destination="Wkj-po-Q4r" id="dal-rP-F2u"/>
+            </connections>
+            <point key="canvasLocation" x="581" y="-260"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_edit" width="40" height="40"/>
+        <image name="icon_tick" width="40" height="40"/>
+    </resources>
+</document>

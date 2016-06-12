@@ -6,19 +6,20 @@
 Pre-condition: app is closed. Launch the widget. screen is in initial state, with "Tap sleep to start"
 
 1. Tap sleep, counter begins. The time shown should not shift around with each 1 second tick
-2. Tap Reset, goes back to starting screen
+2. Tap Cancel, goes back to starting screen
 3. Start sleep again. Tap on Wake, it will show how long you slept for.
 4. open up the (app), confirm it also shows the sleeping time
-5. Tap on reset
-    5a. immediately tap on reset, screen should reset
-    5b. tap on reset only after timeout, screen should reset
+5. Tap on Done  
+    a. immediately tap on reset, screen should reset  
+    b. tap on reset only after timeout, screen should reset
 6. open up the (app), confirm that screen state is also reset
 7. confirm saved OK in HealthKit
 
 
 ### From the app
-Pre-condition: app is closed. Launch the app. screen is in initial state, with "Tap sleep to start"
-Repeat the above test from the app.
+Pre-condition: app is closed. Launch the app. screen is in initial state, with "Tap sleep to start"  
+
+Repeat the above test from the app.  
 In step 4 and 6, verify for the widget, rather than the app
 
 

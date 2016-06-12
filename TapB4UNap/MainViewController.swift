@@ -36,16 +36,18 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
     // MARK: Notifications
 
     private func setupNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.willEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.didEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.didBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.willResignActive), name: UIApplicationWillResignActiveNotification, object: nil)
     }
 
-    func willEnterForeground() {
+    func didBecomeActive() {
+        log.debug("didBecomeActive called")
         timerViewController?.refreshUI()
         timerViewController?.startSleepingTimer()
     }
 
-    func didEnterBackground() {
+    func willResignActive() {
+        log.debug("willResignActive called")
         timerViewController?.stopSleepingTimer()
     }
 

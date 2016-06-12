@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ZH7-LC-WkN" userLabel="Begin" customClass="DashboardView" customModule="TapB4UNap" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="302" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dO4-a1-oWs">
+                    <rect key="frame" x="0.0" y="0.0" width="302" height="76"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap sleep to start" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBW-gw-QuW">
+                            <rect key="frame" x="30" y="24" width="243" height="29"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="JBW-gw-QuW" firstAttribute="centerX" secondItem="dO4-a1-oWs" secondAttribute="centerX" id="1O9-g9-trc"/>
+                        <constraint firstItem="JBW-gw-QuW" firstAttribute="width" secondItem="dO4-a1-oWs" secondAttribute="width" multiplier="0.8" constant="1" id="Yq3-bn-Q3U"/>
+                        <constraint firstItem="JBW-gw-QuW" firstAttribute="centerY" secondItem="dO4-a1-oWs" secondAttribute="centerY" id="uZr-3h-Ige"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJC-sb-VSv" userLabel="buttonContainer">
+                    <rect key="frame" x="0.0" y="76" width="302" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2q-FN-Ove">
+                            <rect key="frame" x="91" y="0.0" width="40" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-18"/>
+                            <state key="normal" title="Add" backgroundImage="icon_add">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euG-c5-q3u">
+                            <rect key="frame" x="171" y="0.0" width="40" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-18"/>
+                            <state key="normal" title="Sleep" backgroundImage="icon_sleep">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="euG-c5-q3u" firstAttribute="top" secondItem="XJC-sb-VSv" secondAttribute="top" id="3pd-fn-3CR"/>
+                        <constraint firstItem="J2q-FN-Ove" firstAttribute="centerX" secondItem="XJC-sb-VSv" secondAttribute="centerX" constant="-40" id="EKw-md-srG"/>
+                        <constraint firstAttribute="height" constant="50" id="T3C-bM-aMV"/>
+                        <constraint firstItem="J2q-FN-Ove" firstAttribute="top" secondItem="XJC-sb-VSv" secondAttribute="top" id="tdM-Tz-ApP"/>
+                        <constraint firstAttribute="centerX" secondItem="euG-c5-q3u" secondAttribute="centerX" constant="-40" id="wqv-en-YbS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="dO4-a1-oWs" firstAttribute="top" secondItem="ZH7-LC-WkN" secondAttribute="top" id="5kZ-BL-c09"/>
+                <constraint firstItem="XJC-sb-VSv" firstAttribute="top" secondItem="dO4-a1-oWs" secondAttribute="bottom" id="HnJ-46-ZCb"/>
+                <constraint firstItem="dO4-a1-oWs" firstAttribute="leading" secondItem="ZH7-LC-WkN" secondAttribute="leading" id="JN2-7v-Epw"/>
+                <constraint firstAttribute="trailing" secondItem="dO4-a1-oWs" secondAttribute="trailing" id="aGJ-Tg-fri"/>
+                <constraint firstAttribute="bottom" secondItem="XJC-sb-VSv" secondAttribute="bottom" constant="24" id="gQp-wo-xuw"/>
+                <constraint firstItem="XJC-sb-VSv" firstAttribute="leading" secondItem="ZH7-LC-WkN" secondAttribute="leading" id="vlE-3G-zvI"/>
+                <constraint firstAttribute="trailing" secondItem="XJC-sb-VSv" secondAttribute="trailing" id="xsH-mt-C4M"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="textIsStatic" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="button1" destination="J2q-FN-Ove" id="FE6-4I-7rO"/>
+                <outlet property="button2" destination="euG-c5-q3u" id="RI9-es-uND"/>
+                <outlet property="messageLabel" destination="JBW-gw-QuW" id="API-ln-Kvb"/>
+            </connections>
+            <point key="canvasLocation" x="203" y="-490"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_add" width="40" height="40"/>
+        <image name="icon_sleep" width="40" height="40"/>
+    </resources>
+</document>

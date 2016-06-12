@@ -31,6 +31,16 @@
 		5B661F251CBA7272000B76FE /* SleepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F221CBA7272000B76FE /* SleepManager.swift */; };
 		5B661F261CBA7272000B76FE /* SleepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F221CBA7272000B76FE /* SleepManager.swift */; };
 		5B6C3B811A9A0ED200278990 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6C3B801A9A0ED200278990 /* HealthKit.framework */; };
+		5B9EAB901D0D8049000D30BE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */; };
+		5B9EAB921D0D807D000D30BE /* BeginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB911D0D807D000D30BE /* BeginView.xib */; };
+		5B9EAB931D0D874A000D30BE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */; };
+		5B9EAB951D0D893C000D30BE /* SleepingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB941D0D893C000D30BE /* SleepingView.xib */; };
+		5B9EAB961D0D893C000D30BE /* SleepingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB941D0D893C000D30BE /* SleepingView.xib */; };
+		5B9EAB981D0D89C4000D30BE /* FinishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB971D0D89C4000D30BE /* FinishView.xib */; };
+		5B9EAB991D0D89C4000D30BE /* FinishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB971D0D89C4000D30BE /* FinishView.xib */; };
+		5B9EAB9B1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */; };
+		5B9EAB9C1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */; };
+		5B9EAB9D1D0D9F87000D30BE /* BeginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB911D0D807D000D30BE /* BeginView.xib */; };
 		5BA0E30B1CC0556000E481DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30A1CC0556000E481DA /* Result.swift */; };
 		5BA0E30D1CC0570C00E481DA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30C1CC0570C00E481DA /* Errors.swift */; };
 		5BA0E30E1CC057E700E481DA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30C1CC0570C00E481DA /* Errors.swift */; };
@@ -132,6 +142,11 @@
 		5B661F221CBA7272000B76FE /* SleepManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SleepManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5B6B6FA41CD2CB6A00A015E2 /* TestCases.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TestCases.md; sourceTree = "<group>"; };
 		5B6C3B801A9A0ED200278990 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		5B9EAB911D0D807D000D30BE /* BeginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeginView.xib; sourceTree = "<group>"; };
+		5B9EAB941D0D893C000D30BE /* SleepingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SleepingView.xib; path = TapB4UNapCommon/SleepingView.xib; sourceTree = SOURCE_ROOT; };
+		5B9EAB971D0D89C4000D30BE /* FinishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FinishView.xib; sourceTree = "<group>"; };
+		5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ViewFromNib.swift"; sourceTree = "<group>"; };
 		5BA0E30A1CC0556000E481DA /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		5BA0E30C1CC0570C00E481DA /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		5BA7F2F51CC31F39003174E8 /* TapB4UNapErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapB4UNapErrorTests.swift; sourceTree = "<group>"; };
@@ -334,18 +349,23 @@
 		5BE35B061CBA59B4004918B9 /* TapB4UNapCommon */ = {
 			isa = PBXGroup;
 			children = (
+				5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */,
+				5B9EAB911D0D807D000D30BE /* BeginView.xib */,
+				5B45CA2E1D0AD40D0093407E /* common.xcassets */,
+				5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */,
 				5BA0E30C1CC0570C00E481DA /* Errors.swift */,
 				5B661F211CBA7272000B76FE /* HealthStore.swift */,
+				5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */,
+				5BA7F2F91CC39C76003174E8 /* LogUtils.swift */,
 				5BA0E30A1CC0556000E481DA /* Result.swift */,
 				5BE35B071CBA59B4004918B9 /* SettingsManager.swift */,
+				5B9EAB941D0D893C000D30BE /* SleepingView.xib */,
 				5B661F221CBA7272000B76FE /* SleepManager.swift */,
 				5BE35B081CBA59B4004918B9 /* SleepSample.swift */,
 				5BE35B091CBA59B4004918B9 /* TimeKeeper.swift */,
-				5BA7F2F91CC39C76003174E8 /* LogUtils.swift */,
-				5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */,
 				5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */,
-				5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */,
-				5B45CA2E1D0AD40D0093407E /* common.xcassets */,
+				5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */,
+				5B9EAB971D0D89C4000D30BE /* FinishView.xib */,
 			);
 			path = TapB4UNapCommon;
 			sourceTree = "<group>";
@@ -502,7 +522,10 @@
 				5B285A3B19F4673800ECE1A5 /* Main.storyboard in Resources */,
 				5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */,
 				5B45CA2F1D0AD40D0093407E /* common.xcassets in Resources */,
+				5B9EAB981D0D89C4000D30BE /* FinishView.xib in Resources */,
+				5B9EAB951D0D893C000D30BE /* SleepingView.xib in Resources */,
 				5BBB932A1CE7401100C2A730 /* Settings.bundle in Resources */,
+				5B9EAB921D0D807D000D30BE /* BeginView.xib in Resources */,
 				5B285A3D19F4673800ECE1A5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,9 +542,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */,
+				5B9EAB991D0D89C4000D30BE /* FinishView.xib in Resources */,
 				5B4B1DE81CE086D4008CFE09 /* TimerViewController.xib in Resources */,
 				5B285A6F19F9A69A00ECE1A5 /* MainInterface.storyboard in Resources */,
+				5B9EAB9D1D0D9F87000D30BE /* BeginView.xib in Resources */,
 				5B45CA301D0AD40D0093407E /* common.xcassets in Resources */,
+				5B9EAB961D0D893C000D30BE /* SleepingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,9 +679,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BA0E30B1CC0556000E481DA /* Result.swift in Sources */,
+				5B9EAB901D0D8049000D30BE /* DashboardView.swift in Sources */,
 				5BBB932C1CE740E800C2A730 /* MainViewController.swift in Sources */,
 				5B2ECEA01D0434DD00096C04 /* LocationManager.swift in Sources */,
 				5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */,
+				5B9EAB9B1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */,
 				5B661F251CBA7272000B76FE /* SleepManager.swift in Sources */,
 				5BC73C221D06F7FA00D18638 /* LogUtils.swift in Sources */,
 				5B661F1F1CBA725F000B76FE /* AdjustTimeTableViewController.swift in Sources */,
@@ -683,6 +711,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B4B1DEB1CE0B567008CFE09 /* TimerViewController.swift in Sources */,
+				5B9EAB931D0D874A000D30BE /* DashboardView.swift in Sources */,
+				5B9EAB9C1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */,
 				5BE35B0D1CBA59B4004918B9 /* SleepSample.swift in Sources */,
 				5B661F261CBA7272000B76FE /* SleepManager.swift in Sources */,
 				5B2ECEA11D0434DD00096C04 /* LocationManager.swift in Sources */,
