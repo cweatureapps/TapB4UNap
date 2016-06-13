@@ -6,19 +6,18 @@
 Pre-condition: app is closed. Launch the widget. screen is in initial state, with "Tap sleep to start"
 
 1. Tap sleep, counter begins. The time shown should not shift around with each 1 second tick
-2. Tap Reset, goes back to starting screen
+2. Tap Cancel, goes back to starting screen
 3. Start sleep again. Tap on Wake, it will show how long you slept for.
 4. open up the (app), confirm it also shows the sleeping time
-5. Tap on reset
-    5a. immediately tap on reset, screen should reset
-    5b. tap on reset only after timeout, screen should reset
+5. Tap on Done. Screen should reset  
 6. open up the (app), confirm that screen state is also reset
 7. confirm saved OK in HealthKit
 
 
 ### From the app
-Pre-condition: app is closed. Launch the app. screen is in initial state, with "Tap sleep to start"
-Repeat the above test from the app.
+Pre-condition: app is closed. Launch the app. screen is in initial state, with "Tap sleep to start"  
+
+Repeat the above test from the app.  
 In step 4 and 6, verify for the widget, rather than the app
 
 
@@ -27,14 +26,32 @@ In step 4 and 6, verify for the widget, rather than the app
 ### From the widget
 Pre-condition: After successful save
 
-1. Close widget and open it immediately, the finish screen is still shown.
-2. close widget and open it, wait for the reset timeout, and then open it again. The starting screen is shown
+1. Close widget and open it immediately.  
+ Expected: the finish screen is still shown.
+2. close widget and open it, wait for the reset timeout, and then open it again.  
+ Expected: The starting screen is shown
 
 ### From the app
 Pre-condition: After successful save
 
-1. Background the app, and open it again back immediately, the finish screen is still shown.
-2. Background the app, wait for the reset timeout, and then open it again. The starting screen is shown
+**Notification center**
+
+1. Pull down to open notification center. Close it immediately to go back to the app.  
+ Expected: This finish screen is still shown
+2. Pull down to open notification center, wait for the reset timeout. Close it to go back to the app.  
+ Expected: The starting screen is shown
+
+**Suspend the app**
+
+1. Suspend the app, and open it again back immediately  
+ Expected: The finish screen is still shown.
+2. Suspend the app, wait for the reset timeout, and then open it again.  
+ Expected: The starting screen is shown
+ 
+**Done button**
+
+Start at pre-condition again. Wait for timeout, then tap on Done.   
+ Expected: screen should be reset
 
 
 
@@ -88,6 +105,7 @@ Expected: Something went wrong error message
 ## HealthKit Permissions
 
 ### TestCase 1 - Not determined yet (from widget)
+
 1. Reset simulator contents and settings
 2. From widget, tap on Sleep
 3. In the alert, select **Not Now**  
@@ -95,6 +113,7 @@ Expected: Something went wrong error message
 4. Close the today extensions, and re-open  
  Expected: The widget text should reset to the original
 5. Redo test steps 2-4 again 
+
 
 ### TestCase 2 - Not determined yet (from app)
 1. Reset simulator contents and settings
@@ -181,7 +200,7 @@ Pre-condition: sleeping and timer is counting, make sure the app is open
 Expected: it should immediately say permissions are required
 3. Open the today extension
 Expected: it should say permissions are required
-4. Close and reopen the app
+4. Go back to the app
 Expected: it should say permissions are required
 5. Go to apple health and manually grant permissions
 Expected: Both app and widget resume the counter again, and sleep was started at the original time

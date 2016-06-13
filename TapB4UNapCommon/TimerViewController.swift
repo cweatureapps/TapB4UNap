@@ -15,7 +15,17 @@ protocol TimerViewControllerDelegate {
 
 class TimerViewController: UIViewController {
 
+    // Constants
+
+    private enum Constants {
+        static let animationDuration = 0.6
+        static let m34: CGFloat = 1.0 / -180
+        static let m34Less: CGFloat = 1.0 / -300
+    }
+
     private let log = XCGLogger.defaultInstance()
+
+    // MARK: Public properties
 
     var delegate: TimerViewControllerDelegate?
 
@@ -27,12 +37,10 @@ class TimerViewController: UIViewController {
 
     // MARK: Outlets
 
-    @IBOutlet weak private var sleepButton: UIButton!
-    @IBOutlet weak private var resetButton: UIButton!
-    @IBOutlet weak private var wakeButton: UIButton!
-    @IBOutlet weak private var adjustButton: UIButton!
-    @IBOutlet weak private var messageLabel: UILabel!
-    @IBOutlet weak private var timerLabel: UILabel!
+    @IBOutlet var beginView: DashboardView!
+    @IBOutlet var sleepingView: DashboardView!
+    @IBOutlet var finishView: DashboardView!
+    @IBOutlet var errorLabel: UILabel!
 
     // MARK: UIViewController overrides
 
@@ -42,8 +50,15 @@ class TimerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = .clearColor()
+        errorLabel.text = ""
+
+        beginView.setupButtons(target: self, button1Action: .addTapped, button2Action: .sleepTapped)
+        sleepingView.setupButtons(target: self, button1Action: .cancelTapped, button2Action: .wakeTapped)
+        finishView.setupButtons(target: self, button1Action: .editTapped, button2Action: .doneTapped)
     }
+
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,8 +66,6 @@ class TimerViewController: UIViewController {
         if let sleepSample = timeKeeper.sleepSample() {
             if sleepSample.isSleeping() {
                 startSleepingTimer()
-            } else if sleepSample.canSave() {
-                wake()
             }
         }
     }
@@ -64,42 +77,49 @@ class TimerViewController: UIViewController {
 
     // MARK: Button handlers
 
-    @IBAction func sleepButtonHandler(sender: AnyObject) {
-        sleepManager.startSleep { result in
+    func addTapped() {
+        log.debug("add button tapped")
+    }
+
+    func sleepTapped() {
+        sleepManager.startSleep { [weak self] result in
+            guard let this = self else { return }
             switch result {
             case .Success:
-                self.startSleepingTimer()
+                this.startSleepingTimer()
             case .Failure(let error):
                 LogUtils.logError("sleep start failed", error)
-                self.handleSleepManagerError(error)
+                this.handleSleepManagerError(error)
             }
         }
     }
 
-    @IBAction func resetButtonHandler(sender: AnyObject) {
+    func cancelTapped() {
         sleepManager.reset()
-        refreshUI()
+        animateToDashboardView(beginView, direction: .Back)
     }
 
-    @IBAction func wakeButtonHandler(sender: AnyObject) {
-        wake()
+    func wakeTapped() {
+        sleepManager.wakeIfNeeded { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .Success:
+                this.log.debug("sleep data saved successfully!")
+                this.refreshUI()
+            case .Failure(let error):
+                LogUtils.logError("widget save error", error)
+                this.handleSleepManagerError(error)
+            }
+        }
     }
 
-    @IBAction func adjustButtonHandler(sender: AnyObject) {
+    func editTapped() {
         delegate?.adjustButtonHandler()
     }
 
-    private func wake() {
-        sleepManager.wakeIfNeeded { [weak self] result in
-            switch result {
-            case .Success:
-                self?.log.debug("sleep data saved successfully!")
-                self?.refreshUI()
-            case .Failure(let error):
-                LogUtils.logError("widget save error", error)
-                self?.handleSleepManagerError(error)
-            }
-        }
+    func doneTapped() {
+        sleepManager.reset()
+        self.animateToDashboardView(beginView, direction: .Forward)
     }
 
     func handleSleepManagerError(error: ErrorType) {
@@ -110,8 +130,12 @@ class TimerViewController: UIViewController {
         } else {
             errorMessage = "Sorry, something went wrong"
         }
-        updateScreen(screenState: .Error)
-        messageLabel.text = errorMessage
+
+        errorLabel.text = errorMessage
+        beginView.hide()
+        sleepingView.hide()
+        finishView.hide()
+        currentView = nil
     }
 
     // MARK: sleeping timer
@@ -129,7 +153,9 @@ class TimerViewController: UIViewController {
     }
 
     func timerHandler() {
-        if let sleepSample = timeKeeper.sleepSample() {
+        if HealthStore.sharedInstance.isAuthorizationNotDetermined() {
+            stopSleepingTimer()
+        } else if let sleepSample = timeKeeper.sleepSample() {
             if !sleepSample.isSleeping() {
                 stopSleepingTimer()
             }
@@ -142,64 +168,105 @@ class TimerViewController: UIViewController {
     // MARK: UI updates
 
     func refreshUI() {
-        guard !HealthStore.sharedInstance.isDenied() else {
+
+        guard !HealthStore.sharedInstance.isAuthorizationNotDetermined() else {
+            animateToDashboardView(beginView, direction: .Forward)
+            return
+        }
+
+        guard !HealthStore.sharedInstance.isAuthorizationDenied() else {
             handleSleepManagerError(TapB4UNapError.NotAuthorized("status was already denied"))
             return
         }
+
+        errorLabel.text = ""
         if var sleepSample = timeKeeper.sleepSample() {
             if sleepSample.isSleeping() {
                 sleepSample.endDate = NSDate()
                 let formattedTime = sleepSample.formattedString()
-                updateScreen(screenState: .Sleeping)
-                timerLabel.text = formattedTime
+                sleepingView.messageLabel.text = formattedTime
+                animateToDashboardView(sleepingView, direction: .Forward)
             }
         } else {
             if let mostRecentSleep = timeKeeper.mostRecentSleepSample() where timeKeeper.wasRecentlySaved() {
-                updateScreen(screenState: .Finished)
-                messageLabel.text = "You slept for \(mostRecentSleep.formattedString())"
+                finishView.messageLabel.text = "You slept for \(mostRecentSleep.formattedString())"
+                animateToDashboardView(finishView, direction: .Forward)
             } else {
-                updateScreen(screenState: .Begin)
-                messageLabel.text = "Tap sleep to start"
+                animateToDashboardView(beginView, direction: .Forward)
             }
         }
     }
 
-    private enum ScreenState {
-        case Begin, Sleeping, Saving, Finished, Error
+    // MARK: - Animations
+
+    private var currentView: DashboardView?
+
+    private enum ButtonTransitionDirection {
+        case Forward, Back
     }
 
-    private func updateScreen(screenState screenState: ScreenState) {
-        switch screenState {
-        case .Begin:
-            sleepButton.hidden = false
-            resetButton.hidden = true
-            wakeButton.hidden = true
-            adjustButton.hidden = true
-            messageLabel.hidden = false
-            timerLabel.hidden = true
-        case .Sleeping:
-            sleepButton.hidden = true
-            resetButton.hidden = false
-            wakeButton.hidden = false
-            adjustButton.hidden = true
-            messageLabel.hidden = true
-            timerLabel.hidden = false
-        case .Saving: fallthrough
-        case .Error:
-            sleepButton.hidden = true
-            resetButton.hidden = true
-            wakeButton.hidden = true
-            adjustButton.hidden = true
-            messageLabel.hidden = false
-            timerLabel.hidden = true
-        case .Finished:
-            sleepButton.hidden = true
-            resetButton.hidden = false
-            wakeButton.hidden = true
-            adjustButton.hidden = false
-            messageLabel.hidden = false
-            timerLabel.hidden = true
+    private func animateToDashboardView(view2: DashboardView, direction: ButtonTransitionDirection) {
+        guard currentView != view2 else { return }
+        guard let currentView = currentView else {
+            self.currentView = view2
+            UIView.animateWithDuration(Constants.animationDuration, animations: {
+                view2.show()
+                self.view.bringSubviewToFront(view2)
+            })
+            return
+        }
+        self.currentView = view2
+        animateFromView(currentView.button1, toView: view2.button1, direction: direction, m34: Constants.m34)
+        animateFromView(currentView.button2, toView: view2.button2, direction: direction, m34: Constants.m34)
+        animateFromView(currentView.messageLabel, toView: view2.messageLabel, direction: direction, m34: Constants.m34Less)
+        view.bringSubviewToFront(view2)
+    }
+
+    private func animateFromView(view1: UIView, toView view2: UIView, direction: ButtonTransitionDirection, m34: CGFloat) {
+        func performTransition(button1EndAngle button1EndAngle: CGFloat, button2StartAngle: CGFloat) {
+            // animate view 1
+            UIView.animateWithDuration(Constants.animationDuration/2.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+                var rotationAndPerspectiveTransform = CATransform3DIdentity
+                rotationAndPerspectiveTransform.m34 = m34
+                rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, button1EndAngle, 0.0, 1.0, 0.0)
+                view1.layer.transform = rotationAndPerspectiveTransform
+
+            }) { _ in
+                // hide and reset view 1
+                view1.alpha = 0.0
+                view1.layer.transform = CATransform3DIdentity
+
+                // set starting posiition for view 2
+                view2.layer.transform = CATransform3DMakeRotation(button2StartAngle, 0.0, 1.0, 0.0)
+                view2.alpha = 1.0
+
+                // animate view 2
+                UIView.animateWithDuration(Constants.animationDuration/2.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    var rotationAndPerspectiveTransform = CATransform3DIdentity
+                    rotationAndPerspectiveTransform.m34 = m34
+                    view2.layer.transform = rotationAndPerspectiveTransform
+                }, completion: nil)
+            }
+        }
+        switch direction {
+            case .Back:
+                let view1EndAngle = CGFloat(M_PI)/2
+                let view2StartAngle = -CGFloat(M_PI)/2
+                performTransition(button1EndAngle: view1EndAngle, button2StartAngle: view2StartAngle)
+            case .Forward:
+                let view1EndAngle = -CGFloat(M_PI)/2
+                let view2StartAngle = CGFloat(M_PI)/2
+                performTransition(button1EndAngle: view1EndAngle, button2StartAngle: view2StartAngle)
+
         }
     }
+}
 
+private extension Selector {
+    static let addTapped = #selector(TimerViewController.addTapped)
+    static let sleepTapped = #selector(TimerViewController.sleepTapped)
+    static let cancelTapped = #selector(TimerViewController.cancelTapped)
+    static let wakeTapped = #selector(TimerViewController.wakeTapped)
+    static let editTapped = #selector(TimerViewController.editTapped)
+    static let doneTapped = #selector(TimerViewController.doneTapped)
 }

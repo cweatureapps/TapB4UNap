@@ -25,13 +25,18 @@ class HealthStore {
         self.hkHealthStore = HKHealthStore()
     }
 
+    /// Whether sharing has been denied for sleep data
+    func isAuthorizationNotDetermined() -> Bool {
+        return hkHealthStore.authorizationStatusForType(HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!) == HKAuthorizationStatus.NotDetermined
+    }
+
     /// Whether sharing has been authorized for sleep data
     func isAuthorized() -> Bool {
         return hkHealthStore.authorizationStatusForType(HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!) == HKAuthorizationStatus.SharingAuthorized
     }
 
     /// Whether sharing has been denied for sleep data
-    func isDenied() -> Bool {
+    func isAuthorizationDenied() -> Bool {
         return hkHealthStore.authorizationStatusForType(HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!) == HKAuthorizationStatus.SharingDenied
     }
 
