@@ -86,7 +86,6 @@ class TimerViewController: UIViewController {
             guard let this = self else { return }
             switch result {
             case .Success:
-                // this.animateToView(this.sleepingView, direction: .Forward)
                 this.startSleepingTimer()
             case .Failure(let error):
                 LogUtils.logError("sleep start failed", error)
@@ -154,7 +153,9 @@ class TimerViewController: UIViewController {
     }
 
     func timerHandler() {
-        if let sleepSample = timeKeeper.sleepSample() {
+        if HealthStore.sharedInstance.isAuthorizationNotDetermined() {
+            stopSleepingTimer()
+        } else if let sleepSample = timeKeeper.sleepSample() {
             if !sleepSample.isSleeping() {
                 stopSleepingTimer()
             }
@@ -167,10 +168,17 @@ class TimerViewController: UIViewController {
     // MARK: UI updates
 
     func refreshUI() {
-        guard !HealthStore.sharedInstance.isDenied() else {
+
+        guard !HealthStore.sharedInstance.isAuthorizationNotDetermined() else {
+            animateToDashboardView(beginView, direction: .Forward)
+            return
+        }
+
+        guard !HealthStore.sharedInstance.isAuthorizationDenied() else {
             handleSleepManagerError(TapB4UNapError.NotAuthorized("status was already denied"))
             return
         }
+
         errorLabel.text = ""
         if var sleepSample = timeKeeper.sleepSample() {
             if sleepSample.isSleeping() {

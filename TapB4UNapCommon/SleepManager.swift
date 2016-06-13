@@ -26,15 +26,20 @@ class SleepManager {
                     self.locationManager.setupGeofence()
                     completion(.Success())
                 case .Failure(let error):
+                    self.log.debug("requestAuthorisationForHealthStore failed")
+
                     // When invoked from widget, if the auth screen takes too long, start timer anyway.
                     // If user ends up authorizing, then sleep is tracked as expected.
                     // If user denies auth, then UI should indicate authorization is required when ticking the timer.
                     if let customError = error as? TapB4UNapError {
                         if case .AuthorizationCancelled = customError {
+                            self.log.info("HealthStore Authorization Cancelled")
                             self.timeKeeper.startSleep(NSDate())
                             completion(.Success())
+                            return
                         }
                     }
+
                     completion(.Failure(error))
                 }
             }
