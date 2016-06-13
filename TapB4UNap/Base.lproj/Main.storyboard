@@ -57,7 +57,7 @@
             </objects>
             <point key="canvasLocation" x="564" y="-147"/>
         </scene>
-        <!--Adjust time-->
+        <!--Adjust Time Table View Controller-->
         <scene sceneID="OY1-aq-lby">
             <objects>
                 <tableViewController id="1ts-jL-GwZ" customClass="AdjustTimeTableViewController" customModule="TapB4UNap" customModuleProvider="target" sceneMemberID="viewController">
@@ -188,7 +188,7 @@
                             <outlet property="delegate" destination="1ts-jL-GwZ" id="XzM-m8-rhe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Adjust time" id="OCv-du-bcv">
+                    <navigationItem key="navigationItem" id="OCv-du-bcv">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="AhA-IF-GCE">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>

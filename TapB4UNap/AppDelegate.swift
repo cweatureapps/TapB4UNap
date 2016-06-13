@@ -53,13 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        switch url.absoluteString {
-            case "cwtapb4unap://adjust":
-                rootViewController?.adjust()
-            case "cwtapb4unap://reset":
-                TimeKeeper().resetSleepData()
-            default:
-                return false
+        guard let rootViewController = rootViewController, deepLink = DeepLink(rawValue: url.absoluteString) else {
+            return false
+        }
+        switch deepLink {
+            case .Add:
+                rootViewController.addButtonTapped()
+            case .Edit:
+                rootViewController.editButtonTapped()
         }
         return true
     }

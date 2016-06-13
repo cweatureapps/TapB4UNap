@@ -10,7 +10,8 @@ import UIKit
 import XCGLogger
 
 protocol TimerViewControllerDelegate {
-    func adjustButtonHandler()
+    func addButtonTapped()
+    func editButtonTapped()
 }
 
 class TimerViewController: UIViewController {
@@ -78,7 +79,7 @@ class TimerViewController: UIViewController {
     // MARK: Button handlers
 
     func addTapped() {
-        log.debug("add button tapped")
+        delegate?.addButtonTapped()
     }
 
     func sleepTapped() {
@@ -114,7 +115,7 @@ class TimerViewController: UIViewController {
     }
 
     func editTapped() {
-        delegate?.adjustButtonHandler()
+        delegate?.editButtonTapped()
     }
 
     func doneTapped() {

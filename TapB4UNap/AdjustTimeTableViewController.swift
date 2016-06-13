@@ -27,12 +27,14 @@ class AdjustTimeTableViewController: UITableViewController {
 
         startTimeDatePicker.addTarget(self, action: #selector(AdjustTimeTableViewController.datePickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         endTimeDatePicker.addTarget(self, action: #selector(AdjustTimeTableViewController.datePickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        if  let mostRecentSleep = timeKeeper.mostRecentSleepSample(),
+        if let mostRecentSleep = timeKeeper.mostRecentSleepSample(),
             sleepStartDate = mostRecentSleep.startDate,
             sleepEndDate = mostRecentSleep.endDate {
             sleepSample.startDate = sleepStartDate
             sleepSample.endDate = sleepEndDate
             refreshUI()
+        } else {
+            sleptForLabel.text = "0:00:00"
         }
 
         setupTextColours()
@@ -67,7 +69,6 @@ class AdjustTimeTableViewController: UITableViewController {
         sleepSample.startDate = startTimeDatePicker.date
         sleepSample.endDate = endTimeDatePicker.date
         sleepSample.resetSeconds()
-
         refreshUI()
     }
 
