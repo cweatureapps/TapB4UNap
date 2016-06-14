@@ -113,7 +113,7 @@ class HealthStore {
     }
 
     /// delete an HKObject from health kit
-    func deleteSleepData(hkObject: HKObject, completion: (Result<Void>) -> Void) {
+    private func deleteSleepData(hkObject: HKObject, completion: (Result<Void>) -> Void) {
         self.requestAuthorisationForHealthStore { result in
             switch result {
             case .Success:
@@ -131,34 +131,59 @@ class HealthStore {
         }
     }
 
-    /// queries and then deletes the recent sleep sample from HealthKit, and then saves the new sample
-    func overwriteMostRecentSleepSample(mostRecentSleepSample: SleepSample, withSample sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
-        log.debug("overwriting most recent sleep")
-        querySleepSample(mostRecentSleepSample) { result in
+    /// Queries HealthKit for the recording matching the SleepSample and deletes it
+    func deleteSleepSample(sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
+        log.debug("deleting sleep sample")
+        querySleepSample(sleepSample) { result in
             switch result {
-                case .Failure(let error):
-                    completion(.Failure(error))
-                case .Success(let samples):
-                    guard let samples = samples where !samples.isEmpty else {
-                        completion(.Failure(TapB4UNapError.OverwriteFailed("no records found in sleep sample query")))
-                        return
-                    }
-                    guard let firstSample = samples.first where samples.count == 1 else {
-                        completion(.Failure(TapB4UNapError.OverwriteFailed("more than 1 record was found in sleep sample query")))
-                        return
-                    }
+            case .Failure(let error):
+                completion(.Failure(error))
+            case .Success(let samples):
+                guard let samples = samples where !samples.isEmpty else {
+                    let errorMessage = "delete failed, no records found in sleep sample query"
+                    self.log.error(errorMessage)
+                    completion(.Failure(TapB4UNapError.DeleteFailed(errorMessage)))
+                    return
+                }
+                guard let firstSample = samples.first where samples.count == 1 else {
+                    let errorMessage = "delete failed, more than 1 record was found in sleep sample query"
+                    self.log.error(errorMessage)
+                    completion(.Failure(TapB4UNapError.DeleteFailed(errorMessage)))
+                    return
+                }
 
-                    self.deleteSleepData(firstSample) { result in
-                        switch result {
-                        case .Success:
-                            self.saveSleepSample(sleepSample) { result in
-                                self.log.debug("saveSleepData completed")
-                                completion(.Success())
-                            }
-                        case .Failure:
-                            completion(result)
-                        }
+                self.deleteSleepData(firstSample) { result in
+                    switch result {
+                    case .Success:
+                        self.log.info("delete successful")
+                        completion(.Success())
+                    case .Failure:
+                        self.log.error("delete failed")
+                        completion(result)
                     }
+                }
+            }
+        }
+    }
+
+    /// Queries and then deletes the given sample from HealthKit, and then saves the new sample
+    func overwriteSleepSample(existingSleepSample: SleepSample, withSample newSleepSample: SleepSample, completion: (Result<Void>) -> Void) {
+        deleteSleepSample(existingSleepSample) { result in
+            switch result {
+            case .Failure:
+                self.log.error("overwrite failed during delete")
+                completion(result)
+            case .Success:
+                self.saveSleepSample(newSleepSample) { saveResult in
+                    switch saveResult {
+                    case .Failure:
+                        self.log.error("overwrite failed during save")
+                         completion(result)
+                    case .Success:
+                        self.log.info("Overwrite successful")
+                        completion(.Success())
+                    }
+                }
             }
         }
     }

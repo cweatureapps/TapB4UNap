@@ -39,8 +39,12 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
         } else if segue.identifier == Constants.adjustSegue,
             let navVC = segue.destinationViewController as? UINavigationController,
             let adjustVC = navVC.viewControllers.first as? AdjustTimeTableViewController {
-            adjustVC.title = adjustIsEdit ? "Edit" : "Add"
+            adjustVC.isEditMode = adjustIsEdit
         }
+    }
+
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
 
     // MARK: Notifications

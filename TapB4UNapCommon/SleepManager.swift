@@ -89,7 +89,11 @@ class SleepManager {
      - parameter completion:  The completion called after saving to HealthKit with the result of whether it was successful
      */
     func saveAdjustedSleepTimeToHealthStore(sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
-        HealthStore.sharedInstance.overwriteMostRecentSleepSample(timeKeeper.mostRecentSleepSample()!, withSample: sleepSample) { result in
+        guard let recentSleep = timeKeeper.mostRecentSleepSample() else {
+            completion(.Failure(TapB4UNapError.OverwriteFailed("Could not find most recent sleep sample from TimeKeeper")))
+            return
+        }
+        HealthStore.sharedInstance.overwriteSleepSample(recentSleep, withSample: sleepSample) { result in
             dispatch_async(dispatch_get_main_queue()) {
                 switch result {
                 case .Success:
@@ -98,6 +102,26 @@ class SleepManager {
                     completion(.Success())
                 case .Failure(let error):
                     LogUtils.logError("Error saving to health store", error)
+                    completion(result)
+                }
+            }
+        }
+    }
+
+    func deleteMostRecentSleepSample(completion: (Result<Void>) -> Void) {
+        guard let recentSleep = timeKeeper.mostRecentSleepSample() else {
+            completion(.Failure(TapB4UNapError.DeleteFailed("Could not find most recent sleep sample from TimeKeeper")))
+            return
+        }
+        HealthStore.sharedInstance.deleteSleepSample(recentSleep) { result in
+            dispatch_async(dispatch_get_main_queue()) {
+                switch result {
+                case .Success:
+                    self.log.info("Most recent sleep sample deleted")
+                    self.timeKeeper.resetRecentSleepData()
+                    completion(.Success())
+                case .Failure(let error):
+                    LogUtils.logError("Error deleting most recent sleep sample", error)
                     completion(result)
                 }
             }

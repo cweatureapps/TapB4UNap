@@ -11,20 +11,31 @@ import UIKit
 class AdjustTimeTableViewController: UITableViewController {
 
     private enum Constants {
-        static let textColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
+        static let textColor = UIColor.blackColor()
     }
 
     private let timeKeeper = TimeKeeper()
+    private let sleepManager = SleepManager()
 
-    @IBOutlet private weak var sleptForLabel: UILabel!
-    @IBOutlet private weak var startTimeDatePicker: UIDatePicker!
-    @IBOutlet private weak var endTimeDatePicker: UIDatePicker!
+    @IBOutlet private var saveButton: UIBarButtonItem!
+    @IBOutlet private var sleptForLabel: UILabel!
+    @IBOutlet private var startTimeDatePicker: UIDatePicker!
+    @IBOutlet private var endTimeDatePicker: UIDatePicker!
+    @IBOutlet private var deleteCell: UITableViewCell!
+
+    /// true if this screen is in edit mode, false if this screen is to add new
+    var isEditMode = false
 
     var sleepSample = SleepSample(startDate: nil, endDate: nil)
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = isEditMode ? "Edit" : "Add"
+        deleteCell.hidden = !isEditMode
         startTimeDatePicker.addTarget(self, action: #selector(AdjustTimeTableViewController.datePickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         endTimeDatePicker.addTarget(self, action: #selector(AdjustTimeTableViewController.datePickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         if let mostRecentSleep = timeKeeper.mostRecentSleepSample(),
@@ -36,33 +47,6 @@ class AdjustTimeTableViewController: UITableViewController {
         } else {
             sleptForLabel.text = "0:00:00"
         }
-
-        setupTextColours()
-        addBlurredImage()
-        setupNavBar()
-    }
-
-    func setupTextColours() {
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.whiteColor()
-        ]
-        startTimeDatePicker.setValue(Constants.textColor, forKey: "textColor")
-        endTimeDatePicker.setValue(Constants.textColor, forKey: "textColor")
-    }
-
-    func addBlurredImage() {
-        let image = UIImage(named: "background")
-        let blurImage = UIImageEffects.imageByApplyingBlurToImage(image, withRadius: 40, tintColor: UIColor.clearColor(), saturationDeltaFactor: 1.2, maskImage: nil)
-        let backgroundImageView = UIImageView(image: blurImage)
-        backgroundImageView.contentMode = .ScaleAspectFill
-        tableView.backgroundView = backgroundImageView
-    }
-
-    private func setupNavBar() {
-        guard let navBar = navigationController?.navigationBar else { return }
-        navBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        navBar.shadowImage = UIImage()
-        navBar.translucent = true
     }
 
     func datePickerChanged(datePicker: UIDatePicker) {
@@ -77,8 +61,15 @@ class AdjustTimeTableViewController: UITableViewController {
         endTimeDatePicker.date = sleepSample.endDate!
 
         let formattedSleepTime = sleepSample.formattedString()
-        sleptForLabel.text = formattedSleepTime.isEmpty ? "Error: invalid sleep time" : formattedSleepTime
-        sleptForLabel.textColor = formattedSleepTime.isEmpty ? UIColor.redColor() : Constants.textColor
+        if formattedSleepTime.isEmpty {
+            sleptForLabel.text = "Error: invalid sleep time"
+            sleptForLabel.textColor = UIColor.redColor()
+            saveButton.enabled = false
+        } else {
+            sleptForLabel.text = formattedSleepTime
+            sleptForLabel.textColor = Constants.textColor
+            saveButton.enabled = true
+        }
     }
 
     private func formatDate(date: NSDate) -> String {
@@ -95,6 +86,42 @@ class AdjustTimeTableViewController: UITableViewController {
             sleepSample.startDate = startTimeDatePicker.date
             sleepSample.endDate = endTimeDatePicker.date
         }
+    }
+
+    // MARK: - Delete
+
+    @IBAction func deleteTapped(sender: AnyObject) {
+        let alertController = UIAlertController(title: "", message: "Are you sure you want to delete this sleep record?", preferredStyle: .ActionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style:.Destructive) { _ in
+            self.deleteMostRecentSleep()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+
+    private func deleteMostRecentSleep() {
+        self.sleepManager.deleteMostRecentSleepSample { result in
+            switch result {
+            case .Failure(let error):
+                LogUtils.logError("delete failed", error)
+                self.alertMessage("Sorry, something went wrong")
+            case .Success:
+                self.alertMessage("The record has been deleted successfully") {
+                    self.performSegueWithIdentifier("mainSegue", sender: self)
+                }
+            }
+        }
+    }
+
+    private func alertMessage(message: String, okHandler: ((Void) -> Void)? = nil) {
+        let alertController = UIAlertController(title: "", message: message, preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "OK", style:.Default) { _ in
+            okHandler?()
+        }
+        alertController.addAction(okAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 
 }
