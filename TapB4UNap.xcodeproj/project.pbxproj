@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3631B7840ACB42708B543D64 /* Pods_TapB4UNapWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F79AB81CC268BB67B6FB38A /* Pods_TapB4UNapWidget.framework */; };
-		5B033F2B1CF6DAD400DAAA8C /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B033F2A1CF6DAD400DAAA8C /* UIImageEffects.m */; };
 		5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A3519F4673800ECE1A5 /* AppDelegate.swift */; };
 		5B285A3B19F4673800ECE1A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A3919F4673800ECE1A5 /* Main.storyboard */; };
 		5B285A3D19F4673800ECE1A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A3C19F4673800ECE1A5 /* Images.xcassets */; };
@@ -20,6 +19,8 @@
 		5B2ECEA11D0434DD00096C04 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */; };
 		5B45CA2F1D0AD40D0093407E /* common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B45CA2E1D0AD40D0093407E /* common.xcassets */; };
 		5B45CA301D0AD40D0093407E /* common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B45CA2E1D0AD40D0093407E /* common.xcassets */; };
+		5B47F07B1D16C3F200F23C57 /* DashboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B47F07A1D16C3F200F23C57 /* DashboardView.xib */; };
+		5B47F07C1D16C3F200F23C57 /* DashboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B47F07A1D16C3F200F23C57 /* DashboardView.xib */; };
 		5B4B1DE71CE086D4008CFE09 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */; };
 		5B4B1DE81CE086D4008CFE09 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */; };
 		5B4B1DEA1CE0B567008CFE09 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */; };
@@ -32,15 +33,9 @@
 		5B661F261CBA7272000B76FE /* SleepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F221CBA7272000B76FE /* SleepManager.swift */; };
 		5B6C3B811A9A0ED200278990 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6C3B801A9A0ED200278990 /* HealthKit.framework */; };
 		5B9EAB901D0D8049000D30BE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */; };
-		5B9EAB921D0D807D000D30BE /* BeginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB911D0D807D000D30BE /* BeginView.xib */; };
 		5B9EAB931D0D874A000D30BE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */; };
-		5B9EAB951D0D893C000D30BE /* SleepingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB941D0D893C000D30BE /* SleepingView.xib */; };
-		5B9EAB961D0D893C000D30BE /* SleepingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB941D0D893C000D30BE /* SleepingView.xib */; };
-		5B9EAB981D0D89C4000D30BE /* FinishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB971D0D89C4000D30BE /* FinishView.xib */; };
-		5B9EAB991D0D89C4000D30BE /* FinishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB971D0D89C4000D30BE /* FinishView.xib */; };
 		5B9EAB9B1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */; };
 		5B9EAB9C1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */; };
-		5B9EAB9D1D0D9F87000D30BE /* BeginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB911D0D807D000D30BE /* BeginView.xib */; };
 		5B9EAB9F1D0EFC01000D30BE /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */; };
 		5B9EABA01D0EFC01000D30BE /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */; };
 		5BA0E30B1CC0556000E481DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30A1CC0556000E481DA /* Result.swift */; };
@@ -119,8 +114,6 @@
 /* Begin PBXFileReference section */
 		3F79AB81CC268BB67B6FB38A /* Pods_TapB4UNapWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TapB4UNapWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B033F281CF6DAD300DAAA8C /* TapB4UNap-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TapB4UNap-Bridging-Header.h"; sourceTree = "<group>"; };
-		5B033F291CF6DAD400DAAA8C /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageEffects.h; path = ../../IntroWorkshop.iOS/IntroWorkshop/View/UIImageEffects.h; sourceTree = "<group>"; };
-		5B033F2A1CF6DAD400DAAA8C /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageEffects.m; path = ../../IntroWorkshop.iOS/IntroWorkshop/View/UIImageEffects.m; sourceTree = "<group>"; };
 		5B285A3019F4673800ECE1A5 /* TapB4UNap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapB4UNap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B285A3419F4673800ECE1A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B285A3519F4673800ECE1A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +130,7 @@
 		5B285A7919FA6EF600ECE1A5 /* TapB4UNapWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TapB4UNapWidget.entitlements; sourceTree = "<group>"; };
 		5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5B45CA2E1D0AD40D0093407E /* common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = common.xcassets; sourceTree = "<group>"; };
+		5B47F07A1D16C3F200F23C57 /* DashboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardView.xib; sourceTree = "<group>"; };
 		5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
 		5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TimerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5B661F1D1CBA725F000B76FE /* AdjustTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustTimeTableViewController.swift; sourceTree = "<group>"; };
@@ -145,9 +139,6 @@
 		5B6B6FA41CD2CB6A00A015E2 /* TestCases.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TestCases.md; sourceTree = "<group>"; };
 		5B6C3B801A9A0ED200278990 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		5B9EAB911D0D807D000D30BE /* BeginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeginView.xib; sourceTree = "<group>"; };
-		5B9EAB941D0D893C000D30BE /* SleepingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SleepingView.xib; path = TapB4UNapCommon/SleepingView.xib; sourceTree = SOURCE_ROOT; };
-		5B9EAB971D0D89C4000D30BE /* FinishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FinishView.xib; sourceTree = "<group>"; };
 		5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ViewFromNib.swift"; sourceTree = "<group>"; };
 		5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
 		5BA0E30A1CC0556000E481DA /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -262,11 +253,9 @@
 				5B285A3C19F4673800ECE1A5 /* Images.xcassets */,
 				5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */,
 				5B285A3919F4673800ECE1A5 /* Main.storyboard */,
+				5B033F281CF6DAD300DAAA8C /* TapB4UNap-Bridging-Header.h */,
 				5BBB932B1CE740E800C2A730 /* MainViewController.swift */,
 				5B285A3319F4673800ECE1A5 /* Supporting Files */,
-				5B033F281CF6DAD300DAAA8C /* TapB4UNap-Bridging-Header.h */,
-				5B033F291CF6DAD400DAAA8C /* UIImageEffects.h */,
-				5B033F2A1CF6DAD400DAAA8C /* UIImageEffects.m */,
 			);
 			path = TapB4UNap;
 			sourceTree = "<group>";
@@ -352,18 +341,16 @@
 		5BE35B061CBA59B4004918B9 /* TapB4UNapCommon */ = {
 			isa = PBXGroup;
 			children = (
-				5B9EAB911D0D807D000D30BE /* BeginView.xib */,
 				5B45CA2E1D0AD40D0093407E /* common.xcassets */,
 				5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */,
+				5B47F07A1D16C3F200F23C57 /* DashboardView.xib */,
 				5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */,
 				5BA0E30C1CC0570C00E481DA /* Errors.swift */,
-				5B9EAB971D0D89C4000D30BE /* FinishView.xib */,
 				5B661F211CBA7272000B76FE /* HealthStore.swift */,
 				5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */,
 				5BA7F2F91CC39C76003174E8 /* LogUtils.swift */,
 				5BA0E30A1CC0556000E481DA /* Result.swift */,
 				5BE35B071CBA59B4004918B9 /* SettingsManager.swift */,
-				5B9EAB941D0D893C000D30BE /* SleepingView.xib */,
 				5B661F221CBA7272000B76FE /* SleepManager.swift */,
 				5BE35B081CBA59B4004918B9 /* SleepSample.swift */,
 				5BE35B091CBA59B4004918B9 /* TimeKeeper.swift */,
@@ -525,11 +512,9 @@
 				5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */,
 				5B285A3B19F4673800ECE1A5 /* Main.storyboard in Resources */,
 				5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */,
+				5B47F07B1D16C3F200F23C57 /* DashboardView.xib in Resources */,
 				5B45CA2F1D0AD40D0093407E /* common.xcassets in Resources */,
-				5B9EAB981D0D89C4000D30BE /* FinishView.xib in Resources */,
-				5B9EAB951D0D893C000D30BE /* SleepingView.xib in Resources */,
 				5BBB932A1CE7401100C2A730 /* Settings.bundle in Resources */,
-				5B9EAB921D0D807D000D30BE /* BeginView.xib in Resources */,
 				5B285A3D19F4673800ECE1A5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -546,12 +531,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */,
-				5B9EAB991D0D89C4000D30BE /* FinishView.xib in Resources */,
 				5B4B1DE81CE086D4008CFE09 /* TimerViewController.xib in Resources */,
 				5B285A6F19F9A69A00ECE1A5 /* MainInterface.storyboard in Resources */,
-				5B9EAB9D1D0D9F87000D30BE /* BeginView.xib in Resources */,
+				5B47F07C1D16C3F200F23C57 /* DashboardView.xib in Resources */,
 				5B45CA301D0AD40D0093407E /* common.xcassets in Resources */,
-				5B9EAB961D0D893C000D30BE /* SleepingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,7 +679,6 @@
 				5BA0E30D1CC0570C00E481DA /* Errors.swift in Sources */,
 				5BE35B0C1CBA59B4004918B9 /* SleepSample.swift in Sources */,
 				5B661F231CBA7272000B76FE /* HealthStore.swift in Sources */,
-				5B033F2B1CF6DAD400DAAA8C /* UIImageEffects.m in Sources */,
 				5B9EAB9F1D0EFC01000D30BE /* DeepLink.swift in Sources */,
 				5B4B1DEA1CE0B567008CFE09 /* TimerViewController.swift in Sources */,
 				5BA7F2F81CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift in Sources */,

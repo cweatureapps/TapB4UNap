@@ -42,6 +42,7 @@ class TimerViewController: UIViewController {
     @IBOutlet var sleepingView: DashboardView!
     @IBOutlet var finishView: DashboardView!
     @IBOutlet var errorLabel: UILabel!
+    @IBOutlet var monitoringLocationView: UIView!
 
     // MARK: UIViewController overrides
 
@@ -54,6 +55,7 @@ class TimerViewController: UIViewController {
 
         view.backgroundColor = .clearColor()
         errorLabel.text = ""
+        monitoringLocationView.alpha = 0.0
 
         beginView.setupButtons(target: self, button1Action: .addTapped, button2Action: .sleepTapped)
         sleepingView.setupButtons(target: self, button1Action: .cancelTapped, button2Action: .wakeTapped)
@@ -195,6 +197,23 @@ class TimerViewController: UIViewController {
             } else {
                 animateToDashboardView(beginView, direction: .Forward)
             }
+        }
+
+        refreshLocationView()
+    }
+
+    private func refreshLocationView() {
+        func animateLocationViewAlpha(alpha: CGFloat) {
+            if monitoringLocationView.alpha != alpha {
+                UIView.animateWithDuration(Constants.animationDuration) {
+                    self.monitoringLocationView.alpha = alpha
+                }
+            }
+        }
+        if LocationManager.sharedInstance.isMonitoring {
+            animateLocationViewAlpha(1.0)
+        } else {
+            animateLocationViewAlpha(0.0)
         }
     }
 
