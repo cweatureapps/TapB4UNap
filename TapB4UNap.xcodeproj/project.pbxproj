@@ -41,6 +41,8 @@
 		5B9EAB9B1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */; };
 		5B9EAB9C1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */; };
 		5B9EAB9D1D0D9F87000D30BE /* BeginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9EAB911D0D807D000D30BE /* BeginView.xib */; };
+		5B9EAB9F1D0EFC01000D30BE /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */; };
+		5B9EABA01D0EFC01000D30BE /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */; };
 		5BA0E30B1CC0556000E481DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30A1CC0556000E481DA /* Result.swift */; };
 		5BA0E30D1CC0570C00E481DA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30C1CC0570C00E481DA /* Errors.swift */; };
 		5BA0E30E1CC057E700E481DA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30C1CC0570C00E481DA /* Errors.swift */; };
@@ -147,6 +149,7 @@
 		5B9EAB941D0D893C000D30BE /* SleepingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SleepingView.xib; path = TapB4UNapCommon/SleepingView.xib; sourceTree = SOURCE_ROOT; };
 		5B9EAB971D0D89C4000D30BE /* FinishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FinishView.xib; sourceTree = "<group>"; };
 		5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ViewFromNib.swift"; sourceTree = "<group>"; };
+		5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
 		5BA0E30A1CC0556000E481DA /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		5BA0E30C1CC0570C00E481DA /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		5BA7F2F51CC31F39003174E8 /* TapB4UNapErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapB4UNapErrorTests.swift; sourceTree = "<group>"; };
@@ -349,11 +352,12 @@
 		5BE35B061CBA59B4004918B9 /* TapB4UNapCommon */ = {
 			isa = PBXGroup;
 			children = (
-				5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */,
 				5B9EAB911D0D807D000D30BE /* BeginView.xib */,
 				5B45CA2E1D0AD40D0093407E /* common.xcassets */,
 				5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */,
+				5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */,
 				5BA0E30C1CC0570C00E481DA /* Errors.swift */,
+				5B9EAB971D0D89C4000D30BE /* FinishView.xib */,
 				5B661F211CBA7272000B76FE /* HealthStore.swift */,
 				5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */,
 				5BA7F2F91CC39C76003174E8 /* LogUtils.swift */,
@@ -365,7 +369,7 @@
 				5BE35B091CBA59B4004918B9 /* TimeKeeper.swift */,
 				5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */,
 				5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */,
-				5B9EAB971D0D89C4000D30BE /* FinishView.xib */,
+				5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */,
 			);
 			path = TapB4UNapCommon;
 			sourceTree = "<group>";
@@ -693,6 +697,7 @@
 				5BE35B0C1CBA59B4004918B9 /* SleepSample.swift in Sources */,
 				5B661F231CBA7272000B76FE /* HealthStore.swift in Sources */,
 				5B033F2B1CF6DAD400DAAA8C /* UIImageEffects.m in Sources */,
+				5B9EAB9F1D0EFC01000D30BE /* DeepLink.swift in Sources */,
 				5B4B1DEA1CE0B567008CFE09 /* TimerViewController.swift in Sources */,
 				5BA7F2F81CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift in Sources */,
 			);
@@ -711,6 +716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B4B1DEB1CE0B567008CFE09 /* TimerViewController.swift in Sources */,
+				5B9EABA01D0EFC01000D30BE /* DeepLink.swift in Sources */,
 				5B9EAB931D0D874A000D30BE /* DashboardView.swift in Sources */,
 				5B9EAB9C1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */,
 				5BE35B0D1CBA59B4004918B9 /* SleepSample.swift in Sources */,

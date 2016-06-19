@@ -51,8 +51,11 @@ class TodayViewController: UIViewController, NCWidgetProviding, TimerViewControl
 
     // MARK: TimerViewControllerDelegate
 
-    func adjustButtonHandler() {
-        extensionContext?.openURL(NSURL(string: "cwtapb4unap://adjust")!, completionHandler: nil)
+    func addButtonTapped() {
+        extensionContext?.openURL(DeepLink.Add.url, completionHandler: nil)
     }
 
+    func editButtonTapped() {
+        extensionContext?.openURL(DeepLink.Edit.url, completionHandler: nil)
+    }
 }

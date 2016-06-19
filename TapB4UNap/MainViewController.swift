@@ -12,6 +12,12 @@ import XCGLogger
 
 class MainViewController: UIViewController, TimerViewControllerDelegate {
 
+    // MARK: Constants
+
+    private enum Constants {
+        static let adjustSegue = "adjustSegue"
+    }
+
     // MARK: privates
 
     private let log = XCGLogger.defaultInstance()
@@ -30,7 +36,15 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
         if let timerViewController = segue.destinationViewController as? TimerViewController {
             timerViewController.delegate = self
             self.timerViewController = timerViewController
+        } else if segue.identifier == Constants.adjustSegue,
+            let navVC = segue.destinationViewController as? UINavigationController,
+            let adjustVC = navVC.viewControllers.first as? AdjustTimeTableViewController {
+            adjustVC.isEditMode = adjustIsEdit
         }
+    }
+
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
 
     // MARK: Notifications
@@ -56,11 +70,6 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
     }
 
     // MARK: Public API
-
-    /// Called by deeplink to adjust the time
-    func adjust() {
-        performSegueWithIdentifier("adjustSegue", sender: nil)
-    }
 
     /// Should be called by `AppDelegate.applicationShouldRequestHealthAuthorization(_:)` when handling HealthKit authorization request from an extension
     func handleExtensionAuthorization() {
@@ -92,7 +101,7 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
     @IBAction func saveAdjustedSleeptime(segue: UIStoryboardSegue) {
         if let vc = segue.sourceViewController as? AdjustTimeTableViewController {
             let sleepSample = vc.sleepSample
-            sleepManager.saveAdjustedSleepTimeToHealthStore(sleepSample) { result in
+            let handler: (Result<Void>) -> Void = { result in
                 switch result {
                 case .Success:
                     self.log.debug("saveAdjustedSleeptime was successful")
@@ -102,12 +111,25 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
                     self.timerViewController.handleSleepManagerError(error)
                 }
             }
+            if adjustIsEdit {
+                sleepManager.saveAdjustedSleepTimeToHealthStore(sleepSample, completion: handler)
+            } else {
+                sleepManager.saveSleep(sleepSample, completion: handler)
+            }
         }
     }
 
     // MARK: TimerViewControllerDelegate
 
-    func adjustButtonHandler() {
-        performSegueWithIdentifier("adjustSegue", sender: self)
+    var adjustIsEdit = false
+
+    func addButtonTapped() {
+        adjustIsEdit = false
+        performSegueWithIdentifier(Constants.adjustSegue, sender: self)
+    }
+
+    func editButtonTapped() {
+        adjustIsEdit = true
+        performSegueWithIdentifier(Constants.adjustSegue, sender: self)
     }
 }
