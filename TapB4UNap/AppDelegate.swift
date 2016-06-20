@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     func didExitRegion() {
         log.info("AppDelegate didExitRegion called")
         let notification = UILocalNotification()
-        notification.alertBody = "It looks like you are awake, tap to wake?"
+        notification.alertBody = "It looks like you are awake... do you want to stop recording sleep?"
         notification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
