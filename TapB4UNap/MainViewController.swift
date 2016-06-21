@@ -29,6 +29,7 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNotifications()
+        clearBadges()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -47,6 +48,10 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
         return .LightContent
     }
 
+    private func clearBadges() {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+    }
+
     // MARK: Notifications
 
     private func setupNotifications() {
@@ -56,6 +61,7 @@ class MainViewController: UIViewController, TimerViewControllerDelegate {
 
     func didBecomeActive() {
         log.debug("didBecomeActive called")
+        clearBadges()
         timerViewController?.refreshUI()
         timerViewController?.startSleepingTimer()
     }

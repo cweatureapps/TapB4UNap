@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     }
 
     private func registerNotifications() {
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
     }
 
@@ -113,6 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
         let notification = UILocalNotification()
         notification.alertBody = "It looks like you are awake... do you want to stop recording sleep?"
         notification.soundName = UILocalNotificationDefaultSoundName
+        notification.applicationIconBadgeNumber = 1
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
 
