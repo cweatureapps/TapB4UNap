@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -13,20 +13,20 @@
                         <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000027" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hov6CQ-1280x400.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3wo-RG-euE" userLabel="background">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.80000000000000027" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hov6CQ-1280x400.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3wo-RG-euE" userLabel="background">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="DtG-CS-65F"/>
+                                    <constraint firstAttribute="height" constant="170" id="DtG-CS-65F"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3I-Ll-vSg" userLabel="contents">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7SG-0K-B1n">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                                         <connections>
                                             <segue destination="eVw-Qd-rGl" kind="embed" id="kiM-cN-Wbn"/>
                                         </connections>
@@ -35,7 +35,7 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="7SG-0K-B1n" secondAttribute="bottom" id="2EJ-Sf-jmD"/>
                                     <constraint firstItem="7SG-0K-B1n" firstAttribute="leading" secondItem="O3I-Ll-vSg" secondAttribute="leading" id="72g-V2-uO4"/>
-                                    <constraint firstAttribute="height" constant="100" id="FWg-zB-ilD"/>
+                                    <constraint firstAttribute="height" constant="170" id="FWg-zB-ilD"/>
                                     <constraint firstAttribute="trailing" secondItem="7SG-0K-B1n" secondAttribute="trailing" id="Ohj-xa-Ycd"/>
                                     <constraint firstItem="7SG-0K-B1n" firstAttribute="top" secondItem="O3I-Ll-vSg" secondAttribute="top" id="QPt-pr-aAa"/>
                                 </constraints>
@@ -56,7 +56,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="100"/>
+                    <size key="freeformSize" width="320" height="170"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -66,8 +66,12 @@
         <scene sceneID="4Fo-Fl-5qY">
             <objects>
                 <viewController id="eVw-Qd-rGl" customClass="TimerViewController" customModule="TapB4UNapWidget" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sis-x9-Qvh"/>
+                        <viewControllerLayoutGuide type="bottom" id="PHX-CC-HCV"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uek-en-6D5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

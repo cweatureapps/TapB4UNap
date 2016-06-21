@@ -8,8 +8,14 @@
 
 import UIKit
 import NotificationCenter
+import XCGLogger
 
 class TodayViewController: UIViewController, NCWidgetProviding, TimerViewControllerDelegate {
+
+    private let log: XCGLogger = ({
+        LogUtils.configureLogger()
+        return XCGLogger.defaultInstance()
+    })()
 
     private weak var timerViewController: TimerViewController?
 
@@ -32,7 +38,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, TimerViewControl
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        log("widgetPerformUpdateWithCompletionHandler was called")
+        log.debug("widgetPerformUpdateWithCompletionHandler was called")
 
         timerViewController?.refreshUI()
         completionHandler(NCUpdateResult.NewData)
@@ -45,8 +51,11 @@ class TodayViewController: UIViewController, NCWidgetProviding, TimerViewControl
 
     // MARK: TimerViewControllerDelegate
 
-    func adjustButtonHandler() {
-        extensionContext?.openURL(NSURL(string: "cwtapb4unap://adjust")!, completionHandler: nil)
+    func addButtonTapped() {
+        extensionContext?.openURL(DeepLink.Add.url, completionHandler: nil)
     }
 
+    func editButtonTapped() {
+        extensionContext?.openURL(DeepLink.Edit.url, completionHandler: nil)
+    }
 }

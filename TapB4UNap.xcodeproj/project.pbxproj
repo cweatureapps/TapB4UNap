@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B033F2B1CF6DAD400DAAA8C /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B033F2A1CF6DAD400DAAA8C /* UIImageEffects.m */; };
+		3631B7840ACB42708B543D64 /* Pods_TapB4UNapWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F79AB81CC268BB67B6FB38A /* Pods_TapB4UNapWidget.framework */; };
 		5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A3519F4673800ECE1A5 /* AppDelegate.swift */; };
 		5B285A3B19F4673800ECE1A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A3919F4673800ECE1A5 /* Main.storyboard */; };
 		5B285A3D19F4673800ECE1A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A3C19F4673800ECE1A5 /* Images.xcassets */; };
@@ -15,6 +15,12 @@
 		5B285A6D19F9A69A00ECE1A5 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B285A6C19F9A69A00ECE1A5 /* TodayViewController.swift */; };
 		5B285A6F19F9A69A00ECE1A5 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B285A6E19F9A69A00ECE1A5 /* MainInterface.storyboard */; };
 		5B285A7219F9A69A00ECE1A5 /* TapB4UNapWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5B285A6519F9A69A00ECE1A5 /* TapB4UNapWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5B2ECEA01D0434DD00096C04 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */; };
+		5B2ECEA11D0434DD00096C04 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */; };
+		5B45CA2F1D0AD40D0093407E /* common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B45CA2E1D0AD40D0093407E /* common.xcassets */; };
+		5B45CA301D0AD40D0093407E /* common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B45CA2E1D0AD40D0093407E /* common.xcassets */; };
+		5B47F07B1D16C3F200F23C57 /* DashboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B47F07A1D16C3F200F23C57 /* DashboardView.xib */; };
+		5B47F07C1D16C3F200F23C57 /* DashboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B47F07A1D16C3F200F23C57 /* DashboardView.xib */; };
 		5B4B1DE71CE086D4008CFE09 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */; };
 		5B4B1DE81CE086D4008CFE09 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */; };
 		5B4B1DEA1CE0B567008CFE09 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */; };
@@ -26,17 +32,23 @@
 		5B661F251CBA7272000B76FE /* SleepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F221CBA7272000B76FE /* SleepManager.swift */; };
 		5B661F261CBA7272000B76FE /* SleepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661F221CBA7272000B76FE /* SleepManager.swift */; };
 		5B6C3B811A9A0ED200278990 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6C3B801A9A0ED200278990 /* HealthKit.framework */; };
+		5B9EAB901D0D8049000D30BE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */; };
+		5B9EAB931D0D874A000D30BE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */; };
+		5B9EAB9B1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */; };
+		5B9EAB9C1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */; };
+		5B9EAB9F1D0EFC01000D30BE /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */; };
+		5B9EABA01D0EFC01000D30BE /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */; };
 		5BA0E30B1CC0556000E481DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30A1CC0556000E481DA /* Result.swift */; };
 		5BA0E30D1CC0570C00E481DA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30C1CC0570C00E481DA /* Errors.swift */; };
 		5BA0E30E1CC057E700E481DA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30C1CC0570C00E481DA /* Errors.swift */; };
 		5BA0E30F1CC057EC00E481DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0E30A1CC0556000E481DA /* Result.swift */; };
 		5BA7F2F61CC31F39003174E8 /* TapB4UNapErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F51CC31F39003174E8 /* TapB4UNapErrorTests.swift */; };
 		5BA7F2F81CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F71CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift */; };
-		5BA7F2FA1CC39C76003174E8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* Utils.swift */; };
-		5BA7F2FB1CC39C76003174E8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* Utils.swift */; };
 		5BBB932A1CE7401100C2A730 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB93291CE7401100C2A730 /* Settings.bundle */; };
 		5BBB932C1CE740E800C2A730 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB932B1CE740E800C2A730 /* MainViewController.swift */; };
 		5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BBF48B41ADA6498005F3E8D /* Defaults.plist */; };
+		5BC73C221D06F7FA00D18638 /* LogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* LogUtils.swift */; };
+		5BC73C231D06F7FA00D18638 /* LogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7F2F91CC39C76003174E8 /* LogUtils.swift */; };
 		5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */; };
 		5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */; };
 		5BE35B0A1CBA59B4004918B9 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE35B071CBA59B4004918B9 /* SettingsManager.swift */; };
@@ -65,6 +77,7 @@
 		5BF176981AC6C5800007A37C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF176821AC6BE9D0007A37C /* QuartzCore.framework */; };
 		5BF176991AC6C5800007A37C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF176831AC6BE9D0007A37C /* Security.framework */; };
 		5BF1769B1AC6C5800007A37C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF176851AC6BE9D0007A37C /* SystemConfiguration.framework */; };
+		EB5A242BFDF05AFFEC5D7496 /* Pods_TapB4UNap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A898A5AD9254E8AF6005A3 /* Pods_TapB4UNap.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,9 +112,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3F79AB81CC268BB67B6FB38A /* Pods_TapB4UNapWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TapB4UNapWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B033F281CF6DAD300DAAA8C /* TapB4UNap-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TapB4UNap-Bridging-Header.h"; sourceTree = "<group>"; };
-		5B033F291CF6DAD400DAAA8C /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageEffects.h; path = ../../IntroWorkshop.iOS/IntroWorkshop/View/UIImageEffects.h; sourceTree = "<group>"; };
-		5B033F2A1CF6DAD400DAAA8C /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageEffects.m; path = ../../IntroWorkshop.iOS/IntroWorkshop/View/UIImageEffects.m; sourceTree = "<group>"; };
 		5B285A3019F4673800ECE1A5 /* TapB4UNap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapB4UNap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B285A3419F4673800ECE1A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B285A3519F4673800ECE1A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,23 +125,29 @@
 		5B285A6519F9A69A00ECE1A5 /* TapB4UNapWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TapB4UNapWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B285A6719F9A69A00ECE1A5 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		5B285A6B19F9A69A00ECE1A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B285A6C19F9A69A00ECE1A5 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		5B285A6C19F9A69A00ECE1A5 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TodayViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5B285A6E19F9A69A00ECE1A5 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		5B285A7919FA6EF600ECE1A5 /* TapB4UNapWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TapB4UNapWidget.entitlements; sourceTree = "<group>"; };
+		5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		5B45CA2E1D0AD40D0093407E /* common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = common.xcassets; sourceTree = "<group>"; };
+		5B47F07A1D16C3F200F23C57 /* DashboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardView.xib; sourceTree = "<group>"; };
 		5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
-		5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TimerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5B661F1D1CBA725F000B76FE /* AdjustTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustTimeTableViewController.swift; sourceTree = "<group>"; };
-		5B661F211CBA7272000B76FE /* HealthStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
-		5B661F221CBA7272000B76FE /* SleepManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepManager.swift; sourceTree = "<group>"; };
+		5B661F211CBA7272000B76FE /* HealthStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HealthStore.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		5B661F221CBA7272000B76FE /* SleepManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SleepManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5B6B6FA41CD2CB6A00A015E2 /* TestCases.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TestCases.md; sourceTree = "<group>"; };
 		5B6C3B801A9A0ED200278990 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ViewFromNib.swift"; sourceTree = "<group>"; };
+		5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
 		5BA0E30A1CC0556000E481DA /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		5BA0E30C1CC0570C00E481DA /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		5BA7F2F51CC31F39003174E8 /* TapB4UNapErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapB4UNapErrorTests.swift; sourceTree = "<group>"; };
 		5BA7F2F71CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthStore+ExtensionAuthorization.swift"; sourceTree = "<group>"; };
-		5BA7F2F91CC39C76003174E8 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5BA7F2F91CC39C76003174E8 /* LogUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogUtils.swift; sourceTree = "<group>"; };
 		5BBB93291CE7401100C2A730 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		5BBB932B1CE740E800C2A730 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5BBB932B1CE740E800C2A730 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MainViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5BBF48B41ADA6498005F3E8D /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5BD07E391A071100000A6E9E /* hov6CQ-1280x400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hov6CQ-1280x400.jpg"; sourceTree = "<group>"; };
@@ -146,6 +164,11 @@
 		5BF176821AC6BE9D0007A37C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5BF176831AC6BE9D0007A37C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5BF176851AC6BE9D0007A37C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		620862AD61AC8264CFD38BDD /* Pods-TapB4UNap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TapB4UNap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TapB4UNap/Pods-TapB4UNap.debug.xcconfig"; sourceTree = "<group>"; };
+		7F1F613E1D1ECAA8CCF39BC8 /* Pods-TapB4UNap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TapB4UNap.release.xcconfig"; path = "Pods/Target Support Files/Pods-TapB4UNap/Pods-TapB4UNap.release.xcconfig"; sourceTree = "<group>"; };
+		C1A898A5AD9254E8AF6005A3 /* Pods_TapB4UNap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TapB4UNap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2D84340D0FC5C48AD69CBA1 /* Pods-TapB4UNapWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TapB4UNapWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TapB4UNapWidget/Pods-TapB4UNapWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		FFCE49EA57DE1B08BE59C87C /* Pods-TapB4UNapWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TapB4UNapWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-TapB4UNapWidget/Pods-TapB4UNapWidget.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +187,7 @@
 				5BF176991AC6C5800007A37C /* Security.framework in Frameworks */,
 				5BF1769B1AC6C5800007A37C /* SystemConfiguration.framework in Frameworks */,
 				5B6C3B811A9A0ED200278990 /* HealthKit.framework in Frameworks */,
+				EB5A242BFDF05AFFEC5D7496 /* Pods_TapB4UNap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +214,7 @@
 				5B661F1A1CBA6D01000B76FE /* HealthKit.framework in Frameworks */,
 				5BF176901AC6BE9D0007A37C /* SystemConfiguration.framework in Frameworks */,
 				5B285A6819F9A69A00ECE1A5 /* NotificationCenter.framework in Frameworks */,
+				3631B7840ACB42708B543D64 /* Pods_TapB4UNapWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +231,7 @@
 				5BE35B061CBA59B4004918B9 /* TapB4UNapCommon */,
 				5B285A4819F4673800ECE1A5 /* TapB4UNapTests */,
 				5B285A6919F9A69A00ECE1A5 /* TapB4UNapWidget */,
+				B26136E988D96A6C44F24204 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,11 +253,9 @@
 				5B285A3C19F4673800ECE1A5 /* Images.xcassets */,
 				5BD07E2F1A05368D000A6E9E /* LaunchScreen.xib */,
 				5B285A3919F4673800ECE1A5 /* Main.storyboard */,
+				5B033F281CF6DAD300DAAA8C /* TapB4UNap-Bridging-Header.h */,
 				5BBB932B1CE740E800C2A730 /* MainViewController.swift */,
 				5B285A3319F4673800ECE1A5 /* Supporting Files */,
-				5B033F281CF6DAD300DAAA8C /* TapB4UNap-Bridging-Header.h */,
-				5B033F291CF6DAD400DAAA8C /* UIImageEffects.h */,
-				5B033F2A1CF6DAD400DAAA8C /* UIImageEffects.m */,
 			);
 			path = TapB4UNap;
 			sourceTree = "<group>";
@@ -280,6 +304,8 @@
 				5BF176821AC6BE9D0007A37C /* QuartzCore.framework */,
 				5BF176831AC6BE9D0007A37C /* Security.framework */,
 				5BF176851AC6BE9D0007A37C /* SystemConfiguration.framework */,
+				C1A898A5AD9254E8AF6005A3 /* Pods_TapB4UNap.framework */,
+				3F79AB81CC268BB67B6FB38A /* Pods_TapB4UNapWidget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -315,18 +341,35 @@
 		5BE35B061CBA59B4004918B9 /* TapB4UNapCommon */ = {
 			isa = PBXGroup;
 			children = (
+				5B45CA2E1D0AD40D0093407E /* common.xcassets */,
+				5B9EAB8F1D0D8049000D30BE /* DashboardView.swift */,
+				5B47F07A1D16C3F200F23C57 /* DashboardView.xib */,
+				5B9EAB9E1D0EFC01000D30BE /* DeepLink.swift */,
 				5BA0E30C1CC0570C00E481DA /* Errors.swift */,
 				5B661F211CBA7272000B76FE /* HealthStore.swift */,
+				5B2ECE9F1D0434DD00096C04 /* LocationManager.swift */,
+				5BA7F2F91CC39C76003174E8 /* LogUtils.swift */,
 				5BA0E30A1CC0556000E481DA /* Result.swift */,
 				5BE35B071CBA59B4004918B9 /* SettingsManager.swift */,
 				5B661F221CBA7272000B76FE /* SleepManager.swift */,
 				5BE35B081CBA59B4004918B9 /* SleepSample.swift */,
 				5BE35B091CBA59B4004918B9 /* TimeKeeper.swift */,
-				5BA7F2F91CC39C76003174E8 /* Utils.swift */,
-				5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */,
 				5B4B1DE91CE0B567008CFE09 /* TimerViewController.swift */,
+				5B4B1DE61CE086D4008CFE09 /* TimerViewController.xib */,
+				5B9EAB9A1D0D8B00000D30BE /* UIView+ViewFromNib.swift */,
 			);
 			path = TapB4UNapCommon;
+			sourceTree = "<group>";
+		};
+		B26136E988D96A6C44F24204 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				620862AD61AC8264CFD38BDD /* Pods-TapB4UNap.debug.xcconfig */,
+				7F1F613E1D1ECAA8CCF39BC8 /* Pods-TapB4UNap.release.xcconfig */,
+				E2D84340D0FC5C48AD69CBA1 /* Pods-TapB4UNapWidget.debug.xcconfig */,
+				FFCE49EA57DE1B08BE59C87C /* Pods-TapB4UNapWidget.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,11 +379,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B285A4F19F4673800ECE1A5 /* Build configuration list for PBXNativeTarget "TapB4UNap" */;
 			buildPhases = (
+				0CC8DE196B70F95024F49F31 /* 📦 Check Pods Manifest.lock */,
 				5BE35AF01CB8F9AD004918B9 /* Run SwiftLint */,
 				5B285A2C19F4673800ECE1A5 /* Sources */,
 				5B285A2D19F4673800ECE1A5 /* Frameworks */,
 				5B285A2E19F4673800ECE1A5 /* Resources */,
 				5B285A7619F9A69A00ECE1A5 /* Embed App Extensions */,
+				0BE786A1E7F78B98CC797808 /* 📦 Embed Pods Frameworks */,
+				081500150AE212B462A627CA /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -375,10 +421,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B285A7319F9A69A00ECE1A5 /* Build configuration list for PBXNativeTarget "TapB4UNapWidget" */;
 			buildPhases = (
+				0D4787DD00338E6BAE5CBDF2 /* 📦 Check Pods Manifest.lock */,
 				5BE35AF21CB8F9D9004918B9 /* Run SwiftLint */,
 				5B285A6119F9A69A00ECE1A5 /* Sources */,
 				5B285A6219F9A69A00ECE1A5 /* Frameworks */,
 				5B285A6319F9A69A00ECE1A5 /* Resources */,
+				BF266D86D3DEEA696F608908 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -464,6 +512,8 @@
 				5BD07E301A05368D000A6E9E /* LaunchScreen.xib in Resources */,
 				5B285A3B19F4673800ECE1A5 /* Main.storyboard in Resources */,
 				5BBF48B51ADA6498005F3E8D /* Defaults.plist in Resources */,
+				5B47F07B1D16C3F200F23C57 /* DashboardView.xib in Resources */,
+				5B45CA2F1D0AD40D0093407E /* common.xcassets in Resources */,
 				5BBB932A1CE7401100C2A730 /* Settings.bundle in Resources */,
 				5B285A3D19F4673800ECE1A5 /* Images.xcassets in Resources */,
 			);
@@ -483,12 +533,74 @@
 				5BD07E3A1A071100000A6E9E /* hov6CQ-1280x400.jpg in Resources */,
 				5B4B1DE81CE086D4008CFE09 /* TimerViewController.xib in Resources */,
 				5B285A6F19F9A69A00ECE1A5 /* MainInterface.storyboard in Resources */,
+				5B47F07C1D16C3F200F23C57 /* DashboardView.xib in Resources */,
+				5B45CA301D0AD40D0093407E /* common.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		081500150AE212B462A627CA /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TapB4UNap/Pods-TapB4UNap-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0BE786A1E7F78B98CC797808 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TapB4UNap/Pods-TapB4UNap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0CC8DE196B70F95024F49F31 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0D4787DD00338E6BAE5CBDF2 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		5BE35AF01CB8F9AD004918B9 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -531,6 +643,21 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Scripts/swiftlint.sh\"";
 		};
+		BF266D86D3DEEA696F608908 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TapB4UNapWidget/Pods-TapB4UNapWidget-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -539,19 +666,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BA0E30B1CC0556000E481DA /* Result.swift in Sources */,
+				5B9EAB901D0D8049000D30BE /* DashboardView.swift in Sources */,
 				5BBB932C1CE740E800C2A730 /* MainViewController.swift in Sources */,
+				5B2ECEA01D0434DD00096C04 /* LocationManager.swift in Sources */,
 				5B285A3619F4673800ECE1A5 /* AppDelegate.swift in Sources */,
+				5B9EAB9B1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */,
 				5B661F251CBA7272000B76FE /* SleepManager.swift in Sources */,
+				5BC73C221D06F7FA00D18638 /* LogUtils.swift in Sources */,
 				5B661F1F1CBA725F000B76FE /* AdjustTimeTableViewController.swift in Sources */,
 				5BE35B0A1CBA59B4004918B9 /* SettingsManager.swift in Sources */,
 				5BE35B0E1CBA59B4004918B9 /* TimeKeeper.swift in Sources */,
 				5BA0E30D1CC0570C00E481DA /* Errors.swift in Sources */,
 				5BE35B0C1CBA59B4004918B9 /* SleepSample.swift in Sources */,
 				5B661F231CBA7272000B76FE /* HealthStore.swift in Sources */,
-				5B033F2B1CF6DAD400DAAA8C /* UIImageEffects.m in Sources */,
+				5B9EAB9F1D0EFC01000D30BE /* DeepLink.swift in Sources */,
 				5B4B1DEA1CE0B567008CFE09 /* TimerViewController.swift in Sources */,
 				5BA7F2F81CC33FC2003174E8 /* HealthStore+ExtensionAuthorization.swift in Sources */,
-				5BA7F2FA1CC39C76003174E8 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,12 +698,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B4B1DEB1CE0B567008CFE09 /* TimerViewController.swift in Sources */,
+				5B9EABA01D0EFC01000D30BE /* DeepLink.swift in Sources */,
+				5B9EAB931D0D874A000D30BE /* DashboardView.swift in Sources */,
+				5B9EAB9C1D0D8B00000D30BE /* UIView+ViewFromNib.swift in Sources */,
 				5BE35B0D1CBA59B4004918B9 /* SleepSample.swift in Sources */,
 				5B661F261CBA7272000B76FE /* SleepManager.swift in Sources */,
-				5BA7F2FB1CC39C76003174E8 /* Utils.swift in Sources */,
+				5B2ECEA11D0434DD00096C04 /* LocationManager.swift in Sources */,
 				5B661F241CBA7272000B76FE /* HealthStore.swift in Sources */,
 				5BE35B0B1CBA59B4004918B9 /* SettingsManager.swift in Sources */,
 				5BE35B0F1CBA59B4004918B9 /* TimeKeeper.swift in Sources */,
+				5BC73C231D06F7FA00D18638 /* LogUtils.swift in Sources */,
 				5B285A6D19F9A69A00ECE1A5 /* TodayViewController.swift in Sources */,
 				5BA0E30F1CC057EC00E481DA /* Result.swift in Sources */,
 				5BA0E30E1CC057E700E481DA /* Errors.swift in Sources */,
@@ -687,13 +821,14 @@
 		};
 		5B285A5019F4673800ECE1A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 620862AD61AC8264CFD38BDD /* Pods-TapB4UNap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TapB4UNap/TapB4UNap.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -711,13 +846,14 @@
 		};
 		5B285A5119F4673800ECE1A5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F1F613E1D1ECAA8CCF39BC8 /* Pods-TapB4UNap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TapB4UNap/TapB4UNap.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -777,10 +913,12 @@
 		};
 		5B285A7419F9A69A00ECE1A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2D84340D0FC5C48AD69CBA1 /* Pods-TapB4UNapWidget.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TapB4UNapWidget/TapB4UNapWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -801,10 +939,12 @@
 		};
 		5B285A7519F9A69A00ECE1A5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFCE49EA57DE1B08BE59C87C /* Pods-TapB4UNapWidget.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TapB4UNapWidget/TapB4UNapWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

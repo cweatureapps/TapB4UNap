@@ -8,11 +8,14 @@
 
 import Foundation
 import HealthKit
+import XCGLogger
 
 ///  Wraps the single instance of HKHealthStore and provides helper methods.
 class HealthStore {
 
     private static let authCancelledErrorCode = 100
+
+    private let log = XCGLogger.defaultInstance()
 
     static let sharedInstance: HealthStore = HealthStore()
 
@@ -22,13 +25,18 @@ class HealthStore {
         self.hkHealthStore = HKHealthStore()
     }
 
+    /// Whether sharing has been denied for sleep data
+    func isAuthorizationNotDetermined() -> Bool {
+        return hkHealthStore.authorizationStatusForType(HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!) == HKAuthorizationStatus.NotDetermined
+    }
+
     /// Whether sharing has been authorized for sleep data
     func isAuthorized() -> Bool {
         return hkHealthStore.authorizationStatusForType(HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!) == HKAuthorizationStatus.SharingAuthorized
     }
 
     /// Whether sharing has been denied for sleep data
-    func isDenied() -> Bool {
+    func isAuthorizationDenied() -> Bool {
         return hkHealthStore.authorizationStatusForType(HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!) == HKAuthorizationStatus.SharingDenied
     }
 
@@ -51,6 +59,12 @@ class HealthStore {
 
     /// saves a sleep sample to health kit
     func saveSleepSample(sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
+        guard sleepSample.canSave() else {
+            let errorMessage = "sleepSample was not in a state that could be saved"
+            log.error(errorMessage)
+            completion(.Failure(TapB4UNapError.SaveFailed(errorMessage)))
+            return
+        }
         requestAuthorisationForHealthStore { result in
             switch result {
             case .Success:
@@ -58,10 +72,11 @@ class HealthStore {
                 let metadata = [ HKMetadataKeyWasUserEntered : true ]
                 let sample = HKCategorySample(type: categoryType, value: HKCategoryValueSleepAnalysis.Asleep.rawValue, startDate: sleepSample.startDate!, endDate: sleepSample.endDate!, metadata: metadata)
 
-                log("Saving...")
+                self.log.debug("Saving...")
 
                 self.hkHealthStore.saveObject(sample) { success, error in
                     if success {
+                        self.log.info("saveSleepSample success")
                         completion(.Success())
                     } else {
                         let errorMessage = error?.localizedDescription ?? "HealthKit save failed"
@@ -98,7 +113,7 @@ class HealthStore {
     }
 
     /// delete an HKObject from health kit
-    func deleteSleepData(hkObject: HKObject, completion: (Result<Void>) -> Void) {
+    private func deleteSleepData(hkObject: HKObject, completion: (Result<Void>) -> Void) {
         self.requestAuthorisationForHealthStore { result in
             switch result {
             case .Success:
@@ -116,34 +131,59 @@ class HealthStore {
         }
     }
 
-    /// queries and then deletes the recent sleep sample from HealthKit, and then saves the new sample
-    func overwriteMostRecentSleepSample(mostRecentSleepSample: SleepSample, withSample sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
-        log("overwriting most recent sleep")
-        querySleepSample(mostRecentSleepSample) { result in
+    /// Queries HealthKit for the recording matching the SleepSample and deletes it
+    func deleteSleepSample(sleepSample: SleepSample, completion: (Result<Void>) -> Void) {
+        log.debug("deleting sleep sample")
+        querySleepSample(sleepSample) { result in
             switch result {
-                case .Failure(let error):
-                    completion(.Failure(error))
-                case .Success(let samples):
-                    guard let samples = samples where !samples.isEmpty else {
-                        completion(.Failure(TapB4UNapError.OverwriteFailed("no records found in sleep sample query")))
-                        return
-                    }
-                    guard let firstSample = samples.first where samples.count == 1 else {
-                        completion(.Failure(TapB4UNapError.OverwriteFailed("more than 1 record was found in sleep sample query")))
-                        return
-                    }
+            case .Failure(let error):
+                completion(.Failure(error))
+            case .Success(let samples):
+                guard let samples = samples where !samples.isEmpty else {
+                    let errorMessage = "delete failed, no records found in sleep sample query"
+                    self.log.error(errorMessage)
+                    completion(.Failure(TapB4UNapError.DeleteFailed(errorMessage)))
+                    return
+                }
+                guard let firstSample = samples.first where samples.count == 1 else {
+                    let errorMessage = "delete failed, more than 1 record was found in sleep sample query"
+                    self.log.error(errorMessage)
+                    completion(.Failure(TapB4UNapError.DeleteFailed(errorMessage)))
+                    return
+                }
 
-                    self.deleteSleepData(firstSample) { result in
-                        switch result {
-                        case .Success:
-                            self.saveSleepSample(sleepSample) { result in
-                                log("saveSleepData completed")
-                                completion(.Success())
-                            }
-                        case .Failure:
-                            completion(result)
-                        }
+                self.deleteSleepData(firstSample) { result in
+                    switch result {
+                    case .Success:
+                        self.log.info("delete successful")
+                        completion(.Success())
+                    case .Failure:
+                        self.log.error("delete failed")
+                        completion(result)
                     }
+                }
+            }
+        }
+    }
+
+    /// Queries and then deletes the given sample from HealthKit, and then saves the new sample
+    func overwriteSleepSample(existingSleepSample: SleepSample, withSample newSleepSample: SleepSample, completion: (Result<Void>) -> Void) {
+        deleteSleepSample(existingSleepSample) { result in
+            switch result {
+            case .Failure:
+                self.log.error("overwrite failed during delete")
+                completion(result)
+            case .Success:
+                self.saveSleepSample(newSleepSample) { saveResult in
+                    switch saveResult {
+                    case .Failure:
+                        self.log.error("overwrite failed during save")
+                         completion(result)
+                    case .Success:
+                        self.log.info("Overwrite successful")
+                        completion(.Success())
+                    }
+                }
             }
         }
     }
