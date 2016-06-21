@@ -40,7 +40,7 @@ class LocationManager: NSObject {
     private let log = XCGLogger.defaultInstance()
     private let userDefaults: NSUserDefaults = SettingsManager.sharedUserDefaults
 
-    private var isMonitoring: Bool {
+    private(set) var isMonitoring: Bool {
         get {
             return userDefaults.boolForKey(Constants.isMonitoringKey)
         }

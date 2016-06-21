@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     }
 
     private func registerNotifications() {
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
     }
 
@@ -66,16 +66,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     }
 
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        log.debug("local notification received")
 
         // User manually taps on a previous notification while the app is suspended.
         // This includes when the user pulls down the notification view over the top of the active app.
         if application.applicationState == .Inactive {
-            wakeIfNeeded()
+            log.debug("local notification received in Inactive state")
+            if let alertDate = notification.userInfo?["alertDate"] as? NSDate {
+                let secondsSinceFiring = (NSDate()).timeIntervalSinceDate(alertDate)
+                log.debug("local notification was fired \(secondsSinceFiring) seconds ago")
+
+                // If notification center is over the top of the app when region exit fires,
+                // dont wake without user intervention.
+                // We can only tell the difference of this scenario by the fact it's just fired a fraction of a second ago.
+                // If the user manually taps on a previous notification, the secondsSinceFiring will be a much larger value.
+                if secondsSinceFiring > 0.2 {
+                    wakeIfNeeded()
+                }
+            }
 
         // When the app is in the foreground, and a notification is received, due to `didExitRegion` firing.
         // Prompt user because they didn't explictly say they want to wake.
         } else if application.applicationState == .Active {
+            log.debug("local notification received in Active state")
             let alertController = UIAlertController(title: "", message: "Looks like you've moved from your sleep location, tap OK to wake", preferredStyle: .Alert)
             let okAction = UIAlertAction(title: "OK", style:.Default) { _ in
                 self.wakeIfNeeded()
@@ -111,8 +123,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocationManagerDelegate {
     func didExitRegion() {
         log.info("AppDelegate didExitRegion called")
         let notification = UILocalNotification()
-        notification.alertBody = "It looks like you are awake, tap to wake?"
+        notification.alertBody = "It looks like you are awake... do you want to stop recording sleep?"
         notification.soundName = UILocalNotificationDefaultSoundName
+        notification.applicationIconBadgeNumber = 1
+        notification.userInfo = ["alertDate": NSDate()]
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
 
