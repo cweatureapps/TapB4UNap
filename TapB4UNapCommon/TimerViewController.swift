@@ -145,6 +145,7 @@ class TimerViewController: UIViewController {
 
     func startSleepingTimer() {
         log.debug("timer start")
+        sleepTimer?.invalidate()
         sleepTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector:#selector(TimerViewController.timerHandler), userInfo:nil, repeats:true)
         sleepTimer!.fire()
     }
